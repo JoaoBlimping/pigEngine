@@ -1,10 +1,9 @@
 #include <stdio.h>
 
 #include <SDL.h>
+#include <SDL_image.h>
 
-#ifdef EMSCRIPTEN
 #include <emscripten/emscripten.h>
-#endif
 
 
 //Screen dimension constants
@@ -14,99 +13,152 @@ const int SCREEN_HEIGHT = 400;
 
 //the image that we have
 SDL_Window * gWindow = NULL;
-SDL_Surface * gScreenSurface = NULL;
-SDL_Surface * gHelloWorld = NULL;
+SDL_Renderer * gRenderer = NULL;
+SDL_Texture * gTexture = NULL;
+
+//offset of the picture
 
 
 bool init()
 {
-  //Initialization flag
-  bool success = true;
-
   //Initialize SDL
-  if( SDL_Init( SDL_INIT_VIDEO ) < 0 )
+  if (SDL_Init(SDL_INIT_VIDEO) < 0)
   {
-    printf( "SDL could not initialize! SDL_Error: %s\n", SDL_GetError() );
-    success = false;
+    printf("SDL could not initialize! SDL_Error: %s\n",SDL_GetError());
+    return false;
   }
-  else
+
+  //Create window
+  gWindow = SDL_CreateWindow("SDL Tutorial",SDL_WINDOWPOS_UNDEFINED,
+                             SDL_WINDOWPOS_UNDEFINED,SCREEN_WIDTH,SCREEN_HEIGHT,
+                             SDL_WINDOW_SHOWN);
+  if (gWindow == NULL)
   {
-    //Create window
-    gWindow = SDL_CreateWindow( "SDL Tutorial", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN );
-    if( gWindow == NULL )
-    {
-      printf( "Window could not be created! SDL_Error: %s\n", SDL_GetError());
-      success = false;
-    }
-    else
-    {
-      //Get window surface
-      gScreenSurface = SDL_GetWindowSurface( gWindow );
-    }
+    printf( "Window could not be created! SDL_Error: %s\n", SDL_GetError());
+    return false;
   }
-  return success;
+
+  //Create renderer for window
+  gRenderer = SDL_CreateRenderer(gWindow,-1,SDL_RENDERER_ACCELERATED);
+  if (gRenderer == NULL)
+  {
+    printf("Renderer could not be created! SDL Error: %s\n",SDL_GetError());
+    return false;
+  }
+
+  //Initialize renderer color
+  SDL_SetRenderDrawColor(gRenderer,0xFF,0xFF,0xFF,0xFF);
+
+  return true;
+}
+
+
+SDL_Texture * loadTexture(char const * path)
+{
+  //The final texture
+  SDL_Texture* newTexture = NULL;
+
+  //Load image at specified path
+  SDL_Surface * loadedSurface = IMG_Load(path);
+  if (loadedSurface == NULL)
+  {
+    printf("Unable to load image %s! SDL_image Error: %s\n", path,IMG_GetError());
+    return NULL;
+  }
+
+  //Create texture from surface pixels
+  newTexture = SDL_CreateTextureFromSurface(gRenderer,loadedSurface);
+  if (newTexture == NULL)
+  {
+    printf("Unable to create texture from %s! SDL Error: %s\n",path,SDL_GetError());
+  }
+
+  //Get rid of old loaded surface
+  SDL_FreeSurface(loadedSurface);
+
+  return newTexture;
 }
 
 
 bool loadMedia()
 {
-  //Loading success flag
-  bool success = true;
+  //Load PNG texture
+  gTexture = loadTexture("assets/texture.png");
 
-  //Load splash image
-  gHelloWorld = SDL_LoadBMP("assets/hey.bmp");
-  if( gHelloWorld == NULL )
+  if(gTexture == NULL)
   {
-    printf("Unable to load image! SDL Error: %s\n",SDL_GetError());
-    success = false;
+    printf("Failed to load texture image!\n");
+    return false;
   }
-  return success;
+  return true;
 }
+
 
 void close()
 {
   //Deallocate surface
-  SDL_FreeSurface( gHelloWorld );
-  gHelloWorld = NULL;
+  SDL_DestroyTexture(gTexture);
+  gTexture = NULL;
 
-  //Destroy window
-  SDL_DestroyWindow( gWindow );
+  //Destroy window and renderer
+  SDL_DestroyRenderer(gRenderer);
+  SDL_DestroyWindow(gWindow);
+  gRenderer = NULL;
   gWindow = NULL;
 
   //Quit SDL subsystems
+  IMG_Quit();
   SDL_Quit();
+}
+
+
+void iteration()
+{
+  //Event handler
+  SDL_Event e;
+
+  //Handle events on queue
+  while (SDL_PollEvent(&e) != 0)
+  {
+    //User requests quit
+    if (e.type == SDL_QUIT)
+    {
+      close();
+    }
+  }
+
+
+  //clear the screen
+  SDL_RenderClear(gRenderer);
+
+  //Render texture to screen
+  SDL_RenderCopy(gRenderer,gTexture,NULL,NULL);
+
+  //update screen
+  SDL_RenderPresent(gRenderer);
+
 }
 
 
 int main( int argc, char* args[] )
 {
   //Start up SDL and create window
-  if( !init() )
+  if(!init())
   {
     printf( "Failed to initialize!\n" );
   }
   else
   {
     //Load media
-    if( !loadMedia())
+    if(!loadMedia())
     {
       printf( "Failed to load media!\n" );
     }
     else
     {
-      //Apply the image
-      SDL_BlitSurface( gHelloWorld, NULL, gScreenSurface, NULL );
-
-      //update the window surface
-      SDL_UpdateWindowSurface(gWindow);
-
-      //wait two seconds
-      SDL_Delay( 2000 );
+      emscripten_set_main_loop(iteration, 60, 1);
     }
   }
-
-  //close SDL
-  close();
 
   return 0;
 }
