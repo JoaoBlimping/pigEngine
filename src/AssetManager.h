@@ -1,29 +1,30 @@
-//manages graphics
-
+//manages the game's asset
 
 #ifndef ASSET_MANAGER_H
 #define ASSET_MANAGER_H
 
 
+#include <SDL.h>
+
 #include "Image.h"
 #include "Animation.h"
 
 
-char const * ANIMATION_DIR = "assets/animations";
-char const * IMAGE_DIR = "assets/images";
-char const * LIST = "list";
-
-
 namespace AssetManager
 {
+  extern char const * ANIMATION_DIR;
+  extern char const * ANIMATION_LIST;
+  extern char const * IMAGE_DIR;
+  extern char const * IMAGE_LIST;
+
   //the images
-  Image * images;
+  extern Image * images;
 
   //the animations
-  Animation * animations;
+  extern Animation * animations;
 
   //this is when all of the loading happens
-  void init();
+  void init(SDL_Renderer * renderer);
 }
 
 

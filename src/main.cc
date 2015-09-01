@@ -6,10 +6,11 @@
 #include <emscripten/emscripten.h>
 
 #include "Image.h"
+#include "AssetManager.h"
 
 
 //Screen dimension constants
-const int SCREEN_WIDTH = 300;
+const int SCREEN_WIDTH = 400;
 const int SCREEN_HEIGHT = 400;
 
 
@@ -55,18 +56,17 @@ bool init()
   SDL_SetRenderDrawColor(gRenderer,0xFF,0xFF,0xFF,0xFF);
 
   //initialise the asset manager
-  AssetManager::init();
+  AssetManager::init(gRenderer);
 
   return true;
 }
 
 
-
 bool loadMedia()
 {
   //Load PNG texture
-  return (gBackground.loadFromFile(gRenderer,"assets/texture.png") &
-          gImage.loadFromFile(gRenderer,"assets/dany.png"));
+  return (gBackground.loadFromFile(gRenderer,"assets/images/texture.png") &
+          gImage.loadFromFile(gRenderer,"assets/images/dany.png"));
 }
 
 

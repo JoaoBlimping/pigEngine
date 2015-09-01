@@ -34,5 +34,5 @@ void Animation::render(SDL_Renderer * renderer,int x,int y)
   clip.x = (image->getWidth() / frames) * currentFrame;
 
   //display it
-  image->render(renderer,x,y,clip);
+  image->render(renderer,x,y,&clip);
 }
