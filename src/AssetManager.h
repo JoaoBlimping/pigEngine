@@ -5,18 +5,24 @@
 #define ASSET_MANAGER_H
 
 
-#include <SDL.h>
+#include "Image.h"
+#include "Animation.h"
+
+
+char const * ANIMATION_DIR = "assets/animations";
+char const * IMAGE_DIR = "assets/images";
+char const * LIST = "list";
 
 
 namespace AssetManager
 {
   //the images
-  SDL_Texture * textures;
+  Image * images;
 
-  //the sounds
+  //the animations
+  Animation * animations;
 
-
-  //initialises everything
+  //this is when all of the loading happens
   void init();
 }
 

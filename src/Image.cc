@@ -7,7 +7,7 @@ Image::~Image()
 }
 
 
-bool Image::loadFromFile(char const * filename)
+bool Image::loadFromFile(SDL_Renderer * renderer,char const * filename)
 {
   //get rid of existing texture
   free();
@@ -60,7 +60,7 @@ void Image::free()
 }
 
 
-void Image::render(SDL_Renderer const * renderer,int x,int y,SDL_Rect * clip)
+void Image::render(SDL_Renderer * renderer,int x,int y,SDL_Rect * clip)
 {
   //set where it renders to
   SDL_Rect renderQuad = {x,y,width,height};

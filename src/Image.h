@@ -16,13 +16,13 @@ public:
   ~Image();
 
   //loads specified image file
-  bool loadFromFile(char const * filename);
+  bool loadFromFile(SDL_Renderer * renderer,char const * filename);
 
   //deallocates it's data
   void free();
 
   //renders it at given point
-  void render(SDL_Renderer const * renderer,int x,int y,SDL_Rect * clip = NULL);
+  void render(SDL_Renderer * renderer,int x,int y,SDL_Rect * clip = NULL);
 
   //accessors for image dimensions
   int getWidth();

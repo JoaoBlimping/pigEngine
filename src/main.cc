@@ -5,6 +5,8 @@
 
 #include <emscripten/emscripten.h>
 
+#include "Image.h"
+
 
 //Screen dimension constants
 const int SCREEN_WIDTH = 300;
@@ -14,9 +16,12 @@ const int SCREEN_HEIGHT = 400;
 //the image that we have
 SDL_Window * gWindow = NULL;
 SDL_Renderer * gRenderer = NULL;
-SDL_Texture * gTexture = NULL;
+Image gBackground;
+Image gImage;
 
 //offset of the picture
+int imageX = 0;
+int imageY = 0;
 
 
 bool init()
@@ -49,56 +54,27 @@ bool init()
   //Initialize renderer color
   SDL_SetRenderDrawColor(gRenderer,0xFF,0xFF,0xFF,0xFF);
 
+  //initialise the asset manager
+  AssetManager::init();
+
   return true;
 }
 
-
-SDL_Texture * loadTexture(char const * path)
-{
-  //The final texture
-  SDL_Texture* newTexture = NULL;
-
-  //Load image at specified path
-  SDL_Surface * loadedSurface = IMG_Load(path);
-  if (loadedSurface == NULL)
-  {
-    printf("Unable to load image %s! SDL_image Error: %s\n", path,IMG_GetError());
-    return NULL;
-  }
-
-  //Create texture from surface pixels
-  newTexture = SDL_CreateTextureFromSurface(gRenderer,loadedSurface);
-  if (newTexture == NULL)
-  {
-    printf("Unable to create texture from %s! SDL Error: %s\n",path,SDL_GetError());
-  }
-
-  //Get rid of old loaded surface
-  SDL_FreeSurface(loadedSurface);
-
-  return newTexture;
-}
 
 
 bool loadMedia()
 {
   //Load PNG texture
-  gTexture = loadTexture("assets/texture.png");
-
-  if(gTexture == NULL)
-  {
-    printf("Failed to load texture image!\n");
-    return false;
-  }
-  return true;
+  return (gBackground.loadFromFile(gRenderer,"assets/texture.png") &
+          gImage.loadFromFile(gRenderer,"assets/dany.png"));
 }
 
 
 void close()
 {
   //Deallocate surface
-  SDL_DestroyTexture(gTexture);
-  gTexture = NULL;
+  gBackground.free();
+  gBackground.free();
 
   //Destroy window and renderer
   SDL_DestroyRenderer(gRenderer);
@@ -127,38 +103,42 @@ void iteration()
     }
   }
 
+  //move the offset
+  imageX += 1;
+  imageY += 1;
+
 
   //clear the screen
   SDL_RenderClear(gRenderer);
 
   //Render texture to screen
-  SDL_RenderCopy(gRenderer,gTexture,NULL,NULL);
+  gBackground.render(gRenderer,0,0);
+
+  //render a nice picture
+  gImage.render(gRenderer,imageX,imageY);
 
   //update screen
   SDL_RenderPresent(gRenderer);
-
 }
 
 
-int main( int argc, char* args[] )
+int main(int argc,char * args[])
 {
   //Start up SDL and create window
   if(!init())
   {
     printf( "Failed to initialize!\n" );
+    return 1;
   }
-  else
+
+  //Load media
+  if(!loadMedia())
   {
-    //Load media
-    if(!loadMedia())
-    {
-      printf( "Failed to load media!\n" );
-    }
-    else
-    {
-      emscripten_set_main_loop(iteration, 60, 1);
-    }
+    printf( "Failed to load media!\n" );
+    return 1;
   }
+
+  emscripten_set_main_loop(iteration, 60, 1);
 
   return 0;
 }
