@@ -1,5 +1,7 @@
 #include "Animation.h"
 
+#include <stdio.h>
+
 #include <SDL.h>
 #include <SDL_image.h>
 
@@ -21,7 +23,11 @@ speed(pSpeed)
 void Animation::update(float deltaTime)
 {
   elapsed += deltaTime;
-  while (elapsed > speed * frames)elapsed -= speed * frames;
+
+  if (elapsed > speed * frames)
+  {
+    elapsed -= speed * frames;
+  }
 }
 
 

@@ -7,7 +7,7 @@
 
 #include "Scene.h"
 
-#include "Graphics.h"
+#include <SDL.h>
 
 
 class SplashScene:public Scene
@@ -15,10 +15,10 @@ class SplashScene:public Scene
 public:
   //updates the scene
   //returns the new current scene
-  virtual SplashScene update(float deltaTime) = 0;
+  virtual Scene * update(float deltaTime) = 0;
 
   //displays the scene
-  virtual void render(Graphics g) = 0;
+  virtual void render(SDL_Renderer * renderer) = 0;
 };
 
 

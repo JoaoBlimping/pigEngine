@@ -9,7 +9,7 @@ namespace Utils
 {
   //concatenates two char arrays into a new array
   //remember that the new string has to be deallocated after use
-  char * concatenate(char const * a,char const * b,char * const * output);
+  char * concatenate(char const * a,char const * b);
 }
 
 

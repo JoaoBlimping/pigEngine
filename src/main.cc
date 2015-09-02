@@ -5,8 +5,10 @@
 
 #include <emscripten/emscripten.h>
 
-#include "Image.h"
-#include "AssetManager.h"
+#include "Animation.h"
+#include "ImageManager.h"
+#include "AnimationManager.h"
+#include "Scene.h"
 
 
 //Screen dimension constants
@@ -14,15 +16,16 @@ const int SCREEN_WIDTH = 400;
 const int SCREEN_HEIGHT = 400;
 
 
-//the image that we have
-SDL_Window * gWindow = NULL;
-SDL_Renderer * gRenderer = NULL;
-Image gBackground;
-Image gImage;
+//the window and stuff
+static SDL_Window * window = NULL;
+static SDL_Renderer * renderer = NULL;
 
-//offset of the picture
-int imageX = 0;
-int imageY = 0;
+//the asset managers
+static ImageManager * imageManager = NULL;
+static AnimationManager * animationManager = NULL;
+
+//the current scene
+static Scene * scene = NULL;
 
 
 bool init()
@@ -35,52 +38,40 @@ bool init()
   }
 
   //Create window
-  gWindow = SDL_CreateWindow("SDL Tutorial",SDL_WINDOWPOS_UNDEFINED,
+  window = SDL_CreateWindow("SDL Tutorial",SDL_WINDOWPOS_UNDEFINED,
                              SDL_WINDOWPOS_UNDEFINED,SCREEN_WIDTH,SCREEN_HEIGHT,
                              SDL_WINDOW_SHOWN);
-  if (gWindow == NULL)
+  if (window == NULL)
   {
     printf( "Window could not be created! SDL_Error: %s\n", SDL_GetError());
     return false;
   }
 
   //Create renderer for window
-  gRenderer = SDL_CreateRenderer(gWindow,-1,SDL_RENDERER_ACCELERATED);
-  if (gRenderer == NULL)
+  renderer = SDL_CreateRenderer(window,-1,SDL_RENDERER_ACCELERATED);
+  if (renderer == NULL)
   {
     printf("Renderer could not be created! SDL Error: %s\n",SDL_GetError());
     return false;
   }
 
   //Initialize renderer color
-  SDL_SetRenderDrawColor(gRenderer,0xFF,0xFF,0xFF,0xFF);
-
-  //initialise the asset manager
-  AssetManager::init(gRenderer);
+  SDL_SetRenderDrawColor(renderer,0xFF,0xFF,0xFF,0xFF);
 
   return true;
-}
-
-
-bool loadMedia()
-{
-  //Load PNG texture
-  return (gBackground.loadFromFile(gRenderer,"assets/images/texture.png") &
-          gImage.loadFromFile(gRenderer,"assets/images/dany.png"));
 }
 
 
 void close()
 {
   //Deallocate surface
-  gBackground.free();
-  gBackground.free();
+  delete imageManager;
 
   //Destroy window and renderer
-  SDL_DestroyRenderer(gRenderer);
-  SDL_DestroyWindow(gWindow);
-  gRenderer = NULL;
-  gWindow = NULL;
+  SDL_DestroyRenderer(renderer);
+  SDL_DestroyWindow(window);
+  renderer = NULL;
+  window = NULL;
 
   //Quit SDL subsystems
   IMG_Quit();
@@ -103,26 +94,18 @@ void iteration()
     }
   }
 
-  //move the offset
-  imageX += 1;
-  imageY += 1;
-
-
   //clear the screen
-  SDL_RenderClear(gRenderer);
+  SDL_RenderClear(renderer);
 
-  //Render texture to screen
-  gBackground.render(gRenderer,0,0);
-
-  //render a nice picture
-  gImage.render(gRenderer,imageX,imageY);
+  //render the scene
+  scene->render(renderer);
 
   //update screen
-  SDL_RenderPresent(gRenderer);
+  SDL_RenderPresent(renderer);
 }
 
 
-int main(int argc,char * args[])
+int main(int argc,char * * args)
 {
   //Start up SDL and create window
   if(!init())
@@ -131,13 +114,13 @@ int main(int argc,char * args[])
     return 1;
   }
 
-  //Load media
-  if(!loadMedia())
-  {
-    printf( "Failed to load media!\n" );
-    return 1;
-  }
+  //initialise the asset managers
+  imageManager = new ImageManager(renderer);
+  animationManager = new AnimationManager(imageManager);
 
+  //set the starting scene
+
+  //start the game
   emscripten_set_main_loop(iteration, 60, 1);
 
   return 0;
