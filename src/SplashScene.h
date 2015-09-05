@@ -13,12 +13,21 @@
 class SplashScene:public Scene
 {
 public:
+  //loads it's own special assets
+  SplashScene();
+
+  //deletes it's assets
+  ~SplashScene();
+
   //updates the scene
   //returns the new current scene
-  virtual Scene * update(float deltaTime) = 0;
+  virtual Scene * update(float deltaTime);
 
   //displays the scene
-  virtual void render(SDL_Renderer * renderer) = 0;
+  virtual void render(SDL_Renderer * renderer);
+
+private:
+  float elapsed;
 };
 
 

@@ -8,6 +8,7 @@
 #include "Animation.h"
 #include "ImageManager.h"
 #include "AnimationManager.h"
+#include "SoundManager.h"
 #include "Scene.h"
 
 
@@ -23,6 +24,7 @@ static SDL_Renderer * renderer = NULL;
 //the asset managers
 static ImageManager * imageManager = NULL;
 static AnimationManager * animationManager = NULL;
+static SoundManager * soundManager = NULL;
 
 //the current scene
 static Scene * scene = NULL;
@@ -57,6 +59,13 @@ bool init()
 
   //Initialize renderer color
   SDL_SetRenderDrawColor(renderer,0xFF,0xFF,0xFF,0xFF);
+
+  //Initialize SDL_mixer
+  if (Mix_OpenAudio(22050,MIX_DEFAULT_FORMAT,2,4096) == -1)
+  {
+    printf("couldn't initialize mixer, you nerd\n");
+    return false;
+  }
 
   return true;
 }
@@ -117,11 +126,13 @@ int main(int argc,char * * args)
   //initialise the asset managers
   imageManager = new ImageManager(renderer);
   animationManager = new AnimationManager(imageManager);
+  soundManager = new SoundManager();
 
   //set the starting scene
+  soundManager->play();
 
   //start the game
-  emscripten_set_main_loop(iteration, 60, 1);
+  emscripten_set_main_loop(iteration,60,1);
 
   return 0;
 }
