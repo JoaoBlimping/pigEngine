@@ -10,6 +10,8 @@
 #include "AnimationManager.h"
 #include "SoundManager.h"
 #include "Scene.h"
+#include "SplashScene.h"
+#include "Assets.h"
 
 
 //Screen dimension constants
@@ -21,10 +23,8 @@ const int SCREEN_HEIGHT = 400;
 static SDL_Window * window = NULL;
 static SDL_Renderer * renderer = NULL;
 
-//the asset managers
-static ImageManager * imageManager = NULL;
-static AnimationManager * animationManager = NULL;
-static SoundManager * soundManager = NULL;
+//the assets
+static Assets assets;
 
 //the current scene
 static Scene * scene = NULL;
@@ -103,6 +103,9 @@ void iteration()
     }
   }
 
+  //update the scene
+  scene->update(0.01f);
+
   //clear the screen
   SDL_RenderClear(renderer);
 
@@ -124,15 +127,18 @@ int main(int argc,char * * args)
   }
 
   //initialise the asset managers
-  imageManager = new ImageManager(renderer);
-  animationManager = new AnimationManager(imageManager);
-  soundManager = new SoundManager();
+  assets.imageManager = new ImageManager(renderer);
+  assets.animationManager = new AnimationManager(imageManager);
+  assets.soundManager = new SoundManager();
+
+  //play a sound for no reason
+  soundManager->play(0);
 
   //set the starting scene
-  soundManager->play();
+  scene = new SplashScene();
 
   //start the game
-  emscripten_set_main_loop(iteration,60,1);
+  emscripten_set_main_loop(iteration,0,1);
 
   return 0;
 }

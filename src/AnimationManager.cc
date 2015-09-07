@@ -1,5 +1,8 @@
 #include "AnimationManager.h"
 
+#include <iostream>
+#include <fstream>
+
 #include "Animation.h"
 #include "ImageManager.h"
 #include "Utils.h"

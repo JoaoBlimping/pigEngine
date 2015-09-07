@@ -5,12 +5,18 @@
 #define SOUND_MANAGER_H
 
 
+#include <vector>
+
 #include <SDL/SDL_mixer.h>
 
 
 class SoundManager
 {
 public:
+  //locations of important sound related files
+  static char const * SOUND_DIR;
+  static char const * SOUND_LIST;
+
   //creates all of the sounds in the sound directory
   SoundManager();
 
@@ -18,10 +24,11 @@ public:
   ~SoundManager();
 
   //plays a sexy sound
-  void play();
+  void play(int sound);
 
 private:
-  Mix_Chunk * pingaz;
+  //contains all of the sounds
+  std::vector<Mix_Chunk *> sounds;
 };
 
 

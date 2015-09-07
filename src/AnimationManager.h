@@ -5,8 +5,7 @@
 #define ANIMATION_MANAGER_H
 
 
-#include <iostream>
-#include <fstream>
+#include <vector>
 
 #include "ImageManager.h"
 #include "Animation.h"
