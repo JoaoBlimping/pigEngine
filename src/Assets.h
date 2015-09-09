@@ -12,10 +12,10 @@
 
 struct Assets
 {
-  ImageManager * const imageManager;
-  AnimationManager * const animationManager;
-  SoundManager * const soundManager;
-}
+  ImageManager * images;
+  AnimationManager * animations;
+  SoundManager * sounds;
+};
 
 
 #endif

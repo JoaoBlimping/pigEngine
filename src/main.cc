@@ -15,8 +15,8 @@
 
 
 //Screen dimension constants
-const int SCREEN_WIDTH = 400;
-const int SCREEN_HEIGHT = 400;
+const int SCREEN_WIDTH = 480;
+const int SCREEN_HEIGHT = 640;
 
 
 //the window and stuff
@@ -24,7 +24,7 @@ static SDL_Window * window = NULL;
 static SDL_Renderer * renderer = NULL;
 
 //the assets
-static Assets assets;
+static Assets * assets = NULL;
 
 //the current scene
 static Scene * scene = NULL;
@@ -74,7 +74,7 @@ bool init()
 void close()
 {
   //Deallocate surface
-  delete imageManager;
+  delete assets;
 
   //Destroy window and renderer
   SDL_DestroyRenderer(renderer);
@@ -104,13 +104,19 @@ void iteration()
   }
 
   //update the scene
-  scene->update(0.01f);
+  Scene * newScene = scene->update(assets,0.01f);
+
+  if (newScene != scene)
+  {
+    delete scene;
+    scene = newScene;
+  }
 
   //clear the screen
   SDL_RenderClear(renderer);
 
   //render the scene
-  scene->render(renderer);
+  scene->render(assets,renderer);
 
   //update screen
   SDL_RenderPresent(renderer);
@@ -127,12 +133,10 @@ int main(int argc,char * * args)
   }
 
   //initialise the asset managers
-  assets.imageManager = new ImageManager(renderer);
-  assets.animationManager = new AnimationManager(imageManager);
-  assets.soundManager = new SoundManager();
-
-  //play a sound for no reason
-  soundManager->play(0);
+  assets = new Assets();
+  assets->images = new ImageManager(renderer);
+  assets->animations = new AnimationManager(assets->images);
+  assets->sounds = new SoundManager();
 
   //set the starting scene
   scene = new SplashScene();
