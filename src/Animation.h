@@ -22,6 +22,9 @@ public:
   //displays the animation with the given renderer
   void render(SDL_Renderer * renderer,int x,int y);
 
+  //gives you a copy of this animation object
+  Animation * duplicate();
+
 private:
   //the image the animation is based on
   Image * image;

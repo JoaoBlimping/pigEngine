@@ -8,6 +8,7 @@
 #include "ImageManager.h"
 #include "AnimationManager.h"
 #include "SoundManager.h"
+#include "Font.h"
 
 
 struct Assets
@@ -15,6 +16,7 @@ struct Assets
   ImageManager * images;
   AnimationManager * animations;
   SoundManager * sounds;
+  Font * font;
 };
 
 

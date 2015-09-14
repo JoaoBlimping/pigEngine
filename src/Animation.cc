@@ -42,3 +42,9 @@ void Animation::render(SDL_Renderer * renderer,int x,int y)
   //display it
   image->render(renderer,x,y,&clip);
 }
+
+
+Animation * Animation::duplicate()
+{
+  return new Animation(image,frames,speed);
+}

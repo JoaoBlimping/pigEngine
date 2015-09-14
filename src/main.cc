@@ -9,6 +9,7 @@
 #include "ImageManager.h"
 #include "AnimationManager.h"
 #include "SoundManager.h"
+#include "Font.h"
 #include "Scene.h"
 #include "SplashScene.h"
 #include "Assets.h"
@@ -137,6 +138,7 @@ int main(int argc,char * * args)
   assets->images = new ImageManager(renderer);
   assets->animations = new AnimationManager(assets->images);
   assets->sounds = new SoundManager();
+  assets->font = new Font();
 
   //set the starting scene
   scene = new SplashScene();
