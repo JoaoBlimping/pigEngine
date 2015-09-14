@@ -1,5 +1,14 @@
 #include "Font.h"
 
+#include <iostream>
+#include <fstream>
+#include <stdio.h>
+
+#include "ImageManager.h"
+
+
+using namespace std;
+
 
 Font::Font(Image * pImage,int pCharWidth):
 image(pImage),
@@ -12,13 +21,13 @@ charWidth(pCharWidth)
 }
 
 
-Font::Font(char const * filename,ImageManager * images)
+Font::Font(char const * filename,ImageManager const * const images)
 {
   //open the file and shit
   ifstream fontFile(filename);
   if (!fontFile.is_open())
   {
-    printf("can't open font file %s\n");
+    printf("can't open font file %s\n",filename);
     return;
   }
 
@@ -26,9 +35,18 @@ Font::Font(char const * filename,ImageManager * images)
   int imageID;
   fontFile >> imageID;
   fontFile >> charWidth;
+  image = images->getImage(imageID);
+
+  printf("things are %d,%d",imageID,charWidth);
 
   //close the file
   fontFile.close();
+
+  //do those other things
+  clip.x = 0;
+  clip.y = 0;
+  clip.w = charWidth;
+  clip.h = image->getHeight();
 }
 
 

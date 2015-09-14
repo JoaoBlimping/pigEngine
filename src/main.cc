@@ -16,9 +16,11 @@
 
 
 //Screen dimension constants
-const int SCREEN_WIDTH = 480;
-const int SCREEN_HEIGHT = 640;
+int const SCREEN_WIDTH = 480;
+int const SCREEN_HEIGHT = 640;
 
+//the filename of the font file
+char const * FONT_FILE = "assets/font.pig";
 
 //the window and stuff
 static SDL_Window * window = NULL;
@@ -138,7 +140,7 @@ int main(int argc,char * * args)
   assets->images = new ImageManager(renderer);
   assets->animations = new AnimationManager(assets->images);
   assets->sounds = new SoundManager();
-  assets->font = new Font();
+  assets->font = new Font(FONT_FILE,assets->images);
 
   //set the starting scene
   scene = new SplashScene();

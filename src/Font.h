@@ -8,6 +8,7 @@
 #include <SDL.h>
 
 #include "Image.h"
+#include "ImageManager.h"
 
 
 int const LETTERS_START = 97;
@@ -23,7 +24,7 @@ public:
   Font(Image * pImage,int pCharWidth);
 
   //creates a font from a file that contains the image number character width
-  Font(char const * filename);
+  Font(char const * filename,ImageManager const * const images);
 
   //render some text to the screen
   void renderString(SDL_Renderer * renderer,char const * text,int x,int y,
