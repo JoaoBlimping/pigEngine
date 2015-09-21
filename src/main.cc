@@ -104,6 +104,11 @@ void iteration()
     {
       close();
     }
+    //any other event is sent to the current scene
+    else
+    {
+      scene->handleEvent(&e);
+    }
   }
 
   //update the scene

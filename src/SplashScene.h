@@ -29,6 +29,9 @@ public:
   //deletes it's assets
   ~SplashScene();
 
+  //this is called every time there is an event that must be dealt with
+  virtual void handleEvent(SDL_Event * event);
+
   //updates the scene
   //returns the new current scene
   virtual Scene * update(Assets const * const assets,float deltaTime);
