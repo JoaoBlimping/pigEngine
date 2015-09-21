@@ -20,8 +20,8 @@ int const SYMBOLS_END = 46;
 class Font
 {
 public:
-  //creates the font with it's image data and the width of a character
-  Font(Image * pImage,int pCharWidth);
+  //creates the font with it's image data and the width of a character and space
+  Font(Image * pImage,int pCharWidth,int pSpacing);
 
   //creates a font from a file that contains the image number character width
   Font(char const * filename,ImageManager const * const images);
@@ -39,6 +39,9 @@ private:
 
   //the width of each character
   int charWidth;
+
+  //the space between each character and line
+  int spacing;
 
   //defines the clipping and that
   SDL_Rect clip;

@@ -10,9 +10,10 @@
 using namespace std;
 
 
-Font::Font(Image * pImage,int pCharWidth):
+Font::Font(Image * pImage,int pCharWidth,int pSpacing):
 image(pImage),
-charWidth(pCharWidth)
+charWidth(pCharWidth),
+spacing(pSpacing)
 {
   clip.x = 0;
   clip.y = 0;
@@ -35,9 +36,9 @@ Font::Font(char const * filename,ImageManager const * const images)
   int imageID;
   fontFile >> imageID;
   fontFile >> charWidth;
-  image = images->getImage(imageID);
+  fontFile >> spacing;
 
-  printf("things are %d,%d",imageID,charWidth);
+  image = images->getImage(imageID);
 
   //close the file
   fontFile.close();
@@ -61,12 +62,12 @@ void Font::renderString(SDL_Renderer * renderer,char const * text,int x,int y,
     renderCharacter(renderer,*text,currentX,y);
 
     //increment the things
-    currentX += charWidth;
+    currentX += charWidth + spacing;
 
-    if (currentX > x + width - charWidth)
+    if ((currentX > x + width - (charWidth + spacing)) && (*text == ' '))
     {
       currentX = x;
-      y += image->getHeight();
+      y += image->getHeight() + spacing;
     }
 
     //go to the next letter

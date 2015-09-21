@@ -62,5 +62,5 @@ void SplashScene::render(Assets const * const assets,SDL_Renderer * renderer)
   assets->animations->getAnimation(0)->render(renderer,0,0);
 
   //draw some nice text
-  assets->font->renderString(renderer,"hello friends!",20,20,50);
+  assets->font->renderString(renderer,"hello you god damned fiends, i am going to kill you all",20,20,100);
 }
