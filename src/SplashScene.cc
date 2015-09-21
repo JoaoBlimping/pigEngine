@@ -2,6 +2,8 @@
 
 #include <SDL.h>
 
+#include "MenuScene.h"
+
 
 char const * SplashScene::JINGLE_FILE = "assets/internal/jingle.wav";
 
@@ -35,6 +37,12 @@ SplashScene::~SplashScene()
 }
 
 
+void SplashScene::handleEvent(SDL_Event * event)
+{
+  //does nothing
+}
+
+
 Scene * SplashScene::update(Assets const * const assets,float deltaTime)
 {
   elapsed += deltaTime;
@@ -43,7 +51,7 @@ Scene * SplashScene::update(Assets const * const assets,float deltaTime)
 
   if (Mix_Playing(-1) == 0)
   {
-    return NULL;//TODO: make it return the menu scene
+    return new MenuScene(assets->images);
   }
   else
   {

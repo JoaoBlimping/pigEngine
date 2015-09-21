@@ -1,27 +1,26 @@
 #include "MenuScene.h"
 
+#include "Assets.h"
+#include "ImageManager.h"
+#include "Button.h"
 
 
-int const PLAY_BUTTON_X = 0;
-int const PLAY_BUTTON_Y = 0;
-
-
-MenuScene(ImageManager const * const images)
+MenuScene::MenuScene(ImageManager const * const images)
 {
-  int buttonImage = 5;//TODO: definetly get this into a file without delay
+  int buttonImage = 4;//TODO: definetly get this into a file without delay
 
   playButton = new Button(PLAY_BUTTON_X,PLAY_BUTTON_Y,&mouseX,&mouseY,
                           images->getImage(buttonImage));
 }
 
 
-~MenuScene()
+MenuScene::~MenuScene()
 {
-  delete button;
+  delete playButton;
 }
 
 
-void handleEvent(SDL_Event * event)
+void MenuScene::handleEvent(SDL_Event * event)
 {
   //mouse movement
   if (event->type == SDL_MOUSEMOTION)
@@ -31,13 +30,13 @@ void handleEvent(SDL_Event * event)
 }
 
 
-Scene * update(Assets const * const assets,float deltaTime)
+Scene * MenuScene::update(Assets const * const assets,float deltaTime)
 {
-
+  return this;
 }
 
 
-void render(Assets const * const assets,SDL_Renderer * renderer)
+void MenuScene::render(Assets const * const assets,SDL_Renderer * renderer)
 {
-
+  playButton->render(renderer);
 }

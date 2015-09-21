@@ -10,13 +10,17 @@
 #include <SDL.h>
 #include <SDL/SDL_mixer.h>
 
+#include "Assets.h"
+#include "ImageManager.h"
+#include "Button.h"
+
 
 class MenuScene:public Scene
 {
 public:
   //the position of the button
-  int const PLAY_BUTTON_X;
-  int const PLAY_BUTTON_Y;
+  static int const PLAY_BUTTON_X;
+  static int const PLAY_BUTTON_Y;
 
   //creates the button
   MenuScene(ImageManager const * const images);

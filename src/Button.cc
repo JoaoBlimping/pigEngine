@@ -1,29 +1,34 @@
 #include "Button.h"
 
+#include <SDL.h>
+
+#include "Image.h"
 
 
-Button(int pX,int pY,int const * pMouseX,int const * pMouseY,Image * pImage):
+
+Button::Button(int pX,int pY,int const * pMouseX,int const * pMouseY,
+               Image * pGraphics):
 x(pX),
 y(pY),
 mouseX(pMouseX),
 mouseY(pMouseY),
-image(pImage)
+graphics(pGraphics)
 {
   clip.x = 0;
   clip.y = 0;
-  clip.w = image->getWidth() / FRAMES_TOTAL;
-  clip.h = image->getHeight();
+  clip.w = graphics->getWidth() / FRAMES_TOTAL;
+  clip.h = graphics->getHeight();
 }
 
 
-bool containsMouse()
+bool Button::containsMouse()
 {
   return ((*mouseX >= x) && (*mouseX <= x + clip.w) &&
           (*mouseY >= y) && (*mouseY <= y + clip.h));
 }
 
 
-void render(SDL_Renderer * renderer)
+void Button::render(SDL_Renderer * renderer)
 {
   //display the mouse over frame
   if (containsMouse())
@@ -37,5 +42,5 @@ void render(SDL_Renderer * renderer)
   }
 
   //now render
-  image->render(renderer,x,y,&clip);
+  graphics->render(renderer,x,y,&clip);
 }
