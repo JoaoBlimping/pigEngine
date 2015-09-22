@@ -5,6 +5,10 @@
 #include "Button.h"
 
 
+int const MenuScene::PLAY_BUTTON_X = 50;
+int const MenuScene::PLAY_BUTTON_Y = 50;
+
+
 MenuScene::MenuScene(ImageManager const * const images)
 {
   int buttonImage = 4;//TODO: definetly get this into a file without delay
