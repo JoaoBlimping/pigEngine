@@ -5,10 +5,10 @@
 #define ASSETS_H
 
 
-#include "ImageManager.h"
-#include "AnimationManager.h"
-#include "SoundManager.h"
-#include "Font.h"
+#include "ImageManager.hh"
+#include "AnimationManager.hh"
+#include "SoundManager.hh"
+#include "Font.hh"
 
 
 struct Assets

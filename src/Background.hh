@@ -18,6 +18,11 @@ public:
 
 
 class BackgroundFactory
+{
+public:
+  //creates a background
+  virtual Background * createBackground() = 0;
+};
 
 
 #endif

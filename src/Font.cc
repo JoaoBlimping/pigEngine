@@ -1,10 +1,10 @@
-#include "Font.h"
+#include "Font.hh"
 
 #include <iostream>
 #include <fstream>
 #include <stdio.h>
 
-#include "ImageManager.h"
+#include "ImageManager.hh"
 
 
 using namespace std;

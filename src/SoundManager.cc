@@ -1,4 +1,4 @@
-#include "SoundManager.h"
+#include "SoundManager.hh"
 
 #include <SDL/SDL_mixer.h>
 
@@ -6,7 +6,7 @@
 #include <fstream>
 #include <stdio.h>
 
-#include "Utils.h"
+#include "Utils.hh"
 
 using namespace std;
 

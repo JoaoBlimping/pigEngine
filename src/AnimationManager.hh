@@ -7,8 +7,8 @@
 
 #include <vector>
 
-#include "ImageManager.h"
-#include "Animation.h"
+#include "ImageManager.hh"
+#include "Animation.hh"
 
 
 class AnimationManager

@@ -5,13 +5,16 @@
 #define TILE_BACKGROUND_H
 
 
-#include "Image.h"
+#include "Background.hh"
+
+#include "Image.hh"
 
 
-class TileBackground
+class TileBackground:public Background
 {
 public:
-  //puts the image and the size of the window into it
+  //puts the image into it
+  TileBackground(Image * pTile);
 
   //might be useful for animated backgrounds
   virtual void update(float deltaTime);
@@ -22,6 +25,13 @@ public:
 private:
   //the image that gets repeated in the background
   Image * tile;
+};
+
+
+class TileBackgroundFactory:public BackgroundFactory
+{
+  //creates a TileBackground
+  virtual Background * createBackground();
 };
 
 

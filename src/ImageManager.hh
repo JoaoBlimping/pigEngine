@@ -9,7 +9,7 @@
 
 #include <vector>
 
-#include "Image.h"
+#include "Image.hh"
 
 
 class ImageManager

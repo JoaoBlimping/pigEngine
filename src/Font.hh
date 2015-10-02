@@ -7,8 +7,8 @@
 
 #include <SDL.h>
 
-#include "Image.h"
-#include "ImageManager.h"
+#include "Image.hh"
+#include "ImageManager.hh"
 
 
 int const LETTERS_START = 97;

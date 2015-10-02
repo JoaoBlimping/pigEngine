@@ -1,11 +1,11 @@
-#include "ImageManager.h"
+#include "ImageManager.hh"
 
 #include <SDL.h>
 
 #include <iostream>
 #include <fstream>
 
-#include "Utils.h"
+#include "Utils.hh"
 
 
 using namespace std;

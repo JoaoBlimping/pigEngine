@@ -5,14 +5,14 @@
 #define MENU_SCENE_H
 
 
-#include "Scene.h"
+#include "Scene.hh"
 
 #include <SDL.h>
 #include <SDL/SDL_mixer.h>
 
-#include "Assets.h"
-#include "ImageManager.h"
-#include "Button.h"
+#include "Assets.hh"
+#include "ImageManager.hh"
+#include "Button.hh"
 
 
 class MenuScene:public Scene

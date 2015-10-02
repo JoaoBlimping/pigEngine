@@ -1,11 +1,11 @@
-#include "Animation.h"
+#include "Animation.hh"
 
 #include <stdio.h>
 
 #include <SDL.h>
 #include <SDL_image.h>
 
-#include "Image.h"
+#include "Image.hh"
 
 
 Animation::Animation(Image * pImage,int pFrames,float pSpeed):

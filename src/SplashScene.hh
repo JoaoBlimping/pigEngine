@@ -5,7 +5,7 @@
 #define SPLASH_SCENE_H
 
 
-#include "Scene.h"
+#include "Scene.hh"
 
 #include <SDL.h>
 #include <SDL/SDL_mixer.h>

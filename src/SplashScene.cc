@@ -1,8 +1,8 @@
-#include "SplashScene.h"
+#include "SplashScene.hh"
 
 #include <SDL.h>
 
-#include "MenuScene.h"
+#include "MenuScene.hh"
 
 
 char const * SplashScene::JINGLE_FILE = "assets/internal/jingle.wav";

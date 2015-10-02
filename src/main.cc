@@ -5,14 +5,14 @@
 
 #include <emscripten/emscripten.h>
 
-#include "Animation.h"
-#include "ImageManager.h"
-#include "AnimationManager.h"
-#include "SoundManager.h"
-#include "Font.h"
-#include "Scene.h"
-#include "SplashScene.h"
-#include "Assets.h"
+#include "Animation.hh"
+#include "ImageManager.hh"
+#include "AnimationManager.hh"
+#include "SoundManager.hh"
+#include "Font.hh"
+#include "Scene.hh"
+#include "SplashScene.hh"
+#include "Assets.hh"
 
 
 //Screen dimension constants

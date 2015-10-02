@@ -1,11 +1,11 @@
-#include "AnimationManager.h"
+#include "AnimationManager.hh"
 
 #include <iostream>
 #include <fstream>
 
-#include "Animation.h"
-#include "ImageManager.h"
-#include "Utils.h"
+#include "Animation.hh"
+#include "ImageManager.hh"
+#include "Utils.hh"
 
 
 using namespace std;

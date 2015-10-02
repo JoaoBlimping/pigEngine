@@ -7,7 +7,7 @@
 
 #include <SDL.h>
 
-#include "Image.h"
+#include "Image.hh"
 
 
 class Button

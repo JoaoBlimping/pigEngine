@@ -7,7 +7,7 @@
 
 #include <SDL.h>
 
-#include "Assets.h"
+#include "Assets.hh"
 
 
 class Scene

@@ -1,8 +1,8 @@
-#include "MenuScene.h"
+#include "MenuScene.hh"
 
-#include "Assets.h"
-#include "ImageManager.h"
-#include "Button.h"
+#include "Assets.hh"
+#include "ImageManager.hh"
+#include "Button.hh"
 
 
 int const MenuScene::PLAY_BUTTON_X = 50;

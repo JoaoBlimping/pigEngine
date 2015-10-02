@@ -1,8 +1,8 @@
-#include "Button.h"
+#include "Button.hh"
 
 #include <SDL.h>
 
-#include "Image.h"
+#include "Image.hh"
 
 
 
