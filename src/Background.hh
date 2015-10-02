@@ -17,4 +17,7 @@ public:
 };
 
 
+class BackgroundFactory
+
+
 #endif
