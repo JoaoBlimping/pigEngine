@@ -2,7 +2,7 @@
 
 #include "Assets.hh"
 #include "ImageManager.hh"
-#include "Button.hh"
+#include "things/Button.hh"
 
 
 int const MenuScene::PLAY_BUTTON_X = 50;

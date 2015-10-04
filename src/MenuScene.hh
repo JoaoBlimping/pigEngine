@@ -12,7 +12,7 @@
 
 #include "Assets.hh"
 #include "ImageManager.hh"
-#include "Button.hh"
+#include "things/Button.hh"
 
 
 class MenuScene:public Scene

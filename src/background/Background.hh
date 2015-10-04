@@ -5,9 +5,15 @@
 #define BACKGROUND_H
 
 
+#include "../Assets.hh"
+
+
 class Background
 {
 public:
+  //a virtual destructor so that sub classes can destruct if they wish
+  virtual ~Background(){};
+
   //might be useful for animated backgrounds
   virtual void update(float deltaTime) = 0;
 
@@ -21,7 +27,7 @@ class BackgroundFactory
 {
 public:
   //creates a background
-  virtual Background * createBackground() = 0;
+  virtual Background * createBackground(Assets const * const assets) = 0;
 };
 
 

@@ -5,11 +5,11 @@
 
 #include <emscripten/emscripten.h>
 
-#include "Animation.hh"
+#include "things/Animation.hh"
+#include "things/Font.hh"
 #include "ImageManager.hh"
 #include "AnimationManager.hh"
 #include "SoundManager.hh"
-#include "Font.hh"
 #include "Scene.hh"
 #include "SplashScene.hh"
 #include "Assets.hh"

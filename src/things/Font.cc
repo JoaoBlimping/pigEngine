@@ -4,7 +4,7 @@
 #include <fstream>
 #include <stdio.h>
 
-#include "ImageManager.hh"
+#include "../ImageManager.hh"
 
 
 using namespace std;

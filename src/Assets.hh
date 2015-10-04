@@ -8,7 +8,7 @@
 #include "ImageManager.hh"
 #include "AnimationManager.hh"
 #include "SoundManager.hh"
-#include "Font.hh"
+#include "things/Font.hh"
 
 
 struct Assets

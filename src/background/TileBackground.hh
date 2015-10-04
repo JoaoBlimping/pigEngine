@@ -7,7 +7,8 @@
 
 #include "Background.hh"
 
-#include "Image.hh"
+#include "../things/Image.hh"
+#include "../Assets.hh"
 
 
 class TileBackground:public Background
@@ -31,7 +32,7 @@ private:
 class TileBackgroundFactory:public BackgroundFactory
 {
   //creates a TileBackground
-  virtual Background * createBackground();
+  virtual Background * createBackground(Assets const * const assets);
 };
 
 

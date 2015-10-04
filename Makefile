@@ -5,4 +5,4 @@ test:
 	$(CC) src/*.cc $(FLAGS) -o bin/main.html --preload-file assets
 
 release:
-	$(CC) src/*.cc $(FLAGS) -o bin/main.html -O2 --preload-file assets
+	$(CC) src/*.cc src/*/*.cc $(FLAGS) -o bin/main.html -O2 --preload-file assets

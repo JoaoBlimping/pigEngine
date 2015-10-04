@@ -3,7 +3,7 @@
 #include <iostream>
 #include <fstream>
 
-#include "Animation.hh"
+#include "things/Animation.hh"
 #include "ImageManager.hh"
 #include "Utils.hh"
 
