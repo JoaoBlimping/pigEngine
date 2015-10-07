@@ -13,6 +13,7 @@
 #include "Assets.hh"
 #include "ImageManager.hh"
 #include "things/Button.hh"
+#include "things/MusicPlayer.hh"
 
 
 class MenuScene:public Scene
@@ -45,6 +46,9 @@ private:
 
   //the button to start playing
   Button * playButton;
+
+  //the menu music
+  MusicPlayer * music;
 };
 
 
