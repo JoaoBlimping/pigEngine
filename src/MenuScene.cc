@@ -16,16 +16,12 @@ MenuScene::MenuScene(ImageManager const * const images)
 
   playButton = new Button(PLAY_BUTTON_X,PLAY_BUTTON_Y,&mouseX,&mouseY,
                           images->getImage(buttonImage));
-
-  //load the music
-  music = new MusicPlayer();
 }
 
 
 MenuScene::~MenuScene()
 {
   delete playButton;
-  delete music;
 }
 
 

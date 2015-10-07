@@ -9,7 +9,6 @@
 MusicPlayer::MusicPlayer()
 {
   musicPos = 0;
-  Mix_HookMusic(playMusic,&musicPos);
 }
 
 
