@@ -3,7 +3,7 @@
 #include <SDL.h>
 
 #include "MenuScene.hh"
-#include "mixer/mixer.h"
+#include "mixer/mixer.hh"
 
 
 char const * SplashScene::JINGLE_FILE = "assets/internal/ebola.w8";
@@ -50,7 +50,7 @@ Scene * SplashScene::update(Assets const * const assets,float deltaTime)
 
   assets->animations->getAnimation(0)->update(deltaTime);
 
-  if (Mix_Playing(-1) == 0)
+  if (false)
   {
     return new MenuScene(assets->images);
   }

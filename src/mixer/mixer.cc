@@ -1,4 +1,4 @@
-#include "mixer.h"
+#include "mixer.hh"
 
 #include <stdlib.h>
 #include <stdint.h>
@@ -42,6 +42,7 @@ static Channel * channels;
 //the function that puts the audio into the audio buffer
 static void fillAudio(void * udata,uint8_t * stream,int len)
 {
+
   //mix in as much as we can for each channel
   for (int i = 0;i < nChannels;i++)
   {
@@ -58,7 +59,11 @@ static void fillAudio(void * udata,uint8_t * stream,int len)
       len = remainingLength;
     }
 
-    SDL_MixAudio(stream,channels[i].sample->data,len,SDL_MIX_MAXVOLUME);
+    //SDL_MixAudio(stream,channels[i].sample->data,len,SDL_MIX_MAXVOLUME);
+    for (int o = 0;o < len;o++)
+    {
+      stream[o] += channels[i].sample->data[channels[i].position + o];
+    }
 
     //put the channel's progress forward
     channels[i].position += len;
@@ -104,6 +109,9 @@ int mixer_init(int pNChannels,int pNProtectedChannels)
     return(-1);
   }
 
+  //and begin immeadiately
+  SDL_PauseAudio(0);
+
   return 0;
 }
 
@@ -121,24 +129,23 @@ mixer_Sample * mixer_loadSample(char const * filename)
   //test that the file is open
   if (inputFile == NULL)
   {
+    printf("can't open w8 file %s\n",filename);
     return NULL;
   }
 
   //read the length of the sample which is in multiple bytes
-  int length = 0;
-  for (int i = 0;i < SAMPLE_COUNTER_LENGTH;i++)
-  {
-    length = length << 8;
-    length | getc(inputFile);
-  }
+  int length;
+  length = fread(&length,4,1,inputFile);
+
+  printf("filename is %s, length is %d\n",filename,length);
 
   //create the empty sample
   mixer_Sample * sample = (mixer_Sample *)malloc(sizeof(mixer_Sample));
-  sample->data = (uint8_t *)malloc(sizeof(uint8_t) * length);
+  sample->data = (uint8_t *)malloc(sizeof(uint8_t) * length * 2);
   sample->len = length;
 
   //fill it with data from the file
-  for (int i = 0;i < length;i++)
+  for (int i = 0;i < length * 2;i++)
   {
     sample->data[i] = getc(inputFile);
   }

@@ -5,7 +5,7 @@
 
 #include <emscripten/emscripten.h>
 
-#include "mixer/mixer.h"
+#include "mixer/mixer.hh"
 #include "things/Animation.hh"
 #include "things/Font.hh"
 #include "ImageManager.hh"

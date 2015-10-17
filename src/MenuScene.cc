@@ -3,7 +3,6 @@
 #include "Assets.hh"
 #include "ImageManager.hh"
 #include "things/Button.hh"
-#include "things/MusicPlayer.hh"
 
 
 int const MenuScene::PLAY_BUTTON_X = 50;

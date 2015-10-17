@@ -1,12 +1,11 @@
 #include "SoundManager.hh"
 
-#include <SDL/SDL_mixer.h>
-
 #include <iostream>
 #include <fstream>
 #include <stdio.h>
 
 #include "Utils.hh"
+#include "mixer/mixer.hh"
 
 using namespace std;
 
@@ -32,7 +31,7 @@ SoundManager::SoundManager()
   while (list >> line)
   {
     char * filename = Utils::concatenate(SOUND_DIR,line);
-    Mix_Chunk * sound = Mix_LoadWAV(filename);
+    mixer_Sample * sound = mixer_loadSample(filename);
     if (sound != NULL)
     {
       printf("loaded %s\n",filename);
@@ -50,15 +49,15 @@ SoundManager::SoundManager()
 
 SoundManager::~SoundManager()
 {
-  for (std::vector<Mix_Chunk *>::iterator it = sounds.begin();
+  for (std::vector<mixer_Sample *>::iterator it = sounds.begin();
        it != sounds.end();++it)
   {
-    Mix_FreeChunk(*it);
+    mixer_freeSample(*it);
   }
 }
 
 
 void SoundManager::play(int sound)
 {
-  Mix_PlayChannel(-1,sounds[sound],0);
+  mixer_playSample(sounds[sound]);
 }

@@ -8,13 +8,11 @@
 #include "Scene.hh"
 
 #include <SDL.h>
-#include <SDL/SDL_mixer.h>
 
 #include "Assets.hh"
 #include "ImageManager.hh"
 #include "things/Button.hh"
-#include "things/MusicPlayer.hh"
-#include "mixer/mixer.h"
+#include "mixer/mixer.hh"
 
 
 class MenuScene:public Scene

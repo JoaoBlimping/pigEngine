@@ -7,7 +7,7 @@
 
 #include <vector>
 
-#include <SDL/SDL_mixer.h>
+#include "mixer/mixer.hh"
 
 
 class SoundManager
@@ -28,7 +28,7 @@ public:
 
 private:
   //contains all of the sounds
-  std::vector<Mix_Chunk *> sounds;
+  std::vector<mixer_Sample *> sounds;
 };
 
 
