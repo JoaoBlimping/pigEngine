@@ -11,7 +11,8 @@
 //contains data a sample
 typedef struct
 {
-  uint8_t * data;
+  uint8_t * left;
+  uint8_t * right;
   int len;
 }mixer_Sample;
 

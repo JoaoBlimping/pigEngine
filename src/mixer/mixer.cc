@@ -42,7 +42,6 @@ static Channel * channels;
 //the function that puts the audio into the audio buffer
 static void fillAudio(void * udata,uint8_t * stream,int len)
 {
-
   //mix in as much as we can for each channel
   for (int i = 0;i < nChannels;i++)
   {
@@ -60,9 +59,10 @@ static void fillAudio(void * udata,uint8_t * stream,int len)
     }
 
     //SDL_MixAudio(stream,channels[i].sample->data,len,SDL_MIX_MAXVOLUME);
-    for (int o = 0;o < len;o++)
+    for (int o = 0;o < len;o += 2)
     {
-      stream[o] += channels[i].sample->data[channels[i].position + o];
+      stream[o] += channels[i].sample->left[channels[i].position + o];
+      stream[o + 1] += channels[i].sample->right[channels[i].position + o];
     }
 
     //put the channel's progress forward
@@ -124,7 +124,7 @@ void mixer_close()
 
 mixer_Sample * mixer_loadSample(char const * filename)
 {
-  FILE * inputFile = fopen(filename,"r");
+  FILE * inputFile = fopen(filename,"rb");
 
   //test that the file is open
   if (inputFile == NULL)
@@ -134,20 +134,27 @@ mixer_Sample * mixer_loadSample(char const * filename)
   }
 
   //read the length of the sample which is in multiple bytes
-  int length;
-  length = fread(&length,4,1,inputFile);
+  uint32_t length = 0;
+
+  length |= getc(inputFile);
+  length |= getc(inputFile) << 8;
+  length |= getc(inputFile) << 16;
+  length |= getc(inputFile) << 24;
+
 
   printf("filename is %s, length is %d\n",filename,length);
 
   //create the empty sample
-  mixer_Sample * sample = (mixer_Sample *)malloc(sizeof(mixer_Sample));
-  sample->data = (uint8_t *)malloc(sizeof(uint8_t) * length * 2);
+  mixer_Sample * sample = new mixer_Sample;
+  sample->left = new uint8_t[length];
+  sample->right = new uint8_t[length];
   sample->len = length;
 
   //fill it with data from the file
-  for (int i = 0;i < length * 2;i++)
+  for (int i = 0;i < length * 2;i += 2)
   {
-    sample->data[i] = getc(inputFile);
+    sample->left[i] = getc(inputFile);
+    sample->right[i + 1] = getc(inputFile);
   }
 
   //close the file
@@ -160,8 +167,9 @@ mixer_Sample * mixer_loadSample(char const * filename)
 void mixer_freeSample(mixer_Sample * sample)
 {
   //kills it's data before turning the gun upon itself
-  free(sample->data);
-  free(sample);
+  delete sample->left;
+  delete sample->right;
+  delete sample;
 }
 
 
