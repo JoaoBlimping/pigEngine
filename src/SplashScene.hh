@@ -8,7 +8,8 @@
 #include "Scene.hh"
 
 #include <SDL.h>
-#include <SDL/SDL_mixer.h>
+
+#include  "mixer/mixer.h"
 
 
 class SplashScene:public Scene
@@ -41,7 +42,7 @@ public:
 
 private:
   //the sound that has to get played
-  Mix_Chunk * jingle;
+  mixer_Sample * jingle;
 
   //the amount of time that has passed
   float elapsed;

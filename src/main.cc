@@ -5,6 +5,7 @@
 
 #include <emscripten/emscripten.h>
 
+#include "mixer/mixer.h"
 #include "things/Animation.hh"
 #include "things/Font.hh"
 #include "ImageManager.hh"
@@ -63,12 +64,8 @@ bool init()
   //Initialize renderer color
   SDL_SetRenderDrawColor(renderer,0xFF,0xFF,0xFF,0xFF);
 
-  //Initialize SDL_mixer
-  if (Mix_OpenAudio(22050,MIX_DEFAULT_FORMAT,2,4096) == -1)
-  {
-    printf("couldn't initialize mixer, you nerd\n");
-    return false;
-  }
+  //Initialize mixer
+  mixer_init(5,1);//TODO: move these arbitrary values
 
   return true;
 }

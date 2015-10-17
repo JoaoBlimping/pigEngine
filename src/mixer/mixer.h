@@ -36,5 +36,4 @@ void mixer_playSample(mixer_Sample * sample);
 void mixer_playSampleInChannel(mixer_Sample * sample,int desiredChannel);
 
 
-
 #endif

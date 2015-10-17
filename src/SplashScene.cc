@@ -3,9 +3,10 @@
 #include <SDL.h>
 
 #include "MenuScene.hh"
+#include "mixer/mixer.h"
 
 
-char const * SplashScene::JINGLE_FILE = "assets/internal/jingle.wav";
+char const * SplashScene::JINGLE_FILE = "assets/internal/ebola.w8";
 
 int const SplashScene::BACK_RED = 255;
 int const SplashScene::BACK_GREEN = 128;
@@ -19,21 +20,21 @@ SplashScene::SplashScene()
   elapsed = 0;
 
   //load in the sound jingle
-  Mix_Chunk * jingle = Mix_LoadWAV(JINGLE_FILE);
+  jingle = mixer_loadSample(JINGLE_FILE);
   if (jingle == NULL)
   {
     printf("failed to load sound %s\n",JINGLE_FILE);
   }
   else
   {
-    Mix_PlayChannel(-1,jingle,0);
+    mixer_playSample(jingle);
   }
 }
 
 
 SplashScene::~SplashScene()
 {
-  Mix_FreeChunk(jingle);
+  mixer_freeSample(jingle);
 }
 
 

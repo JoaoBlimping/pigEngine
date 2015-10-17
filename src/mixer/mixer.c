@@ -19,7 +19,7 @@ static uint8_t const CHANNELS = 2;
 //size of the audio buffer
 static uint16_t const SAMPLES = 1024;
 
-static int const SAMPLE_COUNTER_LENGTH = 3;
+static int const SAMPLE_COUNTER_LENGTH = 4;
 
 
 //a channel that plays a sound
