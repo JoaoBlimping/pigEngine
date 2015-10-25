@@ -9,7 +9,7 @@
 
 #include <vector>
 
-#include "things/Image.hh"
+#include "../things/Image.hh"
 
 
 class ImageManager
@@ -19,11 +19,11 @@ public:
   static char const * IMAGE_DIR;
   static char const * IMAGE_LIST;
 
-  //creates a fresh new image manager just for you <3
-  ImageManager(SDL_Renderer * renderer);
-
   //destroys the image manager and all of it's images
   ~ImageManager();
+
+  //initialises the image manager and loads all it's images
+  init(SDL_Renderer * renderer);
 
   //gives you an item from the maneger
   Image * getImage(int index)const;

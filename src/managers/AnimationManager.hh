@@ -8,7 +8,7 @@
 #include <vector>
 
 #include "ImageManager.hh"
-#include "things/Animation.hh"
+#include "../things/Animation.hh"
 
 
 class AnimationManager
@@ -18,8 +18,8 @@ public:
   static char const * ANIMATION_DIR;
   static char const * ANIMATION_LIST;
 
-  //creates a fresh new image manager just for you <3
-  AnimationManager(ImageManager const * const imageManager);
+  //loads all the animations and that
+  init(ImageManager const * const imageManager);
 
   //gives you an item from the maneger
   Animation * getAnimation(int index)const;

@@ -17,16 +17,16 @@
 #define ASSETS_H
 
 
-#include "ImageManager.hh"
-#include "AnimationManager.hh"
-#include "SoundManager.hh"
-#include "things/Font.hh"
+#include "managers/ImageManager.hh"
+#include "managers/AnimationManager.hh"
+#include "managers/SoundManager.hh"
+#include "managers/FontManager.hh"
 
 
 //the managers of the different kinds of assets
 ImageManager images;
 AnimationManager animations;
-Font font;
+FontManager fonts;
 SoundManager sounds;
 
 //initialises it and loads all the stuff that needs to be loaded and that

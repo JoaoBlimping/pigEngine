@@ -4,8 +4,8 @@
 #include <fstream>
 #include <stdio.h>
 
-#include "Utils.hh"
-#include "mixer/mixer.hh"
+#include "../Utils.hh"
+#include "../mixer/mixer.hh"
 
 using namespace std;
 

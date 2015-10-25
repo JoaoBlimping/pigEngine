@@ -3,9 +3,9 @@
 #include <iostream>
 #include <fstream>
 
-#include "things/Animation.hh"
 #include "ImageManager.hh"
-#include "Utils.hh"
+#include "../things/Animation.hh"
+#include "../Utils.hh"
 
 
 using namespace std;

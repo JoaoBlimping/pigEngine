@@ -7,7 +7,7 @@
 
 #include <vector>
 
-#include "mixer/mixer.hh"
+#include "../mixer/mixer.hh"
 
 
 class SoundManager

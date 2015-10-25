@@ -1,8 +1,18 @@
+#just saying this is a hella good makefile I think
+#remember this one for later days <3
+#legit a lot of love has gone into this makefile
+
 CC = emcc
 FLAGS = -s USE_SDL=2 -s USE_SDL_IMAGE=2
 
-bytecode: src/*.cc src/*/*.cc
-	$(CC) src/*.cc src/*/*.cc $(FLAGS) -o bin/$@.bc
+FILENAME:= $(patsubst src/%.cc,bin/%.bc,$(wildcard src/*.cc))#$(patsubst src/*/%.cc,bin/%.bc,$(wildcard src/*/*.cc))
 
-release: bytecode
-	$(CC) bin/*.bc $(FLAGS) -o bin/main.html -O2 --preload-file assets
+bin/%.bc: src/%.cc
+	$(CC) $< $(FLAGS) -o $@
+
+bin/%.bc: src/*/%.cc
+	$(CC) $< $(FLAGS) -o $@
+
+all: $(FILENAME)
+	echo $(FILENAME)
+	$(CC) $(FILENAME) $(FLAGS) -o bin/main.html -O2 --preload-file assets

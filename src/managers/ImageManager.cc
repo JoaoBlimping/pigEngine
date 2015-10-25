@@ -5,7 +5,7 @@
 #include <iostream>
 #include <fstream>
 
-#include "Utils.hh"
+#include "../Utils.hh"
 
 
 using namespace std;

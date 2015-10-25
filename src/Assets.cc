@@ -4,6 +4,7 @@
 void Assets_init()
 {
   images.init(renderer);
-  animations.init(assets->images);
-  font.init(FONT_FILE,assets->images);
+  animations.init(images);
+  fonts.init(images);
+  //TODO: SoundManager will probably need to be initialised too one day
 }
