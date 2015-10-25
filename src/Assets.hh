@@ -1,4 +1,5 @@
-//contains a bunch of assets and shit
+//provides a global access point to all of the game's assets that need to be globally
+//accessable
 
 
 /**
@@ -22,13 +23,14 @@
 #include "things/Font.hh"
 
 
-struct Assets
-{
-  ImageManager * images;
-  AnimationManager * animations;
-  SoundManager * sounds;
-  Font * font;
-};
+//the managers of the different kinds of assets
+ImageManager images;
+AnimationManager animations;
+Font font;
+SoundManager sounds;
+
+//initialises it and loads all the stuff that needs to be loaded and that
+void Assets_init();
 
 
 #endif

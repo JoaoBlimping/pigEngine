@@ -27,9 +27,6 @@ char const * FONT_FILE = "assets/font.pig";
 static SDL_Window * window = NULL;
 static SDL_Renderer * renderer = NULL;
 
-//the assets
-static Assets * assets = NULL;
-
 //the current scene
 static Scene * scene = NULL;
 
@@ -137,12 +134,8 @@ int main(int argc,char * * args)
     return 1;
   }
 
-  //initialise the asset managers
-  assets = new Assets();
-  assets->images = new ImageManager(renderer);
-  assets->animations = new AnimationManager(assets->images);
-  assets->sounds = new SoundManager();
-  assets->font = new Font(FONT_FILE,assets->images);
+  //load in the persistent assets
+  Assets_init();
 
   //set the starting scene
   scene = new SplashScene();

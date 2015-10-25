@@ -42,6 +42,12 @@ static Channel * channels;
 //the function that puts the audio into the audio buffer
 static void fillAudio(void * udata,uint8_t * stream,int len)
 {
+  //initialise the buffer to 0
+  for (int i = 0;i < len;i++)
+  {
+    stream[i] = 0;
+  }
+
   //mix in as much as we can for each channel
   for (int i = 0;i < nChannels;i++)
   {
@@ -58,11 +64,10 @@ static void fillAudio(void * udata,uint8_t * stream,int len)
       len = remainingLength;
     }
 
-    //SDL_MixAudio(stream,channels[i].sample->data,len,SDL_MIX_MAXVOLUME);
-    for (int o = 0;o < len;o += 2)
+    for (int o = 0;o < len;o++)
     {
-      stream[o] += channels[i].sample->left[channels[i].position + o];
-      stream[o + 1] += channels[i].sample->right[channels[i].position + o];
+      stream[o * 2] += channels[i].sample->left[channels[i].position + o];
+      stream[o * 2 + 1] += channels[i].sample->right[channels[i].position + o];
     }
 
     //put the channel's progress forward
@@ -93,7 +98,7 @@ int mixer_init(int pNChannels,int pNProtectedChannels)
   }
 
   //set up the actual audio player
-  SDL_AudioSpec wanted;
+  SDL_AudioSpec wanted,gotten;
 
   wanted.freq = FREQ;
   wanted.format = FORMAT;
@@ -108,6 +113,8 @@ int mixer_init(int pNChannels,int pNProtectedChannels)
     printf("Couldn't open audio: %s\n",SDL_GetError());
     return(-1);
   }
+
+  printf("freq %d\n",wanted.freq);
 
   //and begin immeadiately
   SDL_PauseAudio(0);
@@ -151,10 +158,10 @@ mixer_Sample * mixer_loadSample(char const * filename)
   sample->len = length;
 
   //fill it with data from the file
-  for (int i = 0;i < length * 2;i += 2)
+  for (int i = 0;i < length;i++)
   {
     sample->left[i] = getc(inputFile);
-    sample->right[i + 1] = getc(inputFile);
+    sample->right[i] = getc(inputFile);
   }
 
   //close the file
