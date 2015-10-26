@@ -44,7 +44,7 @@ void SplashScene::handleEvent(SDL_Event * event)
 }
 
 
-Scene * SplashScene::update(Assets const * const assets,float deltaTime)
+Scene * SplashScene::update(float deltaTime)
 {
   elapsed += deltaTime;
 
@@ -61,7 +61,7 @@ Scene * SplashScene::update(Assets const * const assets,float deltaTime)
 }
 
 
-void SplashScene::render(Assets const * const assets,SDL_Renderer * renderer)
+void SplashScene::render(SDL_Renderer * renderer)
 {
   //fill in the background
   SDL_SetRenderDrawColor(renderer,BACK_RED,BACK_GREEN,BACK_BLUE,BACK_ALPHA);

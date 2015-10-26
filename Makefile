@@ -5,7 +5,8 @@
 CC = emcc
 FLAGS = -s USE_SDL=2 -s USE_SDL_IMAGE=2
 
-FILENAME:= $(patsubst src/%.cc,bin/%.bc,$(wildcard src/*.cc))#$(patsubst src/*/%.cc,bin/%.bc,$(wildcard src/*/*.cc))
+FILENAME:= $(patsubst src/%.cc,bin/%.bc,$(wildcard src/*.cc))
+
 
 bin/%.bc: src/%.cc
 	$(CC) $< $(FLAGS) -o $@

@@ -21,11 +21,10 @@ public:
 
   //updates the scene
   //returns the new current scene
-  virtual Scene * update(Assets const * const assets,float deltaTime) = 0;
+  virtual Scene * update(float deltaTime) = 0;
 
   //displays the scene
-  //TODO: I don't see why this would need access to assets
-  virtual void render(Assets const * const assets,SDL_Renderer * renderer) = 0;
+  virtual void render(SDL_Renderer * renderer) = 0;
 };
 
 

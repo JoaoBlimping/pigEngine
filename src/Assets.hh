@@ -24,13 +24,12 @@
 
 
 //the managers of the different kinds of assets
-ImageManager images;
-AnimationManager animations;
-FontManager fonts;
-SoundManager sounds;
+ImageManager Assets_images;
+AnimationManager Assets_animations;
+FontManager Assets_fonts;
+SoundManager Assets_sounds;
 
 //initialises it and loads all the stuff that needs to be loaded and that
-void Assets_init();
-
+void Assets_init(SDL_Renderer * renderer);
 
 #endif

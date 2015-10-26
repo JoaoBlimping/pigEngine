@@ -19,7 +19,7 @@ public:
   static char const * ANIMATION_LIST;
 
   //loads all the animations and that
-  init(ImageManager const * const imageManager);
+  void init(ImageManager const * const imageManager);
 
   //gives you an item from the maneger
   Animation * getAnimation(int index)const;

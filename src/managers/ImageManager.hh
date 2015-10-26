@@ -23,7 +23,7 @@ public:
   ~ImageManager();
 
   //initialises the image manager and loads all it's images
-  init(SDL_Renderer * renderer);
+  void init(SDL_Renderer * renderer);
 
   //gives you an item from the maneger
   Image * getImage(int index)const;

@@ -6,22 +6,14 @@
 #include <emscripten/emscripten.h>
 
 #include "mixer/mixer.hh"
-#include "things/Animation.hh"
-#include "things/Font.hh"
-#include "ImageManager.hh"
-#include "AnimationManager.hh"
-#include "SoundManager.hh"
-#include "Scene.hh"
-#include "SplashScene.hh"
+#include "scenes/Scene.hh"
+#include "scenes/SplashScene.hh"
 #include "Assets.hh"
 
 
 //Screen dimension constants
 int const SCREEN_WIDTH = 480;
 int const SCREEN_HEIGHT = 640;
-
-//the filename of the font file
-char const * FONT_FILE = "assets/font.pig";
 
 //the window and stuff
 static SDL_Window * window = NULL;
@@ -70,9 +62,6 @@ bool init()
 
 void close()
 {
-  //Deallocate surface
-  delete assets;
-
   //Destroy window and renderer
   SDL_DestroyRenderer(renderer);
   SDL_DestroyWindow(window);
@@ -106,7 +95,7 @@ void iteration()
   }
 
   //update the scene
-  Scene * newScene = scene->update(assets,0.01f);
+  Scene * newScene = scene->update(0.01f);//TODO: actually calculate delta time
 
   if (newScene != scene)
   {
@@ -118,7 +107,7 @@ void iteration()
   SDL_RenderClear(renderer);
 
   //render the scene
-  scene->render(assets,renderer);
+  scene->render(renderer);
 
   //update screen
   SDL_RenderPresent(renderer);
@@ -135,7 +124,7 @@ int main(int argc,char * * args)
   }
 
   //load in the persistent assets
-  Assets_init();
+  Assets_init(renderer);
 
   //set the starting scene
   scene = new SplashScene();

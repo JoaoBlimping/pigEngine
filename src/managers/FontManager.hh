@@ -5,6 +5,9 @@
 #define FONT_MANAGER_H
 
 
+#include "../things/Font.hh"
+
+
 class FontManager
 {
 public:
@@ -16,7 +19,7 @@ public:
   ~FontManager();
 
   //loads all the fonts
-  void init();
+  void init(ImageManager const * const images);
 
   //gives you a font
   Font * getFont();

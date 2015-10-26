@@ -1,8 +1,7 @@
 #include "MenuScene.hh"
 
-#include "Assets.hh"
-#include "ImageManager.hh"
-#include "things/Button.hh"
+#include "../Assets.hh"
+#include "../things/Button.hh"
 
 
 int const MenuScene::PLAY_BUTTON_X = 50;
@@ -34,13 +33,13 @@ void MenuScene::handleEvent(SDL_Event * event)
 }
 
 
-Scene * MenuScene::update(Assets const * const assets,float deltaTime)
+Scene * MenuScene::update(float deltaTime)
 {
   return this;
 }
 
 
-void MenuScene::render(Assets const * const assets,SDL_Renderer * renderer)
+void MenuScene::render(SDL_Renderer * renderer)
 {
   playButton->render(renderer);
 }

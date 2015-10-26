@@ -10,7 +10,6 @@
 #include <SDL.h>
 
 #include "Assets.hh"
-#include "ImageManager.hh"
 #include "things/Button.hh"
 #include "mixer/mixer.hh"
 
@@ -33,10 +32,10 @@ public:
 
   //updates the scene
   //returns the new current scene
-  virtual Scene * update(Assets const * const assets,float deltaTime);
+  virtual Scene * update(float deltaTime);
 
   //displays the scene
-  virtual void render(Assets const * const assets,SDL_Renderer * renderer);
+  virtual void render(SDL_Renderer * renderer);
 
 private:
   //where the position of the mouse will be stored
