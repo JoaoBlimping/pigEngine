@@ -97,3 +97,17 @@ void Font::renderCharacter(SDL_Renderer * renderer,char character,int x,int y)
   //now draw the character in the place
   image->render(renderer,x,y,&clip);
 }
+
+
+Font * loadFontFromFile(SDL_Renderer * renderer,std::ifstream * data)
+{
+  int imageIndex;
+  int characterWidth;
+  int spacing;
+
+  data >> imageIndex;
+  data >> characterWidth;
+  data >> spacing;
+
+  return new Font(assets_images.getItem(imageIndex),characterWidth,spacing);
+}

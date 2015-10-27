@@ -1,5 +1,9 @@
 #include "Image.hh"
 
+#include <stdio.h>
+#include <iostream>
+#include <fstream>
+
 
 Image::~Image()
 {
@@ -86,4 +90,10 @@ int Image::getWidth()
 int Image::getHeight()
 {
   return height;
+}
+
+
+Image * loadImageFromFile(SDL_Renderer * renderer,std::ifstream * data)
+{
+
 }

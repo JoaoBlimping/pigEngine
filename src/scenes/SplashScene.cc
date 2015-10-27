@@ -3,7 +3,7 @@
 #include <SDL.h>
 
 #include "MenuScene.hh"
-#include "mixer/mixer.hh"
+#include "../mixer/mixer.hh"
 
 
 char const * SplashScene::JINGLE_FILE = "assets/internal/ebola.w8";
@@ -48,11 +48,11 @@ Scene * SplashScene::update(float deltaTime)
 {
   elapsed += deltaTime;
 
-  assets->animations->getAnimation(0)->update(deltaTime);
+  assets_animations.getItem(0)->update(deltaTime);
 
   if (false)
   {
-    return new MenuScene(assets->images);
+    return new MenuScene();
   }
   else
   {
@@ -68,8 +68,8 @@ void SplashScene::render(SDL_Renderer * renderer)
   SDL_RenderFillRect(renderer,NULL);
 
   //draw the animation
-  assets->animations->getAnimation(0)->render(renderer,0,0);
+  assets_animations.getItem(0)->render(renderer,0,0);
 
   //draw some nice text
-  assets->font->renderString(renderer,"hello you god damned fiends, i am going to kill you all",20,20,100);
+  assets_fonts.getFont()->renderString(renderer,"hello you god damned fiends, i am going to kill you all",20,20,100);
 }

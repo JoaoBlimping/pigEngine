@@ -7,16 +7,24 @@
 
 #include "../Utils.hh"
 
+#define IMAGE_DIR "assets/images/"
+#define IMAGE_LIST "assets/images/list"
+
 
 using namespace std;
 
 
-char const * ImageManager::IMAGE_DIR = "assets/images/";
+ImageManager::~ImageManager()
+{
+  //free all of the images it contains
+  for (std::vector<Image *>::iterator it = images.begin();it != images.end();++it)
+  {
+    delete *it;
+  }
+}
 
-char const * ImageManager::IMAGE_LIST = "assets/images/list";
 
-
-ImageManager::ImageManager(SDL_Renderer * renderer)
+void ImageManager::init(SDL_Renderer * renderer)
 {
   //load the list of images
   ifstream list(IMAGE_LIST);
@@ -48,17 +56,7 @@ ImageManager::ImageManager(SDL_Renderer * renderer)
 }
 
 
-ImageManager::~ImageManager()
-{
-  //free all of the images it contains
-  for (std::vector<Image *>::iterator it = images.begin();it != images.end();++it)
-  {
-    delete *it;
-  }
-}
-
-
-Image * ImageManager::getImage(int index)const
+Image * ImageManager::getImage(int index) const
 {
   return images[index];
 }

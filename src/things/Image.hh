@@ -5,6 +5,10 @@
 #define IMAGE_H
 
 
+#include <stdio.h>
+#include <iostream>
+#include <fstream>
+
 #include <SDL.h>
 #include <SDL_image.h>
 
@@ -36,6 +40,9 @@ private:
   int width;
   int height;
 };
+
+
+Image * loadImageFromFile(SDL_Renderer * renderer,std::ifstream * data);
 
 
 #endif

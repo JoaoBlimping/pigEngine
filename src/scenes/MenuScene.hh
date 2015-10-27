@@ -9,9 +9,9 @@
 
 #include <SDL.h>
 
-#include "Assets.hh"
-#include "things/Button.hh"
-#include "mixer/mixer.hh"
+#include "../assets.hh"
+#include "../things/Button.hh"
+#include "../mixer/mixer.hh"
 
 
 class MenuScene:public Scene
@@ -22,7 +22,7 @@ public:
   static int const PLAY_BUTTON_Y;
 
   //creates the button
-  MenuScene(ImageManager const * const images);
+  MenuScene();
 
   //deletes it's assets
   ~MenuScene();

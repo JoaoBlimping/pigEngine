@@ -15,10 +15,6 @@
 class ImageManager
 {
 public:
-  //some useful constants for ye
-  static char const * IMAGE_DIR;
-  static char const * IMAGE_LIST;
-
   //destroys the image manager and all of it's images
   ~ImageManager();
 
@@ -26,7 +22,7 @@ public:
   void init(SDL_Renderer * renderer);
 
   //gives you an item from the maneger
-  Image * getImage(int index)const;
+  Image * getImage(int index) const;
 
 private:
   std::vector<Image *> images;

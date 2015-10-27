@@ -1,11 +1,14 @@
 #include "Animation.hh"
 
 #include <stdio.h>
+#include <iostream>
+#include <fstream>
 
 #include <SDL.h>
 #include <SDL_image.h>
 
 #include "Image.hh"
+#include "../assets.hh"
 
 
 Animation::Animation(Image * pImage,int pFrames,float pSpeed):
@@ -47,4 +50,20 @@ void Animation::render(SDL_Renderer * renderer,int x,int y)
 Animation * Animation::duplicate()
 {
   return new Animation(image,frames,speed);
+}
+
+
+Animation * loadAnimationFromFile(SDL_Renderer * renderer,std::ifstream * data)
+{
+  int imageIndex;
+  int frames;
+  float speed;
+
+  data >> imageIndex;
+  data >> frames;
+  data >> speed;
+
+  //run the function on the filename
+  return new Animation(assets_images.getImage(imageIndex),
+                       frames,speed);
 }

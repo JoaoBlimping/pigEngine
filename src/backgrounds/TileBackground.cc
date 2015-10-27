@@ -2,7 +2,9 @@
 
 #include <math.h>
 
-#include "../Assets.hh"
+#include <SDL.h>
+
+#include "../assets.hh"
 
 
 TileBackground::TileBackground(Image * pTile):
@@ -30,7 +32,8 @@ void TileBackground::render(SDL_Renderer * renderer,int screenWidth,
 }
 
 
-Background * TileBackgroundFactory::createBackground(Assets const * const assets)
+Background * TileBackgroundFactory::createBackground()
 {
-
+  //TODO: make it return a new tile background
+  return NULL;
 }

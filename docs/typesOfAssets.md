@@ -1,4 +1,4 @@
-# Types of Assets
+# Types of assets
 This engine is going to use a system similar to that of rpg maker, where there
 are a bunch of different asset types which are loaded into it, and edited in the
 database editor, the only difference is that this will probably only have a

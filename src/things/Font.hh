@@ -5,6 +5,10 @@
 #define FONT_H
 
 
+#include <stdio.h>
+#include <iostream>
+#include <fstream>
+
 #include <SDL.h>
 
 #include "Image.hh"
@@ -46,6 +50,9 @@ private:
   //defines the clipping and that
   SDL_Rect clip;
 };
+
+
+Font * loadFontFromFile(SDL_Renderer * renderer,std::ifstream * data);
 
 
 #endif

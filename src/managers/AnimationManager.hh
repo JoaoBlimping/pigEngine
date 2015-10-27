@@ -14,19 +14,14 @@
 class AnimationManager
 {
 public:
-  //some useful constants for ye
-  static char const * ANIMATION_DIR;
-  static char const * ANIMATION_LIST;
-
   //loads all the animations and that
-  void init(ImageManager const * const imageManager);
+  void init(ImageManager const * const images);
 
   //gives you an item from the maneger
-  Animation * getAnimation(int index)const;
+  Animation * getAnimation(int index) const;
 
 private:
   std::vector<Animation *> animations;
-
 };
 
 

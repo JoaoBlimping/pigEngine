@@ -1,19 +1,15 @@
-#just saying this is a hella good makefile I think
-#remember this one for later days <3
-#legit a lot of love has gone into this makefile
+#makefile is finally sexy
 
 CC = emcc
 FLAGS = -s USE_SDL=2 -s USE_SDL_IMAGE=2
+ASSETS = assets
 
-FILENAME:= $(patsubst src/%.cc,bin/%.bc,$(wildcard src/*.cc))
-
+FILENAME = $(patsubst src/%.cc,bin/%.bc,$(wildcard src/*.cc)) \
+	$(patsubst src/%.cc,bin/%.bc,$(wildcard src/*/*.cc))
 
 bin/%.bc: src/%.cc
-	$(CC) $< $(FLAGS) -o $@
-
-bin/%.bc: src/*/%.cc
+	mkdir -p $(@D)
 	$(CC) $< $(FLAGS) -o $@
 
 all: $(FILENAME)
-	echo $(FILENAME)
-	$(CC) $(FILENAME) $(FLAGS) -o bin/main.html -O2 --preload-file assets
+	$(CC) $(FILENAME) $(FLAGS) -o release/main.html -O2 --preload-file $(ASSETS)

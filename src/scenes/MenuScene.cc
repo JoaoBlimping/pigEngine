@@ -1,6 +1,6 @@
 #include "MenuScene.hh"
 
-#include "../Assets.hh"
+#include "../assets.hh"
 #include "../things/Button.hh"
 
 
@@ -8,12 +8,12 @@ int const MenuScene::PLAY_BUTTON_X = 50;
 int const MenuScene::PLAY_BUTTON_Y = 50;
 
 
-MenuScene::MenuScene(ImageManager const * const images)
+MenuScene::MenuScene()
 {
   int buttonImage = 4;//TODO: definetly get this into a file without delay
 
   playButton = new Button(PLAY_BUTTON_X,PLAY_BUTTON_Y,&mouseX,&mouseY,
-                          images->getImage(buttonImage));
+                          assets_images.getImage(buttonImage));
 }
 
 

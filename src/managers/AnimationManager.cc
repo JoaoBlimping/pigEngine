@@ -8,15 +8,14 @@
 #include "../Utils.hh"
 
 
+#define ANIMATION_DIR "assets/animations/"
+#define ANIMATION_LIST "assets/animations/list"
+
+
 using namespace std;
 
 
-char const * AnimationManager::ANIMATION_DIR = "assets/animations/";
-
-char const * AnimationManager::ANIMATION_LIST = "assets/animations/list";
-
-
-AnimationManager::AnimationManager(ImageManager const * const imageManager)
+void AnimationManager::init(ImageManager const * const images)
 {
   //load the list of images
   ifstream list(ANIMATION_LIST);
@@ -51,7 +50,7 @@ AnimationManager::AnimationManager(ImageManager const * const imageManager)
     animFile.close();
 
     //run the function on the filename
-    Animation * animation = new Animation(imageManager->getImage(imageIndex),
+    Animation * animation = new Animation(images->getImage(imageIndex),
                                           frames,speed);
     printf("loaded %s\n",filename);
 
@@ -62,10 +61,11 @@ AnimationManager::AnimationManager(ImageManager const * const imageManager)
   }
 
   list.close();
+
 }
 
 
-Animation * AnimationManager::getAnimation(int index)const
+Animation * AnimationManager::getAnimation(int index) const
 {
   return animations[index];
 }

@@ -7,7 +7,9 @@
 
 #include "Background.hh"
 
-#include "../Assets.hh"
+#include <SDL.h>
+
+#include "../assets.hh"
 
 
 class ColouredBackground:public Background
@@ -33,7 +35,7 @@ private:
 class ColouredBackgroundFactory:public BackgroundFactory
 {
   //creates a TileBackground
-  virtual Background * createBackground(Assets const * const assets);
+  virtual Background * createBackground();
 };
 
 

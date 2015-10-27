@@ -9,7 +9,7 @@
 
 #include <SDL.h>
 
-#include  "mixer/mixer.hh"
+#include  "../mixer/mixer.hh"
 
 
 class SplashScene:public Scene

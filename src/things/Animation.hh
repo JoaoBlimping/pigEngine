@@ -5,6 +5,10 @@
 #define ANIMATION_H
 
 
+#include <stdio.h>
+#include <iostream>
+#include <fstream>
+
 #include <SDL.h>
 
 #include "Image.hh"
@@ -41,6 +45,9 @@ private:
   //defines the clipping and that
   SDL_Rect clip;
 };
+
+
+Animation * loadAnimationFromFile(SDL_Renderer * renderer,std::ifstream * data);
 
 
 #endif

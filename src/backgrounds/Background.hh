@@ -5,7 +5,7 @@
 #define BACKGROUND_H
 
 
-#include "../Assets.hh"
+#include <SDL.h>
 
 
 class Background
@@ -27,7 +27,7 @@ class BackgroundFactory
 {
 public:
   //creates a background
-  virtual Background * createBackground(Assets const * const assets) = 0;
+  virtual Background * createBackground() = 0;
 };
 
 

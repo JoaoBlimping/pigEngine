@@ -8,7 +8,7 @@
 #include "mixer/mixer.hh"
 #include "scenes/Scene.hh"
 #include "scenes/SplashScene.hh"
-#include "Assets.hh"
+#include "assets.hh"
 
 
 //Screen dimension constants
@@ -124,7 +124,7 @@ int main(int argc,char * * args)
   }
 
   //load in the persistent assets
-  Assets_init(renderer);
+  assets_init(renderer);
 
   //set the starting scene
   scene = new SplashScene();

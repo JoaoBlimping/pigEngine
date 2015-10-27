@@ -1,6 +1,8 @@
 #include "ColouredBackground.hh"
 
-#include "../Assets.hh"
+#include <SDL.h>
+
+#include "../assets.hh"
 
 
 //sets the colour that it fills the background with
