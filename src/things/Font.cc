@@ -4,7 +4,7 @@
 #include <fstream>
 #include <stdio.h>
 
-#include "../managers/ImageManager.hh"
+#include "../assets.hh"
 
 
 using namespace std;
@@ -15,35 +15,6 @@ image(pImage),
 charWidth(pCharWidth),
 spacing(pSpacing)
 {
-  clip.x = 0;
-  clip.y = 0;
-  clip.w = charWidth;
-  clip.h = image->getHeight();
-}
-
-
-Font::Font(char const * filename,ImageManager const * const images)
-{
-  //open the file and shit
-  ifstream fontFile(filename);
-  if (!fontFile.is_open())
-  {
-    printf("can't open font file %s\n",filename);
-    return;
-  }
-
-  //read the stuff from the file
-  int imageID;
-  fontFile >> imageID;
-  fontFile >> charWidth;
-  fontFile >> spacing;
-
-  image = images->getImage(imageID);
-
-  //close the file
-  fontFile.close();
-
-  //do those other things
   clip.x = 0;
   clip.y = 0;
   clip.w = charWidth;
@@ -96,18 +67,4 @@ void Font::renderCharacter(SDL_Renderer * renderer,char character,int x,int y)
 
   //now draw the character in the place
   image->render(renderer,x,y,&clip);
-}
-
-
-Font * loadFontFromFile(SDL_Renderer * renderer,std::ifstream * data)
-{
-  int imageIndex;
-  int characterWidth;
-  int spacing;
-
-  data >> imageIndex;
-  data >> characterWidth;
-  data >> spacing;
-
-  return new Font(assets_images.getItem(imageIndex),characterWidth,spacing);
 }

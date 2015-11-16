@@ -6,18 +6,19 @@
 #define ASSETS_H
 
 #include "Manager.hh"
+#include "things/Image.hh"
 #include "things/Animation.hh"
-#include "managers/ImageManager.hh"
-#include "managers/AnimationManager.hh"
-#include "managers/SoundManager.hh"
-#include "managers/FontManager.hh"
+#include "things/Sound.hh"
+#include "things/Font.hh"
 
 
 //the managers of the different kinds of assets
-extern ImageManager assets_images;
+extern Manager<Image> assets_images;
 extern Manager<Animation> assets_animations;
-extern FontManager assets_fonts;
-extern SoundManager assets_sounds;
+extern Manager<Sound> assets_sounds;
+
+//the font
+extern Font * assets_font;
 
 //initialises it and loads all the stuff that needs to be loaded and that
 void assets_init(SDL_Renderer * renderer);

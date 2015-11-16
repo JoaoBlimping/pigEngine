@@ -11,7 +11,6 @@
 
 #include "../assets.hh"
 #include "../things/Button.hh"
-#include "../mixer/mixer.hh"
 
 
 class MenuScene:public Scene

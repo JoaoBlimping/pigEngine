@@ -12,7 +12,6 @@
 #include <SDL.h>
 
 #include "Image.hh"
-#include "../managers/ImageManager.hh"
 
 
 int const LETTERS_START = 97;
@@ -26,9 +25,6 @@ class Font
 public:
   //creates the font with it's image data and the width of a character and space
   Font(Image * pImage,int pCharWidth,int pSpacing);
-
-  //creates a font from a file that contains the image number character width
-  Font(char const * filename,ImageManager const * const images);
 
   //render some text to the screen
   void renderString(SDL_Renderer * renderer,char const * text,int x,int y,
@@ -50,9 +46,6 @@ private:
   //defines the clipping and that
   SDL_Rect clip;
 };
-
-
-Font * loadFontFromFile(SDL_Renderer * renderer,std::ifstream * data);
 
 
 #endif

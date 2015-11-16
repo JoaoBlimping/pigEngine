@@ -47,7 +47,4 @@ private:
 };
 
 
-Animation * loadAnimationFromFile(SDL_Renderer * renderer,std::ifstream * data);
-
-
 #endif

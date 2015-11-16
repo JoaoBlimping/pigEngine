@@ -91,9 +91,3 @@ int Image::getHeight()
 {
   return height;
 }
-
-
-Image * loadImageFromFile(SDL_Renderer * renderer,std::ifstream * data)
-{
-
-}

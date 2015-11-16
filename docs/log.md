@@ -3,6 +3,14 @@ Ok this time the makefile is genuinely fixed, it has like directories in the bin
 now, which makes no difference to me whatsoever.
 Now it's time to get back to switching the thing managers over to a single manager class.
 
+Just for a bit of fun there is now a circular dependancy because some of the things need
+to make use of the asset manager, but the asset manager obviously uses them. I'll have to
+make it that managers can be sent in to each other somehow.
+
+Ok the managers work now I think. this is rather nice. I guess it's time to implement the
+overworld. Actually first I need to redo the menu to use the keyboard/gamepad, so yeah I
+need gamepad support and a decent GUI system.
+
 # 26/10/2015
 I reckon this assets system will be much better, but my makefile is still mucking up,
 it's going to be much nicer when it actually works. Ok i'm pretty sure it works now.

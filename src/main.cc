@@ -5,7 +5,6 @@
 
 #include <emscripten/emscripten.h>
 
-#include "mixer/mixer.hh"
 #include "scenes/Scene.hh"
 #include "scenes/SplashScene.hh"
 #include "assets.hh"
@@ -54,7 +53,7 @@ bool init()
   SDL_SetRenderDrawColor(renderer,0xFF,0xFF,0xFF,0xFF);
 
   //Initialize mixer
-  mixer_init(5,1);//TODO: move these arbitrary values
+  //TODO: use the real mixer
 
   return true;
 }

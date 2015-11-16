@@ -3,7 +3,6 @@
 #include <SDL.h>
 
 #include "MenuScene.hh"
-#include "../mixer/mixer.hh"
 
 
 char const * SplashScene::JINGLE_FILE = "assets/internal/ebola.w8";
@@ -20,6 +19,7 @@ SplashScene::SplashScene()
   elapsed = 0;
 
   //load in the sound jingle
+  /*
   jingle = mixer_loadSample(JINGLE_FILE);
   if (jingle == NULL)
   {
@@ -29,12 +29,15 @@ SplashScene::SplashScene()
   {
     mixer_playSample(jingle);
   }
+  */
 }
 
 
 SplashScene::~SplashScene()
 {
+  /*
   mixer_freeSample(jingle);
+  */
 }
 
 
@@ -71,5 +74,5 @@ void SplashScene::render(SDL_Renderer * renderer)
   assets_animations.getItem(0)->render(renderer,0,0);
 
   //draw some nice text
-  assets_fonts.getFont()->renderString(renderer,"hello you god damned fiends, i am going to kill you all",20,20,100);
+  assets_font->renderString(renderer,"hello you god damned fiends, i am going to kill you all",20,20,100);
 }

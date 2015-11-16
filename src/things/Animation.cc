@@ -51,19 +51,3 @@ Animation * Animation::duplicate()
 {
   return new Animation(image,frames,speed);
 }
-
-
-Animation * loadAnimationFromFile(SDL_Renderer * renderer,std::ifstream * data)
-{
-  int imageIndex;
-  int frames;
-  float speed;
-
-  data >> imageIndex;
-  data >> frames;
-  data >> speed;
-
-  //run the function on the filename
-  return new Animation(assets_images.getImage(imageIndex),
-                       frames,speed);
-}

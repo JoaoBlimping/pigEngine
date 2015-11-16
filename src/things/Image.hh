@@ -42,7 +42,4 @@ private:
 };
 
 
-Image * loadImageFromFile(SDL_Renderer * renderer,std::ifstream * data);
-
-
 #endif
