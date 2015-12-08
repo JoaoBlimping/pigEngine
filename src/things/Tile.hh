@@ -13,7 +13,7 @@ typedef uint16_t Tile;
  */
 enum direction
 {
-	Up,
+	Up(1),
 	Down,
 	Left,
 	Right
