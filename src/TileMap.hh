@@ -14,10 +14,31 @@ public:
    */
   TileMap();
 
+  /**
+   * deallocates the tile data
+   */
+   ~TileMap();
 
+ /**
+  * displays the tilemap
+  * uses the camera position to display the tiles to the screen, however, if this would
+  * cause it render stuff of the screen the camera is moved to avoid this if possible
+  */
+  void render(SDL_Renderer * renderer);
+
+  /**
+   * centres the camera on a specified position
+   * sets the target centre position of the camera
+   */
+   void centre(int x,int y);
 
 private:
-  Image *
+  /**
+   * the tileset used to draw the map and get it's collision information
+   * displays the map's tiles and contains the information required to detect collisions
+   * with the level. The TileMap does not take responsibility for deleting it
+   */
+  Tileset * tileset;
 
 };
 

@@ -34,21 +34,21 @@ Font * assets_font;
 
 void assets_init(SDL_Renderer * renderer)
 {
-  //initialise managers
-  assets_images.init(renderer);
-  assets_animations.init(renderer);
-  assets_sounds.init(renderer);
+	//initialise managers
+	assets_images.init(renderer);
+	assets_animations.init(renderer);
+	assets_sounds.init(renderer);
 
-  //load the font
-  assets_font = loadFontFromFile(FONT_FILE);
+	//load the font
+	assets_font = loadFontFromFile(FONT_FILE);
 }
 
 
 Image * loadImageFromFile(char const * filename,SDL_Renderer * renderer)
 {
-  Image * image = new Image();
-  image->loadFromFile(renderer,filename);
-  return image;
+	Image * image = new Image();
+	image->loadFromFile(renderer,filename);
+	return image;
 }
 
 
@@ -60,34 +60,34 @@ Animation * loadAnimationFromFile(char const * filename,SDL_Renderer * renderer)
 
 Sound * loadSoundFromFile(char const * filename,SDL_Renderer * renderer)
 {
-  Sound * sound = Mix_LoadWAV(filename);
-  if (sound == NULL)
-  {
-    printf("couldn't open soundfile %s\n",filename);
-  }
-  return sound;
+	Sound * sound = Mix_LoadWAV(filename);
+	if (sound == NULL)
+	{
+		printf("couldn't open soundfile %s\n",filename);
+	}
+	return sound;
 }
 
 
 Font * loadFontFromFile(char const * filename)
 {
-  //open the file
-  std::ifstream fontFile(filename);
-  if (!fontFile.is_open())
-  {
-    printf("can't open font file %s\n",filename);
-  }
+	//open the file
+	std::ifstream fontFile(filename);
+	if (!fontFile.is_open())
+	{
+		printf("can't open font file %s\n",filename);
+	}
 
-  int imageIndex;
-  int characterWidth;
-  int spacing;
+	int imageIndex;
+	int characterWidth;
+	int spacing;
 
-  fontFile >> imageIndex;
-  fontFile >> characterWidth;
-  fontFile >> spacing;
+	fontFile >> imageIndex;
+	fontFile >> characterWidth;
+	fontFile >> spacing;
 
-  //close the file
-  fontFile.close();
+	//close the file
+	fontFile.close();
 
-  return new Font(assets_images.getItem(imageIndex),characterWidth,spacing);
+	return new Font(assets_images.getItem(imageIndex),characterWidth,spacing);
 }

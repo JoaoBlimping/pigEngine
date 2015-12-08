@@ -8,7 +8,7 @@
 class Character
 {
 public:
-  //creates the character with it's commands and it's graphics
+	//creates the character with it's commands and it's graphics
 
 
 private:
