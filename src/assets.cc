@@ -17,8 +17,6 @@
 
 
 //the manager loading functions
-Image * loadImageFromFile(char const * filename,SDL_Renderer * renderer);
-Animation * loadAnimationFromFile(char const * filename,SDL_Renderer * renderer);
 Sound * loadSoundFromFile(char const * filename,SDL_Renderer * renderer);
 
 //loading but not for a manager
@@ -26,9 +24,9 @@ Font * loadFontFromFile(char const * filename);
 
 
 //create the manager objects
-Manager<Image> assets_images("assets/images/",&loadImageFromFile);
-Manager<Animation> assets_animations("assets/animations/",&loadAnimationFromFile);
-Manager<Sound> assets_sounds("assets/sounds/",&loadSoundFromFile);
+Manager<Image> assets_images("assets/images/");
+Manager<Animation> assets_animations("assets/animations/");
+Manager<Sound> assets_sounds("assets/sounds/");
 
 //create teh font object
 Font * assets_font;
@@ -56,30 +54,7 @@ Image * loadImageFromFile(char const * filename,SDL_Renderer * renderer)
 
 Animation * loadAnimationFromFile(char const * filename,SDL_Renderer * renderer)
 {
-  //open the file
-  std::ifstream animFile(filename);
-  if (!animFile.is_open())
-  {
-    printf("can't open animation file %s\n",filename);
-  }
 
-  int imageIndex;
-  int frames;
-  float speed;
-
-  animFile >> imageIndex;
-  animFile >> frames;
-  animFile >> speed;
-
-  //close the file
-  animFile.close();
-
-  //get the images thingo
-
-
-  //run the function on the filename
-  return new Animation(assets_images.getItem(imageIndex),
-                       frames,speed);
 }
 
 

@@ -4,6 +4,9 @@
 #include <iostream>
 #include <fstream>
 
+#include <SDL.h>
+#include <SDL_image.h>
+
 
 Image::~Image()
 {
@@ -90,4 +93,15 @@ int Image::getWidth()
 int Image::getHeight()
 {
   return height;
+}
+
+
+Image * ImageLoader::operator()(char const * filename,SDL_Renderer * renderer)
+{
+  Image * image = new Image();
+  if (!image->loadFromFile(filename))
+  {
+    printf("error loading file %s\n",filename);
+  }
+  return image;
 }

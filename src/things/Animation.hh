@@ -47,4 +47,13 @@ private:
 };
 
 
+/**
+ * functor for loading animations from file
+ */
+struct AnimationLoader
+{
+  Animation * operator()(char const * filename,SDL_Renderer * renderer);
+}
+
+
 #endif

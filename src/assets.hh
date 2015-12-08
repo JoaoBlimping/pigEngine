@@ -13,8 +13,8 @@
 
 
 //the managers of the different kinds of assets
-extern Manager<Image> assets_images;
-extern Manager<Animation> assets_animations;
+extern Manager<Image,ImageLoader> assets_images;
+extern Manager<Animation,AnimationLoader> assets_animations;
 extern Manager<Sound> assets_sounds;
 
 //the font

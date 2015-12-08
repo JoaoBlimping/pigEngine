@@ -42,4 +42,16 @@ private:
 };
 
 
+/**
+ * functor for the loading of an image from a given file
+ */
+struct ImageLoader
+{
+  /**
+   * loads an image from the given file
+   */
+  Image * operator()(char const * filename,SDL_Renderer * renderer);
+};
+
+
 #endif
