@@ -5,7 +5,7 @@
 #ifndef ASSETS_H
 #define ASSETS_H
 
-#include "Manager.hh"
+#include "things/Manager.hh"
 #include "things/Image.hh"
 #include "things/Animation.hh"
 #include "things/Sound.hh"

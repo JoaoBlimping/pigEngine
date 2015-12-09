@@ -2,6 +2,12 @@
 #define TILE_MAP_H
 
 
+#include <SDL.h>
+#include <SDL_image.h>
+
+#include "things/Tileset.hh"
+
+
 /**
  * A map of tile ids that can display itself using some tileset and also gives collision
  * information about the tiles

@@ -1,3 +1,8 @@
+# 9/12/2015
+Ok zippitty zoopers today we have the problem of emscripten not seeming to know about the
+mixer. This might be some kind of thing where I need to do more configuration on emcc, so
+a google search is probably in order there.
+
 # 8/12/2015
 Move the item loading functors back to assets because they rely on assets and also they
 are not necessarily essential to the original item's type and that.

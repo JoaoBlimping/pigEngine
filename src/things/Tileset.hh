@@ -5,6 +5,7 @@
 #include <stdint.h>
 
 #include "Tile.hh"
+#include "Image.hh"
 
 
 /**

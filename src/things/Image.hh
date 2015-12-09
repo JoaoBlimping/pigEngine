@@ -6,8 +6,6 @@
 
 
 #include <stdio.h>
-#include <iostream>
-#include <fstream>
 
 #include <SDL.h>
 #include <SDL_image.h>
