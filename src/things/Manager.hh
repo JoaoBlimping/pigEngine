@@ -1,13 +1,8 @@
-//reads a list and does something to each entry, storing the result
-
 #ifndef MANAGER_H
 #define MANAGER_H
 
 
 #include <vector>
-#include <stdio.h>
-#include <iostream>
-#include <fstream>
 
 #include <SDL.h>
 
@@ -26,7 +21,7 @@ using namespace std;
  * which has to be known beforehand.
  * Type T is the type of items that are managed and L is the type of the loader functor.
  */
-template <typename T,class L> class Manager
+template <class T,class L> class Manager
 {
 public:
 	/**
@@ -39,7 +34,7 @@ public:
 	/**
 	 * deletes all of the items loaded by the manager
 	 */
-	~Manager()//TODO: what the fuck is going in here?
+	~Manager();
 
 	/**
 	 * Initialises the manager
@@ -72,6 +67,10 @@ private:
 	 */
 	L loader;
 };
+
+
+//gotta include it's source file because it's a template type
+#include "Manager.cc"
 
 
 #endif

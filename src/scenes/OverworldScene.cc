@@ -1,31 +1,32 @@
 #include "OverworldScene.hh"
 
 
-OverworldScene()
+OverworldScene::OverworldScene()
 {
 
 }
 
 
-~OverworldScene()
+OverworldScene::~OverworldScene()
 {
 
 }
 
 
-virtual void handleEvent(SDL_Event * event)
+void OverworldScene::handleEvent(SDL_Event * event)
 {
 
 }
 
 
-virtual Scene * update(float deltaTime)
+Scene * OverworldScene::update(float deltaTime)
 {
-
+	
+	return this;
 }
 
 
-virtual void render(SDL_Renderer * renderer)
+void OverworldScene::render(SDL_Renderer * renderer)
 {
   
 }

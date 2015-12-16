@@ -1,3 +1,11 @@
+# 10/12/2015
+Make managers use C file io instead of c++, I'm pretty sure it'll make the compiled
+program smaller and anyway I like it better.
+For some reason it's saying that all the stuff I define in assets.hh is multiply defined,
+I'll have to figure that out tomoroow. nah fixed it, they have to be extern for some
+reason. Anyway, that's all the new errors ironed out. Next thing I have to do is get the
+gui system working with the scripting system that I made.
+
 # 9/12/2015
 Ok zippitty zoopers today we have the problem of emscripten not seeming to know about the
 mixer. This might be some kind of thing where I need to do more configuration on emcc, so

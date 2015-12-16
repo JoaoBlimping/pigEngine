@@ -5,10 +5,6 @@
 #define FONT_H
 
 
-#include <stdio.h>
-#include <iostream>
-#include <fstream>
-
 #include <SDL.h>
 
 #include "Image.hh"

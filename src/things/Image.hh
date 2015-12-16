@@ -1,6 +1,3 @@
-//wraps around sdl's textures to do cool shit
-
-
 #ifndef IMAGE_H
 #define IMAGE_H
 
@@ -11,44 +8,64 @@
 #include <SDL_image.h>
 
 
+/**
+ * Wraps around SDL's Textures to give it nice features and make it into a class and that
+ */
 class Image
 {
 public:
-  //deallocates it's data and destroys it
-  ~Image();
+	/**
+	 * Destroys the Image and deallocates the underlying SDL_Texture
+	 * deallocates all the data
+	 */
+	~Image();
 
-  //loads specified image file
-  bool loadFromFile(SDL_Renderer * renderer,char const * filename);
+	/**
+	 * Loads the specified Image file into this image
+	 * Frees any currently held SDL_Texture, then creates a new one from the specified
+	 * Image file. Returns true iff the load was successful.
+	 */
+	bool loadFromFile(SDL_Renderer * renderer,char const * filename);
 
-  //deallocates it's data
-  void free();
+	/**
+	 * Deallocates the Image's data without deleting it
+	 * I guess this is useful if you have Images on the stack and you want to get their
+	 * memory back before the program ends.
+	 */
+	void free();
 
-  //renders it at given point
-  void render(SDL_Renderer * renderer,int x,int y,SDL_Rect * clip = NULL);
+	/**
+	 * Render the texture to the screen with the given details
+	 * x is horizontal position, y is vertical position, clip is a rectangle which decides
+	 * which part of the image is displayed, if NULL, the whole image is used
+	 */
+	void render(SDL_Renderer * renderer,int x,int y,SDL_Rect * clip = NULL);
 
-  //accessors for image dimensions
-  int getWidth();
-  int getHeight();
+	/**
+	 * Image width accessor
+	 */
+	int getWidth();
+	
+	/**
+	 * Image Height accessor
+	 */
+	int getHeight();
 
 private:
-  //the sdl texture
-  SDL_Texture * texture;
+	/**
+	 * The SDL texture used under the hood
+	 */
+	SDL_Texture * texture;
 
-  //the image's dimensions
-  int width;
-  int height;
-};
-
-
-/**
- * functor for the loading of an image from a given file
- */
-struct ImageLoader
-{
-  /**
-   * loads an image from the given file
-   */
-  Image * operator()(char const * filename,SDL_Renderer * renderer);
+	/**
+	 * The texture's width in pixels
+	 */
+	int width;
+	
+	/**
+	 * The texture's height in pixels
+	 */
+	int height;
 };
 
 

@@ -8,7 +8,7 @@
 /**
  * makes mixer chunks also be name sound since it is much nicer <3
  */
-typedef MIX_chunk Sound;
+typedef Mix_Chunk Sound;
 
 
 #endif

@@ -1,33 +1,40 @@
-//the game's overworld
-
-
 #ifndef OVERWORLD_SCENE_H
 #define OVERWORLD_SCENE_H
 
 
-#include "Scene.h"
+#include "Scene.hh"
+#include "../TileMap.hh"
 
 
+/**
+ * The scene in which the overworld of the game takes place
+ * You know it's like in a jrpg or whatever where everyone walks around from a top down
+ * point of view and you talk to people and stuff
+ */
 class OverworldScene:public Scene
 {
 public:
-  //creates the scene with all the stuff it needs
-  OverworldScene();
+	/**
+	 * document when I actually figure out what it does
+	 */
+	OverworldScene();
 
-  //destroys the overworld scene, but not it's level data
-  ~OverworldScene();
+	/**
+	 * document when I figure out what it does
+	 */
+	~OverworldScene();
 
-  //this is called every time there is an event that must be dealt with
-  virtual void handleEvent(SDL_Event * event);
+	virtual void handleEvent(SDL_Event * event);
 
-  //updates the scene
-  //returns the new current scene
-  virtual Scene * update(float deltaTime);
+	virtual Scene * update(float deltaTime);
 
-  //displays the scene
-  virtual void render(SDL_Renderer * renderer);
+	virtual void render(SDL_Renderer * renderer);
 
 private:
+	/**
+	 * The current level's map
+	 */
+	TileMap * map;
 
 };
 

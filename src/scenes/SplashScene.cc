@@ -55,7 +55,7 @@ Scene * SplashScene::update(float deltaTime)
 
   if (false)
   {
-    return new MenuScene();
+    return new ConnectControllerScene();
   }
   else
   {

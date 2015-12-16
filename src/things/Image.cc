@@ -10,98 +10,87 @@
 
 Image::~Image()
 {
-  free();
+	free();
 }
 
 
 bool Image::loadFromFile(SDL_Renderer * renderer,char const * filename)
 {
-  //get rid of existing texture
-  free();
+	//get rid of existing texture
+	free();
 
-  //the new texture
-  SDL_Texture * newTexture = NULL;
+	//the new texture
+	SDL_Texture * newTexture = NULL;
 
-  //load image at specified path
-  SDL_Surface * loadedSurface = IMG_Load(filename);
-  if (loadedSurface == NULL)
-  {
-    printf("unable to load image %s, SDL_image error: %s\n",filename,IMG_GetError());
-    return false;
-  }
+	//load image at specified path
+	SDL_Surface * loadedSurface = IMG_Load(filename);
+	if (loadedSurface == NULL)
+	{
+		printf("unable to load image %s, SDL_image error: %s\n",filename,IMG_GetError());
+		return false;
+	}
 
-  //create texture from surface pixels
-  newTexture = SDL_CreateTextureFromSurface(renderer,loadedSurface);
-  if (newTexture == NULL)
-  {
-    printf("Unable to create texture from %s, SDL Error: %s\n",filename,SDL_GetError());
-    SDL_FreeSurface(loadedSurface);
-    return false;
-  }
+	//create texture from surface pixels
+	newTexture = SDL_CreateTextureFromSurface(renderer,loadedSurface);
+	if (newTexture == NULL)
+	{
+		printf("Unable to create texture from %s, SDL Error: %s\n",filename,SDL_GetError());
+		SDL_FreeSurface(loadedSurface);
+		return false;
+	}
 
-  //get the image's dimensions
-  width = loadedSurface->w;
-  height = loadedSurface->h;
+	//get the image's dimensions
+	width = loadedSurface->w;
+	height = loadedSurface->h;
 
-  //remove the surface
-  SDL_FreeSurface(loadedSurface);
+	//remove the surface
+	SDL_FreeSurface(loadedSurface);
 
-  //make the new texture the current texture
-  texture = newTexture;
+	//make the new texture the current texture
+	texture = newTexture;
 
-  //it worked
-  return true;
+	//it worked
+	return true;
 }
 
 
 void Image::free()
 {
-  //test if it exists, then anihilate it
-  if (texture != NULL)
-  {
-    SDL_DestroyTexture(texture);
-    texture = NULL;
-    width = 0;
-    height = 0;
-  }
+	//test if it exists, then anihilate it
+	if (texture != NULL)
+	{
+		SDL_DestroyTexture(texture);
+		texture = NULL;
+		width = 0;
+		height = 0;
+	}
 }
 
 
 void Image::render(SDL_Renderer * renderer,int x,int y,SDL_Rect * clip)
 {
-  //set where it renders to
-  SDL_Rect renderQuad = {x,y,width,height};
+	//set where it renders to
+	SDL_Rect renderQuad = {x,y,width,height};
 
-  //set clip rendering dimensions
-  if (clip != NULL)
-  {
-    renderQuad.w = clip->w;
-    renderQuad.h = clip->h;
-  }
+	//set clip rendering dimensions
+	if (clip != NULL)
+	{
+		renderQuad.w = clip->w;
+		renderQuad.h = clip->h;
+	}
 
-  //render to screen
-  SDL_RenderCopy(renderer,texture,clip,&renderQuad);
+	//render to screen
+	SDL_RenderCopy(renderer,texture,clip,&renderQuad);
 }
 
 
 int Image::getWidth()
 {
-  return width;
+	return width;
 }
 
 
 int Image::getHeight()
 {
-  return height;
-}
-
-
-Image * ImageLoader::operator()(char const * filename,SDL_Renderer * renderer)
-{
-  Image * image = new Image();
-  if (!image->loadFromFile(filename))
-  {
-    printf("error loading file %s\n",filename);
-  }
-  return image;
+	return height;
 }

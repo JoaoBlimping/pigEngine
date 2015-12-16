@@ -21,7 +21,7 @@ public:
   TileMap();
 
   /**
-   * deallocates the tile data
+   * deallocates the map's tile data but not the tileset
    */
    ~TileMap();
 
@@ -45,7 +45,11 @@ private:
    * with the level. The TileMap does not take responsibility for deleting it
    */
   Tileset * tileset;
-
+  
+  /**
+   * The tiles that make up the level
+   */
+  Tile * tiles;
 };
 
 

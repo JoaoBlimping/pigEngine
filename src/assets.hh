@@ -12,15 +12,62 @@
 #include "things/Font.hh"
 
 
-//the managers of the different kinds of assets
+/**
+ * functor for the loading of an image from a given file
+ */
+struct ImageLoader
+{
+  Image * operator()(char const * filename,SDL_Renderer * renderer);
+};
+
+/**
+ * functor for the loading of an animation from a given file
+ */
+struct AnimationLoader
+{
+  Animation * operator()(char const * filename,SDL_Renderer * renderer);
+};
+
+/**
+ * functor for the loading of a sound from a given file
+ */
+struct SoundLoader
+{
+  Sound * operator()(char const * filename,SDL_Renderer * renderer);
+};
+
+/**
+ * functor for the loading of a font from a given file
+ */
+struct FontLoader
+{
+	Font * operator()(char const * filename,SDL_Renderer * renderer);
+};
+
+
+/**
+ * Manager for Images
+ */
 extern Manager<Image,ImageLoader> assets_images;
+
+/**
+ * Manager for Animations
+ */
 extern Manager<Animation,AnimationLoader> assets_animations;
-extern Manager<Sound> assets_sounds;
 
-//the font
-extern Font * assets_font;
+/**
+ * Manager for Sounds
+ */
+extern Manager<Sound,SoundLoader> assets_sounds;
 
-//initialises it and loads all the stuff that needs to be loaded and that
+/**
+ * The game's font
+ */
+extern Manager<Font,FontLoader> assets_fonts;
+
+/**
+ * Initialises assets, and must be called before the managers can be used.
+ */
 void assets_init(SDL_Renderer * renderer);
 
 

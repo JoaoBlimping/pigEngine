@@ -51,29 +51,3 @@ Animation * Animation::duplicate()
 {
   return new Animation(image,frames,speed);
 }
-
-
-Animtion * AnimationLoader::operator()(char const * filename,SDL_Renderer * renderer)
-{
-  //open the file
-  std::ifstream animFile(filename);
-  if (!animFile.is_open())
-  {
-    printf("can't open animation file %s\n",filename);
-  }
-
-  int imageIndex;
-  int frames;
-  float speed;
-
-  animFile >> imageIndex;
-  animFile >> frames;
-  animFile >> speed;
-
-  //close the file
-  animFile.close();
-
-  //run the function on the filename
-  return new Animation(assets_images.getItem(imageIndex),
-                       frames,speed);
-}

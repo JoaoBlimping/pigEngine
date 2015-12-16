@@ -1,22 +1,29 @@
-#include "Manager.cc"
+#ifndef MANAGER_C
+#define MANAGER_C
+
+#include "Manager.hh"
+
+#include <vector>
+#include <iostream>
+#include <fstream>
 
 
-Manager::Manager(char const * pDirectory):
+template <class T,class L> Manager<T,L>::Manager(char const * pDirectory):
 directory(pDirectory)
 {}
 
 
-Manager::~Manager()
+template <class T,class L> Manager<T,L>::~Manager()
 {
   //free all of the images it contains
-  for (vector<T *>::iterator it = items.begin();it != items.end();++it)
+  for (typename std::vector<T *>::iterator it = items.begin();it != items.end();++it)
   {
     delete *it;
   }
 };
 
 
-void Manager::init(SDL_Renderer * renderer)
+template <class T,class L> void Manager<T,L>::init(SDL_Renderer * renderer)
 {
   //create the listfile's name
   char * listFile = Utils::concatenate(directory,LISTFILE);
@@ -53,7 +60,9 @@ void Manager::init(SDL_Renderer * renderer)
 };
 
 
-T * getItem(int index)
+template <class T,class L> T * Manager<T,L>::getItem(int index)
 {
   return items[index];
 };
+
+#endif

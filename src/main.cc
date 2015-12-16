@@ -86,6 +86,8 @@ void iteration()
     {
       close();
     }
+		//TODO: Controller events should be sent to the input thingoid
+
     //any other event is sent to the current scene
     else
     {
