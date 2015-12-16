@@ -18,11 +18,11 @@ Node(offsetX,offsetY,width,height)
 }
 
 
-int onEvent(SDL_Event * e)
+int update(float deltaTime)
 {
 	for (std::vector<Node *>::iterator it = children.begin();it != children.end();++it)
 	{
-		int value = (*it)->onEvent(e);
+		int value = (*it)->update(deltaTime);
 		if (value != 0) return value;
 	}
 	return 0;

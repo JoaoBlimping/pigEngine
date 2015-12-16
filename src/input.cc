@@ -6,17 +6,17 @@ static ControlSet controllers[N_PLAYERS];
 
 void input_onJoyAxisEvent(SDL_JoyAxisEvent * e)
 {
-	erg;
+	//TODO: actually do stuff here
 }
 
 
 void input_onJoyButtonEvent(SDL_JoyButtonEvent * e)
 {
-	erg;
+	//TODO: actually do stuff here
 }
 
 
 ControlSet const * getController(int player)
 {
-	return controllers[player];
+	return controllers + player;
 }

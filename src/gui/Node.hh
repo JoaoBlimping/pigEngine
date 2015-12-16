@@ -28,24 +28,21 @@ public:
 	 */
 	virtual ~Node()
 	{};
-	
+
 	/**
-	 * lets the node react to sdl events
-	 * a return of 0 is considered to be normal. Anything else has some kind of special
-	 * meaning depending on the node type returning it.
+	 * updates the node
+	 * it updates it for like nodes that use user input or whatever, it uses deltaTime
+	 * for when you need to know the time if you actually do whatever
 	 */
-	virtual int onEvent(SDL_Event * e) = 0;
-	//TODO: this shouldn't use sdl events, it was meant to use some special event system
-	//TODO: that I will make up so that you can change the controls and also use both
-	//TODO: gamepads and the keyboard and whatever else it is you desire
-	
+	virtual int update(float deltaTime) = 0;
+
 	/**
 	 * displays the node
 	 * displays the node on the screen. positions are relative to the parent node, or they
 	 * are meant to be anyway.
 	 */
 	virtual void render(SDL_Renderer * renderer,int x = 0,int y = 0) = 0;
-	
+
 protected:
 	int const offsetX;
 	int const offsetY;

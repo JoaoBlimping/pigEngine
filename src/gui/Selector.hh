@@ -18,22 +18,22 @@ public:
 	/**
 	 * constructs a selector with the basic node stuff and also it's options
 	 */
-	Selector(int offsetX,int offsetY,int width,int height,vector<Node *> options);
-	
+	Selector(int offsetX,int offsetY,int width,int height,std::vector<Node *> options);
+
 	/**
 	 * deletes it's options
 	 */
 	~Selector();
-	
-	int onEvent(SDL_Event * e);
-	
+
+	int update(float deltaTime);
+
 	void render(SDL_Renderer * renderer,int x = 0,int y = 0);
 
 private:
 	/**
 	 * all of the options for selection which are all nodes
 	 */
-	vector<Node *> options;
+	std::vector<Node *> options;
 
 };
 

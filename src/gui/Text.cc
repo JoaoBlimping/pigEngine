@@ -16,7 +16,7 @@ Text::~Text()
 }
 
 
-int Text::onEvent(SDL_Event * e)
+int update(float deltaTime)
 {
 	return 0;
 }

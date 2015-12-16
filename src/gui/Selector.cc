@@ -1,9 +1,11 @@
 #include "Selector.hh"
 
+#include <vector>
+
 #include <SDL.h>
 
 
-Selector(int offsetX,int offsetY,int width,int height,vector<Node *> options):
+Selector(int offsetX,int offsetY,int width,int height,std::vector<Node *> options):
 Node(offsetX,offsetY,width,height),
 options(options)
 {}
@@ -18,11 +20,13 @@ options(options)
 }
 
 
-int onEvent(SDL_Event * e)
+int update(float deltaTime)
 {
-	if (e->type == SDL_KEYDOWN)
-	{
-		
+	return 0;
+}
 
 
-void render(SDL_Renderer * renderer,int x = 0,int y = 0);
+void render(SDL_Renderer * renderer,int x = 0,int y = 0)
+{
+
+}

@@ -20,14 +20,14 @@ public:
 	 * sets the node's width and height based on the amount of text that it contains
 	 */
 	Text(char const * content);
-	
+
 	/**
 	 * deletes the contained text
 	 */
 	~Text();
-	
-	int onEvent(SDL_Event * e);
-	
+
+	int update(float deltaTime);
+
 	void render(SDL_Renderer * renderer,int x = 0,int y = 0);
 
 private:

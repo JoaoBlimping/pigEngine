@@ -90,7 +90,7 @@ Manager<Animation,AnimationLoader> assets_animations(ANIMATIONS_DIR);
 
 Manager<Sound,SoundLoader> assets_sounds(SOUNDS_DIR);
 
-Manager<Font,FontLoader> = assets_fonts(FONT_DIR);
+Manager<Font,FontLoader> assets_fonts(FONT_DIR);
 
 
 void assets_init(SDL_Renderer * renderer)

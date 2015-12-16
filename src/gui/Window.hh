@@ -12,16 +12,16 @@ public:
 	 * creates a window and sets it's width and height
 	 */
 	Window(int offsetX,int offsetY,int width,int height);
-	
+
 	/**
 	 * deallocates the window and it's child nodes
 	 */
 	~Window();
 
-	int onEvent(SDL_Event * e);
-	
+	int update(float deltaTime)
+
 	void render(SDL_Renderer * renderer,int x = 0,int y = 0);
-	
+
 private:
 	/**
 	 * vector containing all the child nodes of this window
