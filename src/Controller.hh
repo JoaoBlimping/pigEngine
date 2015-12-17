@@ -3,81 +3,53 @@
 
 
 /**
- * contains all of the controls for a given player or something
+ * the names of all the controller axes
+ * gives the names of all the controller axes, and gives them an integer value so they can
+ * be used to get the right location in an array. also gives the total number of axes
+ */
+enum axisName
+{
+	LeftStickX = 0,
+	LeftStickY,
+	RightStickX,
+	RightStickY,
+	LeftTrigger,
+	RightTrigger,
+	NAxes
+};
+
+
+/**
+ * the names of all the controller buttons
+ * gives the names of all the controller buttons, and gives them an integer value so they
+ * can be used to get the right location in an array. also gives the total number of 
+ * buttons
+ */
+enum buttonName
+{
+	AButton = 0,
+	BButton,
+	XButton,
+	YButton,
+	StartButton,
+	LButton,
+	RButton,
+	NButtons
+};
+
+
+/**
+ * contains all info for a controller
+ * Contains both the controller's current state, and also the mappings between what axis
+ * sdl says things are on and what they are meant to be on
  */
 typedef struct
 {
-	/** the value of the control stick's x axis */
-	float leftStickX;
-
-	/** the value of the control stick's y axis */
-	float leftStickY;
+	int axisMapping[NAxes];
+	int buttonMapping[NButtons];
 	
-	/** the value of the right control stick's x axis */
-	float rightStickX;
-
-	/** the value of the right control stick's y axis */
-	float rightStickY;
-	
-	/** the value of the left trigger */
-	float lTrigger;
-	
-	/** the value of the right trigger */
-	float rTrigger;
-
-	/** true iff the a button is currently pressed */
-	bool a;
-
-	/** true iff the b button is currently pressed */
-	bool b;
-
-	/** true iff the x button is currently pressed */
-	bool x;
-
-	/** true iff the y button is pressed */
-	bool y;
-
-	/** true iff the z button is pressed */
-	bool z;
-
-	/** true iff the start button is pressed */
-	bool start;
-
-	/** true iff the l button is pressed */
-	bool l;
-
-	/** true iff the r button is pressed */
-	bool r;
-	
-	/** the axis number that maps to the left stick's x axis */
-	int leftStickXAxisN;
-	
-	/** the axis number that maps to the left stick's y axis */
-	int leftStickYAxisN;
-	
-	/** the axis number that maps to the right stick's x axis */
-	int rightStickXAxisN;
-	
-	/** the axis number that maps to the right stick's y axis */
-	int rightStickYAxisN;
-	
-	/** the button number that maps to the a button */
-	int aButtonN;
-	
-	/** the button number that maps to the a button */
-	int bButtonN;
-	
-	/** the button number that maps to the a button */
-	int xButtonN;
-	
-	/** the button number that maps to the a button */
-	int yButtonN;
-	
-	/** the button number that maps to the a button */
-	int lButtonN;
-	
-	/** the button number that maps to the a button */
-	int rButtonN;
+	float axes[NAxes];
+	bool buttons[NButtons];
 }
 Controller;
 

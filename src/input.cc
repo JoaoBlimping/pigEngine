@@ -1,18 +1,22 @@
 #include "input.hh"
 
 
-static ControlSet controllers[N_PLAYERS];
+static Controller controllers[N_PLAYERS];
 
 
 void input_onJoyAxisEvent(SDL_JoyAxisEvent * e)
 {
-	//TODO: actually do stuff here
+	Controller controller = controllers[e->which];
+	int mappedAxis = controller.axisMapping[e->axis];
+	controller.axes[mappedAxis] = e->value;
 }
 
 
 void input_onJoyButtonEvent(SDL_JoyButtonEvent * e)
 {
-	//TODO: actually do stuff here
+	Controller controller = controllers[e->which];
+	int mappedButton = controller.buttonMapping[e->button];
+	controller.buttons[mappedButton] = e->state;
 }
 
 

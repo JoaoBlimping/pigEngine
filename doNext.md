@@ -1,3 +1,7 @@
+# 18/12/2015
+Next thing I must do is make it that you can set the controls for controllers since they
+seem to do weird shit by default.
+
 # 10/12/2015
 Make managers use C file io instead of c++, I'm pretty sure it'll make the compiled
 program smaller and anyway I like it better.
