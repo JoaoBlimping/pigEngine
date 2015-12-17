@@ -4,12 +4,12 @@
 #define WINDOW_PADDING 8
 
 
-Window(int offsetX,int offsetY,int width,int height):
+Window::Window(int offsetX,int offsetY,int width,int height):
 Node(offsetX,offsetY,width,height)
 {}
 
 
-~Window()
+Window::~Window()
 {
 	for (std::vector<Node *>::iterator it = children.begin();it != children.end();++it)
 	{
@@ -18,7 +18,7 @@ Node(offsetX,offsetY,width,height)
 }
 
 
-int update(float deltaTime)
+int Window::update(float deltaTime)
 {
 	for (std::vector<Node *>::iterator it = children.begin();it != children.end();++it)
 	{
@@ -29,7 +29,7 @@ int update(float deltaTime)
 }
 
 
-void render(SDL_Renderer * renderer,int x = 0,int y = 0)
+void Window::render(SDL_Renderer * renderer,int x,int y)
 {
-	erg;
+	//TODO: do actual graphics
 }

@@ -34,7 +34,7 @@ private:
 	/**
 	 * the actual text that this node contains
 	 */
-	char * content;
+	char const * content;
 };
 
 

@@ -24,114 +24,125 @@ static Scene * scene = NULL;
 
 bool init()
 {
-  //Initialize SDL
-  if (SDL_Init(SDL_INIT_VIDEO) < 0)
-  {
-    printf("SDL could not initialize! SDL_Error: %s\n",SDL_GetError());
-    return false;
-  }
+	//Initialize SDL
+	if (SDL_Init(SDL_INIT_VIDEO) < 0)
+	{
+		printf("SDL could not initialize! SDL_Error: %s\n",SDL_GetError());
+		return false;
+	}
 
-  //Create window
-  window = SDL_CreateWindow("SDL Tutorial",SDL_WINDOWPOS_UNDEFINED,
-                             SDL_WINDOWPOS_UNDEFINED,SCREEN_WIDTH,SCREEN_HEIGHT,
-                             SDL_WINDOW_SHOWN);
-  if (window == NULL)
-  {
-    printf( "Window could not be created! SDL_Error: %s\n", SDL_GetError());
-    return false;
-  }
+	//Create window
+	window = SDL_CreateWindow("SDL Tutorial",SDL_WINDOWPOS_UNDEFINED,
+							  SDL_WINDOWPOS_UNDEFINED,SCREEN_WIDTH,SCREEN_HEIGHT,
+							  SDL_WINDOW_SHOWN);
+	if (window == NULL)
+	{
+		printf( "Window could not be created! SDL_Error: %s\n", SDL_GetError());
+		return false;
+	}
 
-  //Create renderer for window
-  renderer = SDL_CreateRenderer(window,-1,SDL_RENDERER_ACCELERATED);
-  if (renderer == NULL)
-  {
-    printf("Renderer could not be created! SDL Error: %s\n",SDL_GetError());
-    return false;
-  }
+	//Create renderer for window
+	renderer = SDL_CreateRenderer(window,-1,SDL_RENDERER_ACCELERATED);
+	if (renderer == NULL)
+	{
+		printf("Renderer could not be created! SDL Error: %s\n",SDL_GetError());
+		return false;
+	}
 
-  //Initialize renderer color
-  SDL_SetRenderDrawColor(renderer,0xFF,0xFF,0xFF,0xFF);
+	//Initialize renderer color
+	SDL_SetRenderDrawColor(renderer,0xFF,0xFF,0xFF,0xFF);
 
-  //Initialize mixer
-  //TODO: use the real mixer
+	//Initialize mixer
+	//TODO: use the real mixer
 
-  return true;
+	return true;
 }
 
 
 void close()
 {
-  //Destroy window and renderer
-  SDL_DestroyRenderer(renderer);
-  SDL_DestroyWindow(window);
-  renderer = NULL;
-  window = NULL;
+	//Destroy window and renderer
+	SDL_DestroyRenderer(renderer);
+	SDL_DestroyWindow(window);
+	renderer = NULL;
+	window = NULL;
 
-  //Quit SDL subsystems
-  IMG_Quit();
-  SDL_Quit();
+	//Quit SDL subsystems
+	IMG_Quit();
+	SDL_Quit();
 }
 
 
 void iteration()
 {
-  //Event handler
-  SDL_Event e;
+	//Event handler
+	SDL_Event e;
 
-  //Handle events on queue
-  while (SDL_PollEvent(&e) != 0)
-  {
-    //User requests quit
-    if (e.type == SDL_QUIT)
-    {
-      close();
-    }
-		//TODO: Controller events should be sent to the input thingoid
+	//Handle events on queue
+	while (SDL_PollEvent(&e) != 0)
+	{
+		//User requests quit
+		if (e.type == SDL_QUIT)
+		{
+			close();
+		}
 
-    //any other event is sent to the current scene
-    else
-    {
-      scene->handleEvent(&e);
-    }
-  }
+		//a controller axis changes
+		else if (e.type == SDL_JOYAXISMOTION)
+		{
+			input_onJoyAxisEvent(&e);
+		}
 
-  //update the scene
-  Scene * newScene = scene->update(0.01f);//TODO: actually calculate delta time
+		//a controller button changes
+		else if (e.type == SDL_JOYBUTTON)
+		{
+			input_onJoyButtonEvent(&e);
+		}
 
-  if (newScene != scene)
-  {
-    delete scene;
-    scene = newScene;
-  }
+		//any other event is sent to the current scene
+		else
+		{
+			scene->handleEvent(&e);
+		}
+	}
 
-  //clear the screen
-  SDL_RenderClear(renderer);
+	//update the scene
+	Scene * newScene = scene->update(0.01f);//TODO: actually calculate delta time
 
-  //render the scene
-  scene->render(renderer);
+	if (newScene != scene)
+	{
+		delete scene;
+		scene = newScene;
+	}
 
-  //update screen
-  SDL_RenderPresent(renderer);
+	//clear the screen
+	SDL_RenderClear(renderer);
+
+	//render the scene
+	scene->render(renderer);
+
+	//update screen
+	SDL_RenderPresent(renderer);
 }
 
 
 int main(int argc,char * * args)
 {
-  //Start up SDL and create window
-  if(!init())
-  {
-    printf( "Failed to initialize!\n" );
-    return 1;
-  }
+	//Start up SDL and create window
+	if(!init())
+	{
+		printf( "Failed to initialize!\n" );
+		return 1;
+	}
 
-  //load in the persistent assets
-  assets_init(renderer);
+	//load in the persistent assets
+	assets_init(renderer);
 
-  //set the starting scene
-  scene = new SplashScene();
+	//set the starting scene
+	scene = new SplashScene();
 
-  //start the game
-  emscripten_set_main_loop(iteration,0,1);
+	//start the game
+	emscripten_set_main_loop(iteration,0,1);
 
-  return 0;
+	return 0;
 }

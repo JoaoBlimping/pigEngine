@@ -2,7 +2,7 @@
 
 #include <SDL.h>
 
-#include "MenuScene.hh"
+#include "ConnectControllerScene.hh"
 
 
 char const * SplashScene::JINGLE_FILE = "assets/internal/ebola.w8";
@@ -74,5 +74,5 @@ void SplashScene::render(SDL_Renderer * renderer)
   assets_animations.getItem(0)->render(renderer,0,0);
 
   //draw some nice text
-  assets_font->renderString(renderer,"hello you god damned fiends, i am going to kill you all",20,20,100);
+  assets_fonts.getItem(0)->renderString(renderer,"hello you god damned fiends, i am going to kill you all",20,20,100);
 }

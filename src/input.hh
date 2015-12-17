@@ -84,7 +84,7 @@ void input_onJoyButtonEvent(SDL_JoyButtonEvent * e);
 /**
  * gives you a specific controller set
  */
-ControlSet const * getController(int player);
+ControlSet const * input_getController(int player);
 
 
 #endif

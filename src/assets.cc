@@ -12,7 +12,7 @@
 #define IMAGES_DIR "assets/images/"
 #define ANIMATIONS_DIR "assets/animations/"
 #define SOUNDS_DIR "assets/sounds/"
-#define FONT_DIR "assets/fonts"
+#define FONT_DIR "assets/fonts/"
 
 
 Image * ImageLoader::operator()(char const * filename,SDL_Renderer * renderer)

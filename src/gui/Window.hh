@@ -2,6 +2,13 @@
 #define WINDOW_H
 
 
+#include "Node.hh"
+
+#include <vector>
+
+#include <SDL.h>
+
+
 /**
  * A main window thingo that contains other gui nodes
  */
@@ -18,7 +25,7 @@ public:
 	 */
 	~Window();
 
-	int update(float deltaTime)
+	int update(float deltaTime);
 
 	void render(SDL_Renderer * renderer,int x = 0,int y = 0);
 

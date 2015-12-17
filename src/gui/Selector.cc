@@ -5,13 +5,14 @@
 #include <SDL.h>
 
 
-Selector(int offsetX,int offsetY,int width,int height,std::vector<Node *> options):
+Selector::Selector(int offsetX,int offsetY,int width,int height,
+									 std::vector<Node *> options):
 Node(offsetX,offsetY,width,height),
 options(options)
 {}
 
 
-~Selector()
+Selector::~Selector()
 {
 	for (std::vector<Node *>::iterator it = options.begin();it != options.end();++it)
 	{
@@ -20,13 +21,13 @@ options(options)
 }
 
 
-int update(float deltaTime)
+int Selector::update(float deltaTime)
 {
 	return 0;
 }
 
 
-void render(SDL_Renderer * renderer,int x = 0,int y = 0)
+void Selector::render(SDL_Renderer * renderer,int x,int y)
 {
 
 }

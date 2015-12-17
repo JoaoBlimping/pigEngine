@@ -16,7 +16,7 @@ void input_onJoyButtonEvent(SDL_JoyButtonEvent * e)
 }
 
 
-ControlSet const * getController(int player)
+ControlSet const * input_getController(int player)
 {
 	return controllers + player;
 }

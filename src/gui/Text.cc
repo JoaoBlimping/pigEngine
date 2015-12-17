@@ -4,6 +4,7 @@
 
 
 Text::Text(char const * content):
+Node(0,0,0,0),
 content(content)
 {
 	//TODO: still needs to set the normal node stuff using info from the font
@@ -16,13 +17,13 @@ Text::~Text()
 }
 
 
-int update(float deltaTime)
+int Text::update(float deltaTime)
 {
 	return 0;
 }
 
 
-void Text::render(SDL_Renderer * renderer,int x = 0,int y = 0)
+void Text::render(SDL_Renderer * renderer,int x,int y)
 {
-	erg;
+	//TODO: do stuff
 }
