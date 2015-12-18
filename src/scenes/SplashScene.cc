@@ -53,7 +53,7 @@ Scene * SplashScene::update(float deltaTime)
 
   assets_animations.getItem(0)->update(deltaTime);
 
-  if (false)
+  if (elapsed > 5)
   {
     return new ConnectControllerScene();
   }

@@ -1,6 +1,8 @@
 # 18/12/2015
 Next thing I must do is make it that you can set the controls for controllers since they
 seem to do weird shit by default.
+OKKKK SO WHat needs to jhapend is for the menu scene to use the new gui stuff so I can see
+if it worksssssssssss yeaewa. other than that yeee it all seems pretty goodd ayyyy.
 
 # 10/12/2015
 Make managers use C file io instead of c++, I'm pretty sure it'll make the compiled

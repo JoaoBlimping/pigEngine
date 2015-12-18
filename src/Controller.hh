@@ -37,6 +37,27 @@ enum buttonName
 	NButtons
 };
 
+/**
+ * contains a controller's button and axis mapping
+ */
+typedef struct
+{
+	int axisMapping[NAxes];
+	int buttonMapping[NButtons];
+}
+ControllerMapping;
+	
+
+/**
+ * contains a controller's current state
+ */
+typedef struct
+{
+	float axes[NAxes];
+	bool buttons[NButtons];
+}
+ControllerState;
+
 
 /**
  * contains all info for a controller
@@ -45,11 +66,8 @@ enum buttonName
  */
 typedef struct
 {
-	int axisMapping[NAxes];
-	int buttonMapping[NButtons];
-	
-	float axes[NAxes];
-	bool buttons[NButtons];
+	ControllerMapping mapping;
+	ControllerState state;
 }
 Controller;
 

@@ -9,12 +9,7 @@ int const MenuScene::PLAY_BUTTON_Y = 50;
 
 
 MenuScene::MenuScene()
-{
-  int buttonImage = 4;//TODO: definetly get this into a file without delay
-
-  playButton = new Button(PLAY_BUTTON_X,PLAY_BUTTON_Y,&mouseX,&mouseY,
-                          assets_images.getItem(buttonImage));
-}
+{}
 
 
 MenuScene::~MenuScene()

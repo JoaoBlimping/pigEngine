@@ -9,7 +9,6 @@
 
 #define N_PLAYERS 1
 
-
 /**
  * called when there is a joy axis event so that the control thingo can be set
  */
@@ -23,7 +22,12 @@ void input_onJoyButtonEvent(SDL_JoyButtonEvent * e);
 /**
  * gives you a specific controller set
  */
-ControlSet const * input_getController(int player);
+ControllerState const * input_getControllerState(int player);
+
+/**
+ * sets the button and axis mappings for all the controllers
+ */
+void input_setMappings(ControllerMapping * mappings);
 
 
 #endif

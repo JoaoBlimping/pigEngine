@@ -1,6 +1,3 @@
-//this scene is where you press play and stuff
-
-
 #ifndef MENU_SCENE_H
 #define MENU_SCENE_H
 
@@ -37,9 +34,6 @@ public:
   virtual void render(SDL_Renderer * renderer);
 
 private:
-  //where the position of the mouse will be stored
-  int mouseX;
-  int mouseY;
 
   //the button to start playing
   Button * playButton;

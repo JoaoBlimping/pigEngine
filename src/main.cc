@@ -8,11 +8,12 @@
 #include "scenes/Scene.hh"
 #include "scenes/SplashScene.hh"
 #include "assets.hh"
+#include "input.hh"
 
 
 //Screen dimension constants
-int const SCREEN_WIDTH = 480;
-int const SCREEN_HEIGHT = 640;
+int const SCREEN_WIDTH = 640;
+int const SCREEN_HEIGHT = 480;
 
 //the window and stuff
 static SDL_Window * window = NULL;
@@ -54,6 +55,24 @@ bool init()
 
 	//Initialize mixer
 	//TODO: use the real mixer
+	
+	//initialise the input with the basic input. TODO:perhaps make this nicer
+	ControllerMapping playerMapping;
+	playerMapping.axisMapping[LeftStickX] = 0;
+	playerMapping.axisMapping[LeftStickY] = 1;
+	playerMapping.axisMapping[RightStickX] = 2;
+	playerMapping.axisMapping[RightStickY] = 3;
+	playerMapping.axisMapping[LeftTrigger] = 4;
+	playerMapping.axisMapping[RightTrigger] = 5;
+	playerMapping.buttonMapping[AButton] = 0;
+	playerMapping.buttonMapping[BButton] = 1;
+	playerMapping.buttonMapping[XButton] = 2;
+	playerMapping.buttonMapping[YButton] = 3;
+	playerMapping.buttonMapping[LButton] = 4;
+	playerMapping.buttonMapping[RButton] = 5;
+	playerMapping.buttonMapping[StartButton] = 6;
+	
+	input_setMappings(&playerMapping);
 
 	return true;
 }
@@ -90,13 +109,13 @@ void iteration()
 		//a controller axis changes
 		else if (e.type == SDL_JOYAXISMOTION)
 		{
-			input_onJoyAxisEvent(&e);
+			input_onJoyAxisEvent(&e.jaxis);
 		}
 
 		//a controller button changes
-		else if (e.type == SDL_JOYBUTTON)
+		else if (e.type == SDL_JOYBUTTONDOWN || e.type == SDL_JOYBUTTONUP)
 		{
-			input_onJoyButtonEvent(&e);
+			input_onJoyButtonEvent(&e.jbutton);
 		}
 
 		//any other event is sent to the current scene
