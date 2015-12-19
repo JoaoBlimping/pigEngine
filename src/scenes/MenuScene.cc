@@ -14,21 +14,11 @@ MenuScene::MenuScene()
 
 MenuScene::~MenuScene()
 {
-  delete playButton;
+	delete playButton;
 }
 
 
-void MenuScene::handleEvent(SDL_Event * event)
-{
-  //mouse movement
-  if (event->type == SDL_MOUSEMOTION)
-  {
-    SDL_GetMouseState(&mouseX,&mouseY);
-  }
-}
-
-
-Scene * MenuScene::update(float deltaTime)
+Scene * MenuScene::logic(float deltaTime)
 {
   return this;
 }
@@ -36,5 +26,5 @@ Scene * MenuScene::update(float deltaTime)
 
 void MenuScene::render(SDL_Renderer * renderer)
 {
-  playButton->render(renderer);
+	playButton->render(renderer);
 }

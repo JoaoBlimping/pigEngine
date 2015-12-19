@@ -11,9 +11,7 @@
 class ConnectControllerScene:public Scene
 {
 public:
-	void handleEvent(SDL_Event * event);
-
-	Scene * update(float deltaTime);
+	Scene * logic(float deltaTime);
 
 	void render(SDL_Renderer * renderer);
 

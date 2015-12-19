@@ -28,15 +28,12 @@ public:
   //deletes it's assets
   ~SplashScene();
 
-  //this is called every time there is an event that must be dealt with
-  virtual void handleEvent(SDL_Event * event);
-
   //updates the scene
   //returns the new current scene
-  virtual Scene * update(float deltaTime);
+  Scene * logic(float deltaTime);
 
   //displays the scene
-  virtual void render(SDL_Renderer * renderer);
+  void render(SDL_Renderer * renderer);
 
 private:
   //the sound that has to get played

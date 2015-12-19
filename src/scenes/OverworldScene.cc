@@ -13,20 +13,14 @@ OverworldScene::~OverworldScene()
 }
 
 
-void OverworldScene::handleEvent(SDL_Event * event)
+Scene * OverworldScene::logic(float deltaTime)
 {
 
-}
-
-
-Scene * OverworldScene::update(float deltaTime)
-{
-	
 	return this;
 }
 
 
 void OverworldScene::render(SDL_Renderer * renderer)
 {
-  
+
 }

@@ -24,11 +24,9 @@ public:
 	 */
 	~OverworldScene();
 
-	virtual void handleEvent(SDL_Event * event);
+	Scene * logic(float deltaTime);
 
-	virtual Scene * update(float deltaTime);
-
-	virtual void render(SDL_Renderer * renderer);
+	void render(SDL_Renderer * renderer);
 
 private:
 	/**

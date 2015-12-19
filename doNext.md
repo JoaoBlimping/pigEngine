@@ -1,3 +1,14 @@
+# 19/12/2015
+make the basic scene class contain the functionality to contain GUI windows. To run the
+scripts there will have to be a central virtual machine since it'll contain all the addon
+functions and that. the only problem there is they will need access to the current scene,
+so perhaps I can put the virtual machine and the current scene in some header file with a
+bunch of game constants like the screen height and stuff.
+OR I can just provide a pointer to a pointer to the current scene and make sure they
+don't try any funny business. yeah so then the addons just get the current scene and do
+whatever they desired with it, and then when they are done they return so that the script
+may carry on. they can block for ages though if they want I guess.
+
 # 18/12/2015
 Next thing I must do is make it that you can set the controls for controllers since they
 seem to do weird shit by default.
