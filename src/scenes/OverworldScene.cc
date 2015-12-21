@@ -13,10 +13,9 @@ OverworldScene::~OverworldScene()
 }
 
 
-Scene * OverworldScene::logic(float deltaTime)
+void OverworldScene::logic(float deltaTime)
 {
-
-	return this;
+	//TODO: stuff
 }
 
 

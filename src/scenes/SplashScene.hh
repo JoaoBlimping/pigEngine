@@ -1,6 +1,3 @@
-//this scene shows the liquid pig studios logo and plays the sound
-
-
 #ifndef SPLASH_SCENE_H
 #define SPLASH_SCENE_H
 
@@ -10,6 +7,9 @@
 #include <SDL.h>
 
 
+//TODO: a lot of stuff
+
+/** scene that displays my logo and stuff */
 class SplashScene:public Scene
 {
 public:
@@ -30,7 +30,7 @@ public:
 
   //updates the scene
   //returns the new current scene
-  Scene * logic(float deltaTime);
+  void logic(float deltaTime);
 
   //displays the scene
   void render(SDL_Renderer * renderer);

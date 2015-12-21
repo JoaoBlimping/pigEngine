@@ -6,11 +6,9 @@
 #include "../TileMap.hh"
 
 
-/**
- * The scene in which the overworld of the game takes place
+/** The scene in which the overworld of the game takes place
  * You know it's like in a jrpg or whatever where everyone walks around from a top down
- * point of view and you talk to people and stuff
- */
+ * point of view and you talk to people and stuff */
 class OverworldScene:public Scene
 {
 public:
@@ -24,16 +22,13 @@ public:
 	 */
 	~OverworldScene();
 
-	Scene * logic(float deltaTime);
+	void logic(float deltaTime);
 
 	void render(SDL_Renderer * renderer);
 
 private:
-	/**
-	 * The current level's map
-	 */
+	/** The current level's map */
 	TileMap * map;
-
 };
 
 

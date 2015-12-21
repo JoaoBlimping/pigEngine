@@ -41,7 +41,7 @@ SplashScene::~SplashScene()
 }
 
 
-Scene * SplashScene::logic(float deltaTime)
+void SplashScene::logic(float deltaTime)
 {
 	elapsed += deltaTime;
 
@@ -49,11 +49,7 @@ Scene * SplashScene::logic(float deltaTime)
 
 	if (elapsed > 5)
 	{
-		return new ConnectControllerScene();
-	}
-	else
-	{
-		return this;
+		//TODO: change to the next scene
 	}
 }
 

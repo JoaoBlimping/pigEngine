@@ -11,7 +11,7 @@
 class ConnectControllerScene:public Scene
 {
 public:
-	Scene * logic(float deltaTime);
+	void logic(float deltaTime);
 
 	void render(SDL_Renderer * renderer);
 

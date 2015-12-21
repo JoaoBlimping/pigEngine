@@ -1,10 +1,9 @@
 #include "ConnectControllerScene.hh"
 
 
-Scene * ConnectControllerScene::logic(float deltaTime)
+void ConnectControllerScene::logic(float deltaTime)
 {
 	//TODO: make it be able to end
-	return this;
 }
 
 void ConnectControllerScene::render(SDL_Renderer * renderer)

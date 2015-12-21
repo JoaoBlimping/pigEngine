@@ -1,3 +1,13 @@
+# 20/12/2015
+so the scene needs to be accessable to the addon functions since they do stuff to it, but
+I can't just make it available everywhere. maybe you initialize the addon file, providing
+a pointer to a pointer to the scene, so that when it changes they will still have it.
+also make it that logic no longer returns the next scene, it will be done exclusively by
+scripts that change it for the base scene class.
+
+ok one better is I will create a game state object which belongs to main, but is also
+given to the addon file when it is initialised!!!!!!!!
+
 # 19/12/2015
 make the basic scene class contain the functionality to contain GUI windows. To run the
 scripts there will have to be a central virtual machine since it'll contain all the addon
@@ -33,11 +43,11 @@ Move the item loading functors back to assets because they rely on assets and al
 are not necessarily essential to the original item's type and that.
  - maps will be loaded as needed.
  - tilesets are managed
- 
+
 Geany is still making backup files when I don't want it to, I'll have to fix that. Also
 If I can get a terminal emulator that runs in this window that would be pretty cool cos
 then I can run everything from inside this pretty much.
- 
+
 
 # 7/12/2015
 god damn fix up the Manager.hh weirdness and then make tilemap work.

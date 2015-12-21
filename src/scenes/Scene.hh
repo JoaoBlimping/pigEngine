@@ -7,9 +7,6 @@
 #include "../assets.hh"
 
 
-
-
-
 /**
  * The game will have a focus on a certain set of functionality at all times, and these
  * different kinds of functionality are contained in different kinds of scenes, the
@@ -19,7 +16,7 @@ class Scene
 {
 public:
 	/**
-	 * Virtual destructor so that subclasses can deallocate their shit
+	 * does nothing since the gui should already be deleted
 	 */
 	virtual ~Scene(){};
 
@@ -27,22 +24,37 @@ public:
 	 * updates the scene, returning whatever scene should be the current scene next
 	 * iteration of the main loop, most likely this one
 	 */
-	Scene * update(float deltaTime);
+	void update(float deltaTime);
+
+	/**
+	 * displays the scene along with any gui elements currently active
+	 */
+	void render(SDL_Renderer * renderer);
 
 
 	/**
 	 * This is where the scene's logic is implemented
 	 */
-	virtual Scene * logic(float deltaTime) = 0;
+	virtual void logic(float deltaTime) = 0;
 
 
 	/**
-	 * Displays the scene on the screen
+	 * Displays the scene's content on the screen
 	 */
-	virtual void render(SDL_Renderer * renderer) = 0;
+	virtual void renderContent(SDL_Renderer * renderer) = 0;
+
+	/**
+	 * adds a gui node to the scene so that it focuses on that until it is done
+	 */
+	void addGuiNode(Node * node);
+
+	/**
+	 * removes and deallocates the current gui node if there is one
+	 */
+	void removeGuiNode();
 
 private:
-
+	Node * gui = NULL;
 };
 
 

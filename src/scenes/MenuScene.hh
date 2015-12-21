@@ -19,7 +19,7 @@ public:
   //deletes it's assets
   ~MenuScene();
 
-  Scene * logic(float deltaTime);
+  void logic(float deltaTime);
 
   void render(SDL_Renderer * renderer);
 };

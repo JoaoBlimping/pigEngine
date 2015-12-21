@@ -11,17 +11,12 @@
 #include "input.hh"
 
 
-//Screen dimension constants
-int const SCREEN_WIDTH = 640;
-int const SCREEN_HEIGHT = 480;
+//the game state object thing
+static GameState * game = NULL;
 
 //the window and stuff
 static SDL_Window * window = NULL;
 static SDL_Renderer * renderer = NULL;
-
-//the current scene
-static Scene * scene = NULL;
-
 
 bool init()
 {
@@ -55,7 +50,7 @@ bool init()
 
 	//Initialize mixer
 	//TODO: use the real mixer
-	
+
 	//initialise the input with the basic input. TODO:perhaps make this nicer
 	ControllerMapping playerMapping;
 	playerMapping.axisMapping[LeftStickX] = 0;
@@ -71,8 +66,18 @@ bool init()
 	playerMapping.buttonMapping[LButton] = 4;
 	playerMapping.buttonMapping[RButton] = 5;
 	playerMapping.buttonMapping[StartButton] = 6;
-	
 	input_setMappings(&playerMapping);
+
+	//then the next fun thing to do is to initialise the game state object thing
+	//TODO: this will come from a factory using a file, so magic numbers can be
+	//TODO: temporarily forgiven
+	game = new GameState(640,480,new SplashScene());
+
+	//now set up the virtual machine and that
+	addons_addAddons(game,&assets_vm);
+
+	//load in the persistent assets
+	assets_init(renderer);
 
 	return true;
 }
@@ -83,8 +88,6 @@ void close()
 	//Destroy window and renderer
 	SDL_DestroyRenderer(renderer);
 	SDL_DestroyWindow(window);
-	renderer = NULL;
-	window = NULL;
 
 	//Quit SDL subsystems
 	IMG_Quit();
@@ -153,9 +156,6 @@ int main(int argc,char * * args)
 		printf( "Failed to initialize!\n" );
 		return 1;
 	}
-
-	//load in the persistent assets
-	assets_init(renderer);
 
 	//set the starting scene
 	scene = new SplashScene();

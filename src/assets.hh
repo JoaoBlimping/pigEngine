@@ -5,6 +5,9 @@
 #ifndef ASSETS_H
 #define ASSETS_H
 
+
+#include "pigScript/VirtualMachine.hh"
+
 #include "things/Manager.hh"
 #include "things/Image.hh"
 #include "things/Animation.hh"
@@ -64,6 +67,11 @@ extern Manager<Sound,SoundLoader> assets_sounds;
  * The game's font
  */
 extern Manager<Font,FontLoader> assets_fonts;
+
+/**
+ * the virtual machine used to run scripts
+ */
+VirtualMachine assets_vm;
 
 /**
  * Initialises assets, and must be called before the managers can be used.

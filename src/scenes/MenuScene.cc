@@ -18,7 +18,7 @@ MenuScene::~MenuScene()
 }
 
 
-Scene * MenuScene::logic(float deltaTime)
+void MenuScene::logic(float deltaTime)
 {
   return this;
 }
