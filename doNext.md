@@ -1,3 +1,19 @@
+# 25/12/2015
+lol, it's christmas.
+Yeah but anyway i'm still going to make it that the Makefile copies in the the files
+from some nice directory, then it builds, then they are removed again. NICE!
+awwwwwwwwwwwwwww yeah It's working pretty DAMN(tm) nicely.
+
+# 21/12/2015
+I need to make danylib and pigscript build to emscripten's bytecode, but at the moment
+they seem to be unable to even detect header files. perhaps I need to make them be js
+files or something like that. or perhaps bc file.
+This is hella annyoing, anyway the worst case is just that I have to copy and paste these
+files into pig Engine, actually a good idea would be to temporarily copy them in using
+the make file or something. yeah i'll copy in the .bc files or something and the header
+files since i need those I guess. I can put them in their own special directories that
+say that they are what they are yea heayh.
+
 # 20/12/2015
 so the scene needs to be accessable to the addon functions since they do stuff to it, but
 I can't just make it available everywhere. maybe you initialize the addon file, providing
