@@ -4,6 +4,8 @@
 
 #include <SDL.h>
 
+#include <vector>
+
 
 /** an element of the gui system
  * The superclass of all Nodes in the gui system, this is basically the building block of
@@ -47,7 +49,7 @@ protected:
 
 private:
 	/** list of listeners to tell when the node is deleted */
-	vector<bool *> listeners;
+	std::vector<bool *> listeners;
 };
 
 

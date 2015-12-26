@@ -21,7 +21,7 @@ public:
 
   void logic(float deltaTime);
 
-  void render(SDL_Renderer * renderer);
+  void renderContent(SDL_Renderer * renderer);
 };
 
 

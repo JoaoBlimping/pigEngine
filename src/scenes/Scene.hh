@@ -15,7 +15,7 @@ class Scene
 {
 public:
 	/** does nothing since the gui should already be deleted */
-	virtual ~Scene(){};
+	virtual ~Scene();
 
 	/**updates the scene, returning whatever scene should be the current scene next
 	 * iteration of the main loop, most likely this one */

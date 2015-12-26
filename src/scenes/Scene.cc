@@ -1,12 +1,12 @@
 #include "Scene.hh"
 
 
-~Scene()
+Scene::~Scene()
 {
 	//does nothing since the gui should already be deleted
 }
 
-void update(float deltaTime)
+void Scene::update(float deltaTime)
 {
 	//if there is a gui node to deal with
 	if (gui != NULL)
@@ -21,19 +21,19 @@ void update(float deltaTime)
 	}
 }
 
-void render(SDL_Renderer * renderer)
+void Scene::renderContent(SDL_Renderer * renderer)
 {
 	renderContent(renderer);
 	if (gui != NULL) gui->render(renderer);
 }
 
-void addGuiNode(Node * node)
+void Scene::addGuiNode(Node * node)
 {
 	if (gui != NULL) delete gui;
 	gui = node;
 }
 
-void removeGuiNode()
+void Scene::removeGuiNode()
 {
 	if (gui != NULL)
 	{

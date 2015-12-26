@@ -10,6 +10,7 @@
 #include "scenes/SplashScene.hh"
 #include "assets.hh"
 #include "input.hh"
+#include "addons.hh"
 
 
 //the game state object thing
@@ -35,7 +36,7 @@ bool init()
 
 	//Create window
 	window = SDL_CreateWindow("SDL Tutorial",SDL_WINDOWPOS_UNDEFINED,
-							  SDL_WINDOWPOS_UNDEFINED,game.screenWidth,game.screenHeight,
+							  SDL_WINDOWPOS_UNDEFINED,game->screenWidth,game->screenHeight,
 							  SDL_WINDOW_SHOWN);
 	if (window == NULL)
 	{
@@ -86,6 +87,9 @@ bool init()
 
 void close()
 {
+	//delete gamestate thingo
+	delete game;
+
 	//Destroy window and renderer
 	SDL_DestroyRenderer(renderer);
 	SDL_DestroyWindow(window);
@@ -121,24 +125,17 @@ void iteration()
 		{
 			input_onJoyButtonEvent(&e.jbutton);
 		}
-
-		//any other event is sent to the current scene
-		else
-		{
-			game.getCurrentScene()->handleEvent(&e);
-		}
 	}
 
 	//update the scene
 	//TODO: actually calculate delta time
-	Scene * newScene = game.getCurrentScene()->update(0.01f);
-	if (newScene != game.getCurrentScene()) game.setCurrentScene(newScene);
+	game->getCurrentScene()->update(0.01f);
 
 	//clear the screen
 	SDL_RenderClear(renderer);
 
 	//render the scene
-	game.getCurrentScene()->render(renderer);
+	game->getCurrentScene()->render(renderer);
 
 	//update screen
 	SDL_RenderPresent(renderer);

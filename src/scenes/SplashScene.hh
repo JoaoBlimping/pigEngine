@@ -33,7 +33,7 @@ public:
   void logic(float deltaTime);
 
   //displays the scene
-  void render(SDL_Renderer * renderer);
+  void renderContent(SDL_Renderer * renderer);
 
 private:
   //the sound that has to get played

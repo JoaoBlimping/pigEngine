@@ -1,5 +1,7 @@
 #include "Node.hh"
 
+#include <vector>
+
 
 Node::Node(int offsetX,int offsetY,int width,int height):
 offsetX(offsetX),

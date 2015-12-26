@@ -54,7 +54,7 @@ void SplashScene::logic(float deltaTime)
 }
 
 
-void SplashScene::render(SDL_Renderer * renderer)
+void SplashScene::renderContent(SDL_Renderer * renderer)
 {
 	//fill in the background
 	SDL_SetRenderDrawColor(renderer,BACK_RED,BACK_GREEN,BACK_BLUE,BACK_ALPHA);
