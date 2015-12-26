@@ -1,27 +1,27 @@
 #include "GameState.hh"
 
 
-GameState(int screenWidth,int screenHeight,Scene * currentScene):
+GameState::GameState(int screenWidth,int screenHeight,Scene * currentScene):
 screenWidth(screenWidth),
 screenHeight(screenHeight),
 currentScene(currentScene)
 {}
 
 
-~GameState()
+GameState::~GameState()
 {
 	delete currentScene;
 }
 
 
-void setCurrentScene(Scene * newScene)
+void GameState::setCurrentScene(Scene * newScene) const
 {
 	delete currentScene;
 	currentScene = newScene;
 }
 
 
-Scene * getCurrentScene()
+Scene * GameState::getCurrentScene() const
 {
 	return currentScene;
 }

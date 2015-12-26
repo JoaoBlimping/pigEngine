@@ -5,6 +5,7 @@
 
 #include <emscripten/emscripten.h>
 
+#include "GameState.hh"
 #include "scenes/Scene.hh"
 #include "scenes/SplashScene.hh"
 #include "assets.hh"
@@ -20,6 +21,11 @@ static SDL_Renderer * renderer = NULL;
 
 bool init()
 {
+	//then the next fun thing to do is to initialise the game state object thing
+	//TODO: this will come from a factory using a file, so magic numbers can be
+	//TODO: temporarily forgiven
+	game = new GameState(640,480,new SplashScene());
+
 	//Initialize SDL
 	if (SDL_Init(SDL_INIT_VIDEO) < 0)
 	{
@@ -29,7 +35,7 @@ bool init()
 
 	//Create window
 	window = SDL_CreateWindow("SDL Tutorial",SDL_WINDOWPOS_UNDEFINED,
-							  SDL_WINDOWPOS_UNDEFINED,SCREEN_WIDTH,SCREEN_HEIGHT,
+							  SDL_WINDOWPOS_UNDEFINED,game.screenWidth,game.screenHeight,
 							  SDL_WINDOW_SHOWN);
 	if (window == NULL)
 	{
@@ -67,11 +73,6 @@ bool init()
 	playerMapping.buttonMapping[RButton] = 5;
 	playerMapping.buttonMapping[StartButton] = 6;
 	input_setMappings(&playerMapping);
-
-	//then the next fun thing to do is to initialise the game state object thing
-	//TODO: this will come from a factory using a file, so magic numbers can be
-	//TODO: temporarily forgiven
-	game = new GameState(640,480,new SplashScene());
 
 	//now set up the virtual machine and that
 	addons_addAddons(game,&assets_vm);
@@ -124,24 +125,20 @@ void iteration()
 		//any other event is sent to the current scene
 		else
 		{
-			scene->handleEvent(&e);
+			game.getCurrentScene()->handleEvent(&e);
 		}
 	}
 
 	//update the scene
-	Scene * newScene = scene->update(0.01f);//TODO: actually calculate delta time
-
-	if (newScene != scene)
-	{
-		delete scene;
-		scene = newScene;
-	}
+	//TODO: actually calculate delta time
+	Scene * newScene = game.getCurrentScene()->update(0.01f);
+	if (newScene != game.getCurrentScene()) game.setCurrentScene(newScene);
 
 	//clear the screen
 	SDL_RenderClear(renderer);
 
 	//render the scene
-	scene->render(renderer);
+	game.getCurrentScene()->render(renderer);
 
 	//update screen
 	SDL_RenderPresent(renderer);
@@ -156,9 +153,6 @@ int main(int argc,char * * args)
 		printf( "Failed to initialize!\n" );
 		return 1;
 	}
-
-	//set the starting scene
-	scene = new SplashScene();
 
 	//start the game
 	emscripten_set_main_loop(iteration,0,1);

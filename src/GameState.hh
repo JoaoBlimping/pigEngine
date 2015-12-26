@@ -34,15 +34,18 @@ public:
 	mutable bool * globalSwitches;
 
 	/** the number of global switches */
-	mutable int nGlobalSwitches
+	mutable int nGlobalSwitches;
 
 	/** the screen width of the game */
-	int ScreenWidth;
+	int screenWidth;
 
 	/** the screen height of the game */
-	int ScreenHeight;
+	int screenHeight;
 
 private:
 	/** the current scene */
 	mutable Scene * currentScene;
-}
+};
+
+
+#endif
