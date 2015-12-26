@@ -8,6 +8,9 @@
 #include <fstream>
 
 
+#define LINE_BUFFER_SIZE 100
+
+
 template <class T,class L> Manager<T,L>::Manager(char const * pDirectory):
 directory(pDirectory)
 {}
@@ -40,7 +43,7 @@ template <class T,class L> void Manager<T,L>::init(SDL_Renderer * renderer)
     return;
   }
 
-  char * line;
+  char line[LINE_BUFFER_SIZE];
 
   while (list >> line)
   {

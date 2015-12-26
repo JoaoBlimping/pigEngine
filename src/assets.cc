@@ -8,11 +8,14 @@
 #include "things/Sound.hh"
 #include "things/Font.hh"
 
+#include "pigScript/Script.hh"
+
 
 #define IMAGES_DIR "assets/images/"
 #define ANIMATIONS_DIR "assets/animations/"
 #define SOUNDS_DIR "assets/sounds/"
-#define FONT_DIR "assets/fonts/"
+#define FONTS_DIR "assets/fonts/"
+#define SCRIPTS_DIR "assets/scripts/"
 
 
 Image * ImageLoader::operator()(char const * filename,SDL_Renderer * renderer)
@@ -84,15 +87,21 @@ Font * FontLoader::operator()(char const * filename,SDL_Renderer * renderer)
 }
 
 
+Script * ScriptLoader::operator()(char const * filename,SDL_Renderer * renderer)
+{
+	return new Script(filename);
+}
+
+
 Manager<Image,ImageLoader> assets_images(IMAGES_DIR);
 
 Manager<Animation,AnimationLoader> assets_animations(ANIMATIONS_DIR);
 
 Manager<Sound,SoundLoader> assets_sounds(SOUNDS_DIR);
 
-Manager<Font,FontLoader> assets_fonts(FONT_DIR);
+Manager<Font,FontLoader> assets_fonts(FONTS_DIR);
 
-VirtualMachine assets_vm;
+Manager<Script,ScriptLoader> assets_scripts(SCRIPTS_DIR);
 
 
 void assets_init(SDL_Renderer * renderer)
@@ -102,4 +111,5 @@ void assets_init(SDL_Renderer * renderer)
 	assets_animations.init(renderer);
 	assets_sounds.init(renderer);
 	assets_fonts.init(renderer);
+	assets_scripts.init(renderer);
 }

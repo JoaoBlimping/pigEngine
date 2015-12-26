@@ -1,3 +1,9 @@
+# 26/12/2015
+looks like it won't work as html5. so it's just a desktop app now!! need to make it that
+it runs at a regular framerate, then I guess it's back to business.
+Everything is going bloody swimmingly. next thing to do is actually make the gui system
+work so that I can test it with the script system.
+
 # 25/12/2015
 lol, it's christmas.
 Yeah but anyway i'm still going to make it that the Makefile copies in the the files

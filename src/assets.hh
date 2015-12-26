@@ -6,76 +6,62 @@
 #define ASSETS_H
 
 
-#include "pigScript/VirtualMachine.hh"
-
 #include "things/Manager.hh"
 #include "things/Image.hh"
 #include "things/Animation.hh"
 #include "things/Sound.hh"
 #include "things/Font.hh"
 
+#include "pigScript/Script.hh"
 
-/**
- * functor for the loading of an image from a given file
- */
+
+/** functor for the loading of an image from a given file */
 struct ImageLoader
 {
   Image * operator()(char const * filename,SDL_Renderer * renderer);
 };
 
-/**
- * functor for the loading of an animation from a given file
- */
+/** functor for the loading of an animation from a given file */
 struct AnimationLoader
 {
   Animation * operator()(char const * filename,SDL_Renderer * renderer);
 };
 
-/**
- * functor for the loading of a sound from a given file
- */
+/** functor for the loading of a sound from a given file */
 struct SoundLoader
 {
   Sound * operator()(char const * filename,SDL_Renderer * renderer);
 };
 
-/**
- * functor for the loading of a font from a given file
- */
+/** functor for the loading of a font from a given file */
 struct FontLoader
 {
 	Font * operator()(char const * filename,SDL_Renderer * renderer);
 };
 
+/** functor for the loading of a script from a given file */
+struct ScriptLoader
+{
+	Script * operator()(char const * filename,SDL_Renderer * renderer);
+};
 
-/**
- * Manager for Images
- */
+
+/** Manager for Images */
 extern Manager<Image,ImageLoader> assets_images;
 
-/**
- * Manager for Animations
- */
+/** Manager for Animations */
 extern Manager<Animation,AnimationLoader> assets_animations;
 
-/**
- * Manager for Sounds
- */
+/** Manager for Sounds */
 extern Manager<Sound,SoundLoader> assets_sounds;
 
-/**
- * The game's font
- */
+/** manager for fonts */
 extern Manager<Font,FontLoader> assets_fonts;
 
-/**
- * the virtual machine used to run scripts
- */
-extern VirtualMachine assets_vm;
+/** manager for scripts */
+extern Manager<Script,ScriptLoader> assets_scripts;
 
-/**
- * Initialises assets, and must be called before the managers can be used.
- */
+/** Initialises assets, and must be called before the managers can be used. */
 void assets_init(SDL_Renderer * renderer);
 
 

@@ -77,7 +77,7 @@ bool init()
 	input_setMappings(&playerMapping);
 
 	//now set up the virtual machine and that
-	addons_addAddons(game,&assets_vm);
+	//addons_addAddons(game,&assets_vm);
 
 	//load in the persistent assets
 	assets_init(renderer);

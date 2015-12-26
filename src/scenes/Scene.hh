@@ -14,6 +14,9 @@
 class Scene
 {
 public:
+	/** creates a scene, mostly just so it can set gui to NULL */
+	Scene();
+
 	/** does nothing since the gui should already be deleted */
 	virtual ~Scene();
 
@@ -39,7 +42,7 @@ public:
 	void removeGuiNode();
 
 private:
-	/** the scene's root gui node, starts out as null */
+	/** the scene's root gui node */
 	Node * gui;
 };
 

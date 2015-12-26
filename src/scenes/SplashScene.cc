@@ -3,6 +3,8 @@
 #include <SDL2/SDL.h>
 
 #include "ConnectControllerScene.hh"
+#include "../assets.hh"
+#include "../vm.hh"
 
 
 char const * SplashScene::JINGLE_FILE = "assets/internal/ebola.w8";
@@ -15,34 +17,21 @@ int const SplashScene::BACK_ALPHA = 255;
 
 SplashScene::SplashScene()
 {
-	//default the elapsed time to 0
 	elapsed = 0;
-
-	//load in the sound jingle
-	/*
-	jingle = mixer_loadSample(JINGLE_FILE);
-	if (jingle == NULL)
-	{
-		printf("failed to load sound %s\n",JINGLE_FILE);
-	}
-	else
-	{
-		mixer_playSample(jingle);
-	}
-	*/
 }
 
 
 SplashScene::~SplashScene()
-{
-	/*
-	mixer_freeSample(jingle);
-	*/
-}
+{}
 
 
 void SplashScene::logic(float deltaTime)
 {
+	if (elapsed == 0)
+	{
+		vm_runScript(assets_scripts.getItem(0));
+	}
+
 	elapsed += deltaTime;
 
 	assets_animations.getItem(0)->update(deltaTime);

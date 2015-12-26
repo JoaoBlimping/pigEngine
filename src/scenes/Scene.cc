@@ -1,6 +1,11 @@
 #include "Scene.hh"
 
 
+Scene::Scene()
+{
+	gui = NULL;
+}
+
 Scene::~Scene()
 {
 	//does nothing since the gui should already be deleted
