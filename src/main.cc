@@ -8,7 +8,7 @@
 #include "scenes/SplashScene.hh"
 #include "assets.hh"
 #include "input.hh"
-#include "addons.hh"
+#include "vm.hh"
 
 
 //the game state object thing
@@ -81,6 +81,9 @@ bool init()
 
 	//load in the persistent assets
 	assets_init(renderer);
+
+	//initialise the virtual machine
+	vm_init(game);
 
 	return true;
 }
