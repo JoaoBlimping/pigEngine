@@ -17,11 +17,11 @@ void Scene::update(float deltaTime)
 	//if not
 	else
 	{
-		update(deltaTime);
+		logic(deltaTime);
 	}
 }
 
-void Scene::renderContent(SDL_Renderer * renderer)
+void Scene::render(SDL_Renderer * renderer)
 {
 	renderContent(renderer);
 	if (gui != NULL) gui->render(renderer);

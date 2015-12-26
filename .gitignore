@@ -5,4 +5,4 @@
 *~
 *.bc
 *.ebolaVirusOfDoom
-src/pigScript
+bin/*

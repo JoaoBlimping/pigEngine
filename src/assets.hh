@@ -71,7 +71,7 @@ extern Manager<Font,FontLoader> assets_fonts;
 /**
  * the virtual machine used to run scripts
  */
-VirtualMachine assets_vm;
+extern VirtualMachine assets_vm;
 
 /**
  * Initialises assets, and must be called before the managers can be used.

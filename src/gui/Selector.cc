@@ -2,7 +2,7 @@
 
 #include <vector>
 
-#include <SDL.h>
+#include <SDL2/SDL.h>
 
 
 Selector::Selector(int offsetX,int offsetY,int width,int height,

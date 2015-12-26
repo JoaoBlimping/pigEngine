@@ -2,7 +2,7 @@
 #define SCENE_H
 
 
-#include <SDL.h>
+#include <SDL2/SDL.h>
 
 #include "../assets.hh"
 #include "../gui/Node.hh"

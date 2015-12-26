@@ -1,6 +1,6 @@
 #include "ColouredBackground.hh"
 
-#include <SDL.h>
+#include <SDL2/SDL.h>
 
 #include "../assets.hh"
 

@@ -1,7 +1,7 @@
 #include "assets.hh"
 
-#include <SDL.h>
-#include <SDL/SDL_mixer.h>
+#include <SDL2/SDL.h>
+#include <SDL2/SDL_mixer.h>
 
 #include "things/Image.hh"
 #include "things/Animation.hh"
@@ -91,6 +91,8 @@ Manager<Animation,AnimationLoader> assets_animations(ANIMATIONS_DIR);
 Manager<Sound,SoundLoader> assets_sounds(SOUNDS_DIR);
 
 Manager<Font,FontLoader> assets_fonts(FONT_DIR);
+
+VirtualMachine assets_vm;
 
 
 void assets_init(SDL_Renderer * renderer)

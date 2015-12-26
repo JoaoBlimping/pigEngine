@@ -1,5 +1,7 @@
 #include "addons.hh"
 
+#include <SDL2/SDL.h>
+
 
 GameState * game;
 
@@ -11,10 +13,16 @@ static void say(uint8_t * args,int * variables)
 }
 
 
+static void wait(uint8_t * args,int * variables)
+{
+	SDL_Delay(variables[args[0]]);
+}
+
+
 
 void addons_addAddons(GameState * gameState,VirtualMachine * virtualMachine)
 {
 	game = gameState;
-	
+
 	virtualMachine->registerAddon(say,"say");
 }

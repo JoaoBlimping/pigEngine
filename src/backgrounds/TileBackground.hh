@@ -7,7 +7,7 @@
 
 #include "Background.hh"
 
-#include <SDL.h>
+#include <SDL2/SDL.h>
 
 #include "../things/Image.hh"
 #include "../assets.hh"

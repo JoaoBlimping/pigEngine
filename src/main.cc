@@ -1,9 +1,7 @@
 #include <stdio.h>
 
-#include <SDL.h>
-#include <SDL_image.h>
-
-#include <emscripten/emscripten.h>
+#include <SDL2/SDL.h>
+#include <SDL2/SDL_image.h>
 
 #include "GameState.hh"
 #include "scenes/Scene.hh"
@@ -19,6 +17,9 @@ static GameState * game = NULL;
 //the window and stuff
 static SDL_Window * window = NULL;
 static SDL_Renderer * renderer = NULL;
+
+//false iff the game needs to close
+static bool running = true;
 
 bool init()
 {
@@ -97,6 +98,9 @@ void close()
 	//Quit SDL subsystems
 	IMG_Quit();
 	SDL_Quit();
+
+	//turn running off
+	running = false;
 }
 
 
@@ -112,6 +116,7 @@ void iteration()
 		if (e.type == SDL_QUIT)
 		{
 			close();
+			return;
 		}
 
 		//a controller axis changes
@@ -151,8 +156,8 @@ int main(int argc,char * * args)
 		return 1;
 	}
 
-	//start the game
-	emscripten_set_main_loop(iteration,0,1);
+	//running the game
+	while (running) iteration();
 
 	return 0;
 }
