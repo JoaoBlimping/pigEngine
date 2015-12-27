@@ -18,6 +18,12 @@ Window::~Window()
 }
 
 
+void Window::addChild(Node * child)
+{
+	children.push_back(child);
+}
+
+
 int Window::update(float deltaTime)
 {
 	for (std::vector<Node *>::iterator it = children.begin();it != children.end();++it)

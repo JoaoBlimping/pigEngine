@@ -1,7 +1,7 @@
 #include "input.hh"
 
 
-static Controller controllers[N_PLAYERS];
+static Controller controllers[input_N_PLAYERS];
 
 
 void input_onJoyAxisEvent(SDL_JoyAxisEvent * e)
@@ -20,14 +20,14 @@ void input_onJoyButtonEvent(SDL_JoyButtonEvent * e)
 }
 
 
-ControllerMapping const * input_getController(int player)
+ControllerState const * input_getControllerState(int player)
 {
-	return &(controllers[player].mapping);
+	return &(controllers[player].state);
 }
 
 void input_setMappings(ControllerMapping * mappings)
 {
-	for (int i = 0;i < N_PLAYERS;i++)
+	for (int i = 0;i < input_N_PLAYERS;i++)
 	{
 		controllers[i].mapping = mappings[i];
 	}

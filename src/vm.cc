@@ -2,6 +2,9 @@
 
 #include <SDL2/SDL_thread.h>
 
+
+#include "gui/creator.hh"
+
 #include "pigScript/VirtualMachine.hh"
 #include "pigScript/Script.hh"
 
@@ -23,6 +26,11 @@ static void wait(uint8_t * args,int * variables)
 }
 
 
+static void say(uint8_t * args,int * variables)
+{
+	game->getCurrentScene()->addGuiNode(creator_createTextBox("hello mates e bola ui have that diseasese tango stanky ass danky"));
+}
+
 
 
 static int runScriptInThread(void * data)
@@ -37,6 +45,7 @@ void vm_init(GameState const * gameState)
 {
 	game = gameState;
 	virtualMachine.registerAddon(wait,"wait");
+	virtualMachine.registerAddon(say,"say");
 }
 
 
