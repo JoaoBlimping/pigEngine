@@ -14,7 +14,7 @@ class Window:public Node
 {
 public:
 	/** creates a window and sets it's width and height */
-	Window(int offsetX,int offsetY,int width,int height);
+	Window(int width,int height);
 
 	/** deallocates the window and it's child nodes */
 	~Window();

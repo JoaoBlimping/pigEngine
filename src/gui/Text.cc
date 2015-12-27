@@ -3,12 +3,11 @@
 #include <SDL2/SDL.h>
 
 
-Text::Text(char const * content):
-Node(0,0,0,0),
+Text::Text(int width,Font * font,char const * content):
+Node(width,font->getStringHeight(content,width)),
+font(font),
 content(content)
-{
-	//TODO: still needs to set the normal node stuff using info from the font
-}
+{}
 
 
 Text::~Text()
@@ -25,5 +24,5 @@ int Text::update(float deltaTime)
 
 void Text::render(SDL_Renderer * renderer,int x,int y)
 {
-	//TODO: do stuff
+	font->renderString(renderer,content,x,y,width);
 }

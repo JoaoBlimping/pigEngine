@@ -14,7 +14,7 @@ class Node
 {
 public:
 	/** sets the node's basic parameters */
-	Node(int offsetX,int offsetY,int width,int height);
+	Node(int width,int height);
 
 	/** allows destruction of sub classes */
 	virtual ~Node();
@@ -22,6 +22,12 @@ public:
 	/** adds a listener to be informed when the node is deleted.
 	 * It informs them by changing a boolean from false to true */
 	void addListener(bool * target);
+
+	/** gives you the width of the node */
+	int getWidth();
+
+	/** gives you the height of the node */
+	int getHeight();
 
 	/** updates the node
 	 * it updates it for like nodes that use user input or whatever, it uses deltaTime
@@ -34,17 +40,11 @@ public:
 	virtual void render(SDL_Renderer * renderer,int x = 0,int y = 0) = 0;
 
 protected:
-	/** the relative left position the node */
-	int const offsetX;
-
-	/** the relative top position on the node */
-	int const offsetY;
-
 	/** the width of the node */
-	int const width;
+	int width;
 
 	/** the height of the ndoe */
-	int const height;
+	int height;
 
 
 private:

@@ -3,9 +3,7 @@
 #include <vector>
 
 
-Node::Node(int offsetX,int offsetY,int width,int height):
-offsetX(offsetX),
-offsetY(offsetY),
+Node::Node(int width,int height):
 width(width),
 height(height)
 {}
@@ -17,6 +15,17 @@ Node::~Node()
 	{
 		**it = true;
 	}
+}
+
+int Node::getWidth()
+{
+	return width;
+}
+
+
+int Node::getHeight()
+{
+	return height;
 }
 
 

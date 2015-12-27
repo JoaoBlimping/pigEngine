@@ -5,9 +5,8 @@
 #include <SDL2/SDL.h>
 
 
-Selector::Selector(int offsetX,int offsetY,int width,int height,
-									 std::vector<Node *> options):
-Node(offsetX,offsetY,width,height),
+Selector::Selector(int width,int height,std::vector<Node *> options):
+Node(width,height),
 options(options)
 {}
 

@@ -36,7 +36,7 @@ public:
 	virtual void renderContent(SDL_Renderer * renderer) = 0;
 
 	/** adds a gui node to the scene so that it focuses on that until it is done */
-	void addGuiNode(Node * node);
+	void addGuiNode(Node * node,int x = 0,int y = 0);
 
 	/** removes and deallocates the current gui node if there is one */
 	void removeGuiNode();
@@ -44,6 +44,12 @@ public:
 private:
 	/** the scene's root gui node */
 	Node * gui;
+
+	/** the horizontal position to show the gui node at */
+	int guiX;
+
+	/** the vertical position to show the gui node at */
+	int guiY;
 };
 
 

@@ -51,7 +51,4 @@ void SplashScene::renderContent(SDL_Renderer * renderer)
 
 	//draw the animation
 	assets_animations.getItem(0)->render(renderer,0,0);
-
-	//draw some nice text
-	assets_fonts.getItem(0)->renderString(renderer,"hello you god damned fiends, i am going to kill you all",20,20,100);
 }

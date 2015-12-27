@@ -28,7 +28,8 @@ static void wait(uint8_t * args,int * variables)
 
 static void say(uint8_t * args,int * variables)
 {
-	game->getCurrentScene()->addGuiNode(creator_createTextBox("hello mates e bola ui have that diseasese tango stanky ass danky"));
+	//TODO: remove magic numbers and make this a fraction of the screen or something
+	game->getCurrentScene()->addGuiNode(creator_createTextBox((char *)args),200,200);
 }
 
 

@@ -9,7 +9,7 @@
 
 
 Clicker::Clicker():
-Node(0,0,CLICKER_WIDTH,CLICKER_HEIGHT),
+Node(CLICKER_WIDTH,CLICKER_HEIGHT),
 elapsed(0)
 {}
 

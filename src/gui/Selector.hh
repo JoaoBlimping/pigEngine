@@ -18,7 +18,7 @@ public:
 	/**
 	 * constructs a selector with the basic node stuff and also it's options
 	 */
-	Selector(int offsetX,int offsetY,int width,int height,std::vector<Node *> options);
+	Selector(int width,int height,std::vector<Node *> options);
 
 	/**
 	 * deletes it's options

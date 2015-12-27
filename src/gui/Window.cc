@@ -4,8 +4,8 @@
 #define WINDOW_PADDING 8
 
 
-Window::Window(int offsetX,int offsetY,int width,int height):
-Node(offsetX,offsetY,width,height)
+Window::Window(int width,int height):
+Node(width,height)
 {}
 
 
@@ -37,5 +37,14 @@ int Window::update(float deltaTime)
 
 void Window::render(SDL_Renderer * renderer,int x,int y)
 {
-	//TODO: do actual graphics
+	SDL_Rect shape = {x,y,width,height};
+	SDL_SetRenderDrawColor(renderer,0x00,0xFF,0x00,0xFF);
+	SDL_RenderFillRect(renderer,&shape);
+
+	int yOffset = WINDOW_PADDING;
+	for (std::vector<Node *>::iterator it = children.begin();it != children.end();++it)
+	{
+		(*it)->render(renderer,x + WINDOW_PADDING,y + yOffset);
+		yOffset += (*it)->getHeight() + WINDOW_PADDING ;
+	}
 }

@@ -29,13 +29,15 @@ void Scene::update(float deltaTime)
 void Scene::render(SDL_Renderer * renderer)
 {
 	renderContent(renderer);
-	if (gui != NULL) gui->render(renderer);
+	if (gui != NULL) gui->render(renderer,guiX,guiY);
 }
 
-void Scene::addGuiNode(Node * node)
+void Scene::addGuiNode(Node * node,int x,int y)
 {
 	if (gui != NULL) delete gui;
 	gui = node;
+	guiX = x;
+	guiY = y;
 }
 
 void Scene::removeGuiNode()
