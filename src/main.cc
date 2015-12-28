@@ -11,25 +11,30 @@
 #include "vm.hh"
 
 
+#define SCREEN_WIDTH 640
+#define SCREEN_HEIGHT 480
+
+
 //the game state object thing
 static GameState * game = NULL;
 
 //the window and stuff
 static SDL_Window * window = NULL;
 static SDL_Renderer * renderer = NULL;
+static SDL_Joystick * gameController = NULL;
 
 //false iff the game needs to close
 static bool running = true;
 
+
 bool init()
 {
-	//then the next fun thing to do is to initialise the game state object thing
-	//TODO: this will come from a factory using a file, so magic numbers can be
-	//TODO: temporarily forgiven
-	game = new GameState(640,480,new SplashScene());
+	//initialise the game state object thing
+	//TODO: this will come from a factory using a file
+	game = new GameState(SCREEN_WIDTH,SCREEN_HEIGHT,new SplashScene());
 
 	//Initialize SDL
-	if (SDL_Init(SDL_INIT_VIDEO) < 0)
+	if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_JOYSTICK) < 0)
 	{
 		printf("SDL could not initialize! SDL_Error: %s\n",SDL_GetError());
 		return false;
@@ -44,6 +49,17 @@ bool init()
 		printf( "Window could not be created! SDL_Error: %s\n", SDL_GetError());
 		return false;
 	}
+
+	//make it fullscreen
+	//if (SDL_SetWindowFullscreen(window,SDL_WINDOW_FULLSCREEN))
+	//{
+	//	printf( "couldn't go fullscreen! SDL_Error: %s\n", SDL_GetError());
+	//}
+
+	//check the display mode
+	SDL_DisplayMode mode;
+	SDL_GetWindowDisplayMode(window,&mode);
+	printf("display w:%d,h:%d\n",mode.w,mode.h);
 
 	//Create renderer for window
 	renderer = SDL_CreateRenderer(window,-1,SDL_RENDERER_ACCELERATED);
@@ -76,8 +92,20 @@ bool init()
 	playerMapping.buttonMapping[StartButton] = 6;
 	input_setMappings(&playerMapping);
 
-	//now set up the virtual machine and that
-	//addons_addAddons(game,&assets_vm);
+	//Check for joysticks
+	if (SDL_NumJoysticks() < 1)
+	{
+		printf("Warning: No joysticks connected!\n");
+	}
+	else
+	{
+		//Load joystick
+		gameController = SDL_JoystickOpen(0);
+		if (gameController == NULL)
+		{
+			printf("Warning: Unable to open game controller! SDL Error: %s\n",SDL_GetError());
+		}
+	}
 
 	//load in the persistent assets
 	assets_init(renderer);
@@ -97,6 +125,7 @@ void close()
 	//Destroy window and renderer
 	SDL_DestroyRenderer(renderer);
 	SDL_DestroyWindow(window);
+	SDL_JoystickClose(gameController);
 
 	//Quit SDL subsystems
 	IMG_Quit();

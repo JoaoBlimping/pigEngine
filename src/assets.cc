@@ -7,6 +7,7 @@
 #include "things/Animation.hh"
 #include "things/Sound.hh"
 #include "things/Font.hh"
+#include "things/Skin.hh"
 
 #include "pigScript/Script.hh"
 
@@ -103,6 +104,8 @@ Manager<Font,FontLoader> assets_fonts(FONTS_DIR);
 
 Manager<Script,ScriptLoader> assets_scripts(SCRIPTS_DIR);
 
+Skin * assets_windowSkin = NULL;
+
 
 void assets_init(SDL_Renderer * renderer)
 {
@@ -112,4 +115,5 @@ void assets_init(SDL_Renderer * renderer)
 	assets_sounds.init(renderer);
 	assets_fonts.init(renderer);
 	assets_scripts.init(renderer);
+	assets_windowSkin = new Skin(assets_images.getItem(6));//TODO: remove magic
 }

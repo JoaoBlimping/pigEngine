@@ -1,3 +1,13 @@
+# 27/12/2015
+Ok, so I need to make windows and stuff look nice which will require two things, I will
+need to make it that they are placed in correct positions and sizes on the screen, and
+then also I need to make window skins, they will not need to be a type of asset, and
+can simply be images which may or may not be wrapped in another class, but there will
+need to be a data file telling the game what the window skin images are.
+
+apparantly I need to redo adding controllers to the game to make it work as a desktop
+program.
+
 # 26/12/2015
 looks like it won't work as html5. so it's just a desktop app now!! need to make it that
 it runs at a regular framerate, then I guess it's back to business.

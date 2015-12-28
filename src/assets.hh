@@ -11,6 +11,7 @@
 #include "things/Animation.hh"
 #include "things/Sound.hh"
 #include "things/Font.hh"
+#include "things/Skin.hh"
 
 #include "pigScript/Script.hh"
 
@@ -60,6 +61,9 @@ extern Manager<Font,FontLoader> assets_fonts;
 
 /** manager for scripts */
 extern Manager<Script,ScriptLoader> assets_scripts;
+
+/** the window skin */
+extern Skin * assets_windowSkin;
 
 /** Initialises assets, and must be called before the managers can be used. */
 void assets_init(SDL_Renderer * renderer);

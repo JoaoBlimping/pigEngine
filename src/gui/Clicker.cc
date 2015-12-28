@@ -23,7 +23,11 @@ int Clicker::update(float deltaTime)
 	//click if any controller has the a button down
 	for (int i = 0;i < input_N_PLAYERS;i++)
 	{
-		if (input_getControllerState(i)->buttons[AButton]) return 1;
+		if (input_getControllerState(i)->buttons[AButton])
+		{
+			printf("click\n");
+			return 1;
+		}
 	}
 
 	return 0;

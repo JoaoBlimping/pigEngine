@@ -1,7 +1,9 @@
 #include "Window.hh"
 
+#include "../assets.hh"
 
-#define WINDOW_PADDING 8
+
+#define WINDOW_PADDING 20
 
 
 Window::Window(int width,int height):
@@ -37,9 +39,7 @@ int Window::update(float deltaTime)
 
 void Window::render(SDL_Renderer * renderer,int x,int y)
 {
-	SDL_Rect shape = {x,y,width,height};
-	SDL_SetRenderDrawColor(renderer,0x00,0xFF,0x00,0xFF);
-	SDL_RenderFillRect(renderer,&shape);
+	assets_windowSkin->render(renderer,x,y,width,height);
 
 	int yOffset = WINDOW_PADDING;
 	for (std::vector<Node *>::iterator it = children.begin();it != children.end();++it)
