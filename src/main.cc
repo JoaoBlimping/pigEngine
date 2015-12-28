@@ -41,7 +41,7 @@ bool init()
 	}
 
 	//Create window
-	window = SDL_CreateWindow("SDL Tutorial",SDL_WINDOWPOS_UNDEFINED,
+	window = SDL_CreateWindow("load game name from a file ayyy",SDL_WINDOWPOS_UNDEFINED,
 							  SDL_WINDOWPOS_UNDEFINED,game->screenWidth,game->screenHeight,
 							  SDL_WINDOW_SHOWN);
 	if (window == NULL)

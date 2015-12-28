@@ -3,7 +3,7 @@
 #include "../input.hh"
 
 
-#define CLICK_DELAY 500
+#define CLICK_DELAY 2
 #define CLICKER_WIDTH 32
 #define CLICKER_HEIGHT 32
 

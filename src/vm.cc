@@ -11,6 +11,7 @@
 
 static VirtualMachine virtualMachine;
 static GameState const * game;
+static int notification;
 
 typedef struct
 {
@@ -30,6 +31,14 @@ static void say(uint8_t * args,int * variables)
 {
 	//TODO: remove magic numbers and make this a fraction of the screen or something
 	game->getCurrentScene()->addGuiNode(creator_createTextBox((char *)args),200,200);
+	while (notification == 0);
+}
+
+
+static void ask(uint8_t * args,int * variables)
+{
+	bool finished;
+	Node * textBox;
 }
 
 
@@ -50,8 +59,15 @@ void vm_init(GameState const * gameState)
 }
 
 
+void vm_notify(int value)
+{
+	notification = value;
+}
+
+
 void vm_runScript(Script * script)
 {
+	notification = 0;
 	Necessities necessities;
 	necessities.vm = &virtualMachine;
 	necessities.script = script;

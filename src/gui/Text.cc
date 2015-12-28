@@ -10,12 +10,6 @@ content(content)
 {}
 
 
-Text::~Text()
-{
-	delete content;
-}
-
-
 int Text::update(float deltaTime)
 {
 	return 0;

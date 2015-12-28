@@ -5,12 +5,6 @@
 #include <SDL2/SDL.h>
 
 
-Selector::Selector(int width,int height,std::vector<Node *> options):
-Node(width,height),
-options(options)
-{}
-
-
 Selector::~Selector()
 {
 	for (std::vector<Node *>::iterator it = options.begin();it != options.end();++it)

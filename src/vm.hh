@@ -11,8 +11,12 @@
 void vm_init(GameState const * gameState);
 
 
-/** runs a script in a new thread, the ScriptReturn is set when the script finishes */
+/** runs a script in a new thread */
 void vm_runScript(Script * script);
+
+
+/** notify the running script of something, usually a gui return value */
+void vm_notify(int value);
 
 
 #endif

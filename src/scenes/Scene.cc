@@ -2,28 +2,28 @@
 
 #include "../Controller.hh"
 #include "../input.hh"
+#include "../vm.hh"
 
 
 Scene::Scene()
 {
-	gui = NULL;
+	gui = 0;
 }
 
 Scene::~Scene()
 {
-	//does nothing since the gui should already be deleted
+	removeGuiNode();
 }
 
 void Scene::update(float deltaTime)
 {
 	//if there is a gui node to deal with
-	if (gui != NULL)
+	if (gui)
 	{
 		int guiReturn = gui->update(deltaTime);
 		if (guiReturn != 0)
 		{
-			printf("kill it\n");
-			//TODO: do something with this value
+			vm_notify(guiReturn);
 			removeGuiNode();
 		}
 	}
@@ -38,7 +38,7 @@ void Scene::update(float deltaTime)
 void Scene::render(SDL_Renderer * renderer)
 {
 	renderContent(renderer);
-	if (gui != NULL) gui->render(renderer,guiX,guiY);
+	if (gui) gui->render(renderer,guiX,guiY);
 
 	ControllerState const * state = input_getControllerState(0);
 	SDL_SetRenderDrawColor(renderer,0xFF,0x00,0x00,0xFF);
@@ -64,7 +64,7 @@ void Scene::render(SDL_Renderer * renderer)
 
 void Scene::addGuiNode(Node * node,int x,int y)
 {
-	if (gui != NULL) delete gui;
+	if (gui) delete gui;
 	gui = node;
 	guiX = x;
 	guiY = y;
@@ -72,9 +72,9 @@ void Scene::addGuiNode(Node * node,int x,int y)
 
 void Scene::removeGuiNode()
 {
-	if (gui != NULL)
+	if (gui)
 	{
 		delete gui;
-		gui = NULL;
+		gui = 0;
 	}
 }

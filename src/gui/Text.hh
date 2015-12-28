@@ -15,18 +15,17 @@ class Text:public Node
 {
 public:
 	/** create the text object with it's text that it displays
-	 * sets the node's width and height based on the amount of text that it contains */
+	 * sets the node's height based on the amount of text that it contains, note that
+	 * content is constant, and so cannot be taken responsibility for by the text class */
 	Text(int width,Font * font,char const * content);
-
-	/** deletes the contained text */
-	~Text();
 
 	int update(float deltaTime);
 
 	void render(SDL_Renderer * renderer,int x = 0,int y = 0);
 
 private:
-	/** the actual text that this node contains */
+	/** the actual text that this node contains
+	 * Text is not responsible for deleting it's text*/
 	char const * content;
 
 	/** the font that it uses to render itself */
