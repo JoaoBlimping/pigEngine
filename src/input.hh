@@ -8,6 +8,8 @@
 
 
 #define input_N_PLAYERS 1
+#define input_AXIS_DEAD_ZONE 8000
+
 
 /** called when there is a joy axis event so that the control thingo can be set */
 void input_onJoyAxisEvent(SDL_JoyAxisEvent * e);

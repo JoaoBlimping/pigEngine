@@ -19,8 +19,6 @@ public:
 	 * content is constant, and so cannot be taken responsibility for by the text class */
 	Text(int width,Font * font,char const * content);
 
-	int update(float deltaTime);
-
 	void render(SDL_Renderer * renderer,int x = 0,int y = 0);
 
 private:

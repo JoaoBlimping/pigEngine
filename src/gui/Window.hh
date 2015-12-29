@@ -22,17 +22,13 @@ public:
 	/** adds a child node to window */
 	void addChild(Node * child);
 
-	int update(float deltaTime);
+	int logic(float deltaTime);
 
 	void render(SDL_Renderer * renderer,int x = 0,int y = 0);
 
 private:
 	/** vector containing all the child nodes of this window */
 	std::vector<Node *> children;
-
-	/** the amount of time this window has been going for
-	 * used to make sure events don't get triggered immeadiately after the window opens */
-	float elapsed;
 };
 
 #endif

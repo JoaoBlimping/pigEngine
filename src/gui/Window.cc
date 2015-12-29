@@ -8,8 +8,7 @@
 
 
 Window::Window(int width,int height):
-Node(width,height),
-elapsed(0)
+Node(width,height,DELAY)
 {}
 
 
@@ -28,12 +27,8 @@ void Window::addChild(Node * child)
 }
 
 
-int Window::update(float deltaTime)
+int Window::logic(float deltaTime)
 {
-	//can't click until a certain time has passed
-	elapsed += deltaTime;
-	if (elapsed < DELAY) return 0;
-
 	for (std::vector<Node *>::iterator it = children.begin();it != children.end();++it)
 	{
 		int value = (*it)->update(deltaTime);

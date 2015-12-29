@@ -43,8 +43,6 @@ static void ask(uint8_t * args,int * variables)
 	//don't get a previous return value
 	notification = 0;
 
-	printf("ask\n");
-
 	uint8_t returnVariable = args[0];
 	char * question = (char *)(args + 1);
 	char const * answers = danylib_findNextString(question);

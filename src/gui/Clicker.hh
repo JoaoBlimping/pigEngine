@@ -12,7 +12,7 @@ public:
 	/** creates a clicker, and initialises it's timer */
 	Clicker();
 
-	int update(float deltaTime);
+	int logic(float deltaTime);
 
 	void render(SDL_Renderer * renderer,int x = 0,int y = 0);
 

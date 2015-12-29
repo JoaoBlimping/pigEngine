@@ -24,7 +24,7 @@ public:
 	 * deallocation of it will happen here when the selector gets deleted */
 	void addOption(Node * option);
 
-	int update(float deltaTime);
+	int logic(float deltaTime);
 
 	void render(SDL_Renderer * renderer,int x = 0,int y = 0);
 

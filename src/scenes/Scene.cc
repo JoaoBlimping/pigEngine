@@ -5,10 +5,9 @@
 #include "../vm.hh"
 
 
-Scene::Scene()
-{
-	gui = 0;
-}
+Scene::Scene():
+gui(0)
+{}
 
 Scene::~Scene()
 {

@@ -5,15 +5,16 @@
 
 #define CLICKER_WIDTH 32
 #define CLICKER_HEIGHT 32
+#define CLICKER_DELAY 2
 
 
 Clicker::Clicker():
-Node(CLICKER_WIDTH,CLICKER_HEIGHT),
+Node(CLICKER_WIDTH,CLICKER_HEIGHT,CLICKER_DELAY),
 elapsed(0)
 {}
 
 
-int Clicker::update(float deltaTime)
+int Clicker::logic(float deltaTime)
 {
 	//click if any controller has the a button down
 	for (int i = 0;i < input_N_PLAYERS;i++)

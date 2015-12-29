@@ -14,7 +14,7 @@ class Node
 {
 public:
 	/** sets the node's basic parameters */
-	Node(int width,int height);
+	Node(int width,int height,float delay);
 
 	/** allows destruction of sub classes */
 	virtual ~Node();
@@ -23,16 +23,24 @@ public:
 	 * It informs them by changing a boolean from false to true */
 	void addListener(bool * target);
 
+	/** does some basic stuff in the node superclass before sending off for the specific
+	 * type of node's logic */
+	int update(float deltaTime);
+
+	/** reset the node's delay so that it won't do a meaningful update again for a
+	 * while */
+	void resetDelay(float newDelay);
+
 	/** gives you the width of the node */
 	int getWidth();
 
 	/** gives you the height of the node */
 	int getHeight();
 
-	/** updates the node
+	/** performs the node's logic
 	 * it updates it for like nodes that use user input or whatever, it uses deltaTime
 	 * for when you need to know the time if you actually do whatever */
-	virtual int update(float deltaTime) = 0;
+	virtual int logic(float deltaTime);
 
 	/** displays the node
 	 * displays the node on the screen. positions are relative to the parent node, or they
@@ -50,6 +58,10 @@ protected:
 private:
 	/** list of listeners to tell when the node is deleted */
 	std::vector<bool *> listeners;
+
+	/** the amount of time this window has been going for
+	 * used to make sure events don't get triggered immeadiately after the window opens */
+	float delay;
 };
 
 

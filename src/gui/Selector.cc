@@ -8,10 +8,11 @@
 
 
 #define PADDING 5
+#define NODE_DELAY 2
 
 
 Selector::Selector():
-Node(0,0),
+Node(0,0,NODE_DELAY),
 selection(1)
 {}
 
@@ -27,14 +28,13 @@ Selector::~Selector()
 
 void Selector::addOption(Node * option)
 {
-	printf("adding option\n");
 	options.push_back(option);
 	if (width < option->getWidth()) width = option->getWidth();
 	height += option->getHeight() + PADDING;
 }
 
 
-int Selector::update(float deltaTime)
+int Selector::logic(float deltaTime)
 {
 	//click if any controller has the a button down
 	for (int i = 0;i < input_N_PLAYERS;i++)
@@ -44,6 +44,28 @@ int Selector::update(float deltaTime)
 			return selection;
 		}
 	}
+
+	//move the selection up and down
+	for (int i = 0;i < input_N_PLAYERS;i++)
+	{
+		ControllerState const * state = input_getControllerState(i);
+		if (state->axes[LeftStickY] > input_AXIS_DEAD_ZONE)
+		{
+			selection++;
+			resetDelay(NODE_DELAY);
+		}
+		else if (state->axes[LeftStickY] < -input_AXIS_DEAD_ZONE)
+		{
+			selection--;
+			resetDelay(NODE_DELAY);
+		}
+	}
+
+
+	//make sure it is within the range of the options
+	if (selection < 1) selection = options.size();
+	if (selection > options.size()) selection = 1;
+
 	return 0;
 }
 
