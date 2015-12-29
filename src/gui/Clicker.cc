@@ -3,7 +3,6 @@
 #include "../input.hh"
 
 
-#define CLICK_DELAY 2
 #define CLICKER_WIDTH 32
 #define CLICKER_HEIGHT 32
 
@@ -16,10 +15,6 @@ elapsed(0)
 
 int Clicker::update(float deltaTime)
 {
-	//can't click until a certain time has passed
-	elapsed += deltaTime;
-	if (elapsed < CLICK_DELAY) return 0;
-
 	//click if any controller has the a button down
 	for (int i = 0;i < input_N_PLAYERS;i++)
 	{

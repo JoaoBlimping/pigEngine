@@ -13,10 +13,15 @@
 class Selector:public Node
 {
 public:
+	/** creates the selector and sets it's basic node attributes */
+	Selector();
+
 	/** deletes it's options */
 	~Selector();
 
-	/** adds an option to the selector's options, possibly resizing it in the process */
+	/** adds an option to the selector's options, possibly resizing it in the process
+	 * by adding a node to this as an option, the selector takes ownership of it, so
+	 * deallocation of it will happen here when the selector gets deleted */
 	void addOption(Node * option);
 
 	int update(float deltaTime);
@@ -26,6 +31,9 @@ public:
 private:
 	/** all of the options for selection which are all nodes */
 	std::vector<Node *> options;
+
+	/** the currently selected option */
+	int selection;
 };
 
 

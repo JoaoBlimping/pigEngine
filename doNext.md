@@ -1,3 +1,11 @@
+# 28/12/2015
+working on creating the question boxes. maybe instead of having the questions written
+as separate strings, i should just separate them with a slash or something, otherwise
+i'd need to provide the number of arguments twice. forget a slash, just use different
+arguments in the script and then they will just have the null character between them.
+no wait they'll still need something at the end, maybe a final special string that tells
+us there will be no more.
+
 # 27/12/2015
 Ok, so I need to make windows and stuff look nice which will require two things, I will
 need to make it that they are placed in correct positions and sizes on the screen, and

@@ -4,10 +4,12 @@
 
 
 #define WINDOW_PADDING 20
+#define DELAY 2
 
 
 Window::Window(int width,int height):
-Node(width,height)
+Node(width,height),
+elapsed(0)
 {}
 
 
@@ -28,6 +30,10 @@ void Window::addChild(Node * child)
 
 int Window::update(float deltaTime)
 {
+	//can't click until a certain time has passed
+	elapsed += deltaTime;
+	if (elapsed < DELAY) return 0;
+
 	for (std::vector<Node *>::iterator it = children.begin();it != children.end();++it)
 	{
 		int value = (*it)->update(deltaTime);

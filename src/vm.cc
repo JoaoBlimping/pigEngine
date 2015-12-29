@@ -2,6 +2,7 @@
 
 #include <SDL2/SDL_thread.h>
 
+#include <danylib/danylib.hh>
 
 #include "gui/creator.hh"
 
@@ -31,14 +32,27 @@ static void say(uint8_t * args,int * variables)
 {
 	//TODO: remove magic numbers and make this a fraction of the screen or something
 	game->getCurrentScene()->addGuiNode(creator_createTextBox((char *)args),200,200);
-	while (notification == 0);
+
+	//wait until the user has clicked to move on to the next part of the script
+	while (!notification);
 }
 
 
 static void ask(uint8_t * args,int * variables)
 {
-	bool finished;
-	Node * textBox;
+	//don't get a previous return value
+	notification = 0;
+
+	printf("ask\n");
+
+	uint8_t returnVariable = args[0];
+	char * question = (char *)(args + 1);
+	char const * answers = danylib_findNextString(question);
+	game->getCurrentScene()->addGuiNode(creator_createMultipleChoice(question,answers),200,200);
+
+	//wait for a selection to be made
+	while (!notification);
+	variables[returnVariable] = notification;
 }
 
 
@@ -56,6 +70,7 @@ void vm_init(GameState const * gameState)
 	game = gameState;
 	virtualMachine.registerAddon(wait,"wait");
 	virtualMachine.registerAddon(say,"say");
+	virtualMachine.registerAddon(ask,"ask");
 }
 
 

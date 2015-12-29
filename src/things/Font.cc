@@ -86,5 +86,8 @@ int Font::getStringHeight(char const * text,int width)
 		rows++;
 		length -= width;
 	}
+	rows++;
+
+	printf("string %s\nwidth is %d, height is %d\n",text,width,rows * image->getHeight());
 	return rows * image->getHeight();
 }
