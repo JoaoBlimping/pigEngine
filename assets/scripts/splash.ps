@@ -1,5 +1,27 @@
+;
 ;splash.ps
+;
+;some random junk that happens at the start to test this stuff's interaction with the
+;game
 
+;constants
+set 1 one
+
+;code
 call 2 "say" "my name is mr ebola"
 call 6 "ask" arousing "do you find that arousing" "yes" "no" "~"
-dump
+sub arousing one arousing
+
+jeq yes arousing
+jmp no
+
+label yes
+	call 2 "say" "thankyou my friend"
+	call 2 "say" "i am so happy"
+	jmp end
+
+label no
+	call 2 "say" "i am going to tell the police of this i am not happy i swear to god you are dead meat mate watch you back you filthy fiend"
+
+
+label end

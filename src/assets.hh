@@ -65,6 +65,9 @@ extern Manager<Script,ScriptLoader> assets_scripts;
 /** the window skin */
 extern Skin * assets_windowSkin;
 
+/** the skin for selection box things */
+extern Skin * assets_selectSkin;
+
 /** Initialises assets, and must be called before the managers can be used. */
 void assets_init(SDL_Renderer * renderer);
 

@@ -5,6 +5,7 @@
 #include <SDL2/SDL.h>
 
 #include "../input.hh"
+#include "../assets.hh"
 
 
 #define PADDING 5
@@ -78,9 +79,8 @@ void Selector::render(SDL_Renderer * renderer,int x,int y)
 		//draw the option backing if it is to be
 		if (i == selection)
 		{
-			SDL_Rect drawRect = {x,y,(*it)->getWidth(),(*it)->getHeight()};
-			SDL_SetRenderDrawColor(renderer,0xFF,0xFF,0x00,0xFF);
-			SDL_RenderDrawRect(renderer,&drawRect);
+			assets_selectSkin->render(renderer,x - 1,y - 1,(*it)->getWidth() + 1,
+									  (*it)->getHeight() + 1);
 		}
 
 		//draw the option

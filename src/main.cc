@@ -51,10 +51,10 @@ bool init()
 	}
 
 	//make it fullscreen
-	//if (SDL_SetWindowFullscreen(window,SDL_WINDOW_FULLSCREEN))
-	//{
-	//	printf( "couldn't go fullscreen! SDL_Error: %s\n", SDL_GetError());
-	//}
+	if (SDL_SetWindowFullscreen(window,SDL_WINDOW_FULLSCREEN))
+	{
+		printf( "couldn't go fullscreen! SDL_Error: %s\n", SDL_GetError());
+	}
 
 	//check the display mode
 	SDL_DisplayMode mode;

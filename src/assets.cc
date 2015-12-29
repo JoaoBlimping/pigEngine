@@ -106,6 +106,8 @@ Manager<Script,ScriptLoader> assets_scripts(SCRIPTS_DIR);
 
 Skin * assets_windowSkin = NULL;
 
+Skin * assets_selectSkin = NULL;
+
 
 void assets_init(SDL_Renderer * renderer)
 {
@@ -116,4 +118,5 @@ void assets_init(SDL_Renderer * renderer)
 	assets_fonts.init(renderer);
 	assets_scripts.init(renderer);
 	assets_windowSkin = new Skin(assets_images.getItem(6));//TODO: remove magic
+	assets_selectSkin = new Skin(assets_images.getItem(8));//TODO: remove magic
 }

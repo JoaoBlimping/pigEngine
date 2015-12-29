@@ -30,6 +30,9 @@ static void wait(uint8_t * args,int * variables)
 
 static void say(uint8_t * args,int * variables)
 {
+	//don't get a previous return value
+	notification = 0;
+
 	//TODO: remove magic numbers and make this a fraction of the screen or something
 	game->getCurrentScene()->addGuiNode(creator_createTextBox((char *)args),200,200);
 

@@ -3,7 +3,7 @@
 #include "../assets.hh"
 
 
-#define WINDOW_PADDING 20
+#define WINDOW_PADDING 25
 #define DELAY 2
 
 
@@ -24,6 +24,10 @@ Window::~Window()
 void Window::addChild(Node * child)
 {
 	children.push_back(child);
+	if (width < child->getWidth() + WINDOW_PADDING * 2)
+	{
+		width = child->getWidth() + WINDOW_PADDING * 2;
+	}
 }
 
 
