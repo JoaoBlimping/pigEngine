@@ -6,6 +6,7 @@
 
 #include "../assets.hh"
 #include "../gui/Node.hh"
+#include "../things/AbstractFactory.hh"
 
 
 /** The game will have a focus on a certain set of functionality at all times, and these

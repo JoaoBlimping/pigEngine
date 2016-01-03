@@ -52,3 +52,9 @@ void SplashScene::renderContent(SDL_Renderer * renderer)
 	//draw the animation
 	assets_animations.getItem(0)->render(renderer,0,0);
 }
+
+
+Scene * SplashSceneFactory::operator()(std::istream * data)
+{
+	return new SplashScene();
+}

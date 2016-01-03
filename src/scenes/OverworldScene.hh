@@ -24,11 +24,19 @@ public:
 
 	void logic(float deltaTime);
 
-	void render(SDL_Renderer * renderer);
+	void renderContent(SDL_Renderer * renderer);
 
 private:
 	/** The current level's map */
 	TileMap * map;
+};
+
+
+/** concrete factory for creating overworld scenes */
+class OverworldSceneFactory:public ConcreteFactory<Scene>
+{
+public:
+	Scene * operator()(std::istream * data);
 };
 
 

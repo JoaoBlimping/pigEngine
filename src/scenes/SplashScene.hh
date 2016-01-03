@@ -44,4 +44,13 @@ private:
 };
 
 
+/** concrete factory that creates splash scenes, even though there isn't really anything
+ * to do */
+class SplashSceneFactory:public ConcreteFactory<Scene>
+{
+public:
+	Scene * operator()(std::istream * data);
+};
+
+
 #endif

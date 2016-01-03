@@ -19,7 +19,13 @@ void OverworldScene::logic(float deltaTime)
 }
 
 
-void OverworldScene::render(SDL_Renderer * renderer)
+void OverworldScene::renderContent(SDL_Renderer * renderer)
 {
 
+}
+
+
+Scene * OverworldSceneFactory::operator()(std::istream * data)
+{
+	return new OverworldScene();
 }

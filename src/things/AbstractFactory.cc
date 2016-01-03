@@ -11,13 +11,13 @@
 #define NAME_BUFFER_LENGTH 32
 
 
-template <typename T> void AbstractFactory<T>::registerFactory(ConcreteFactory<T> * factory)
+template <typename T> void AbstractFactory<T>::registerFactory(ConcreteFactory<T> * factory,char * name)
 {
-	factories.push_back(factory);
+	factories[name] = factory;
 }
 
 
-template <typename T> T * AbstractFactory<T>::make(char const * filename)
+template <typename T> T * AbstractFactory<T>::operator()(char const * filename)
 {
 	std::ifstream input(filename);
 	char type[NAME_BUFFER_LENGTH];

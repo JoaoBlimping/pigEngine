@@ -25,4 +25,12 @@ public:
 };
 
 
+/** concrete factory for creating menu scenes */
+class MenuSceneFactory:public ConcreteFactory<Scene>
+{
+public:
+	Scene * operator()(std::istream * data);
+};
+
+
 #endif
