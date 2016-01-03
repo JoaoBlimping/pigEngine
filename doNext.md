@@ -1,3 +1,14 @@
+# 30/12/2015
+ok fiendicans first I am going to add a vm addon for changing the current scene, then I
+need to make the scene factory thingo that will allow you to load the correct scene from
+a file yeeeeaaaaaaah. actually I should prob make the factory first.
+
+ok since I'll need to do this for other things as well I should make this nice and
+adaptable.
+ - it'll need to be an abstract factory, but each sub factory thing can just be a functor
+ and each subclass of scene will register it's functor and name with the super factory
+ which will be stored in Scene.hh. this way the main factory can just be a template type.
+
 # 28/12/2015
 working on creating the question boxes. maybe instead of having the questions written
 as separate strings, i should just separate them with a slash or something, otherwise

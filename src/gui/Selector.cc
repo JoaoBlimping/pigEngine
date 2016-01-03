@@ -9,7 +9,7 @@
 
 
 #define PADDING 5
-#define NODE_DELAY 2
+#define NODE_DELAY 0.5
 
 
 Selector::Selector():
