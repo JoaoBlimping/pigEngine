@@ -25,11 +25,16 @@ template <typename T> class AbstractFactory
 {
 public:
 	/** add a new type of concrete factory that can be used to create thingoids */
-	void registerFactory(ConcreteFactory<T> * factory,char * name);
+	void registerFactory(ConcreteFactory<T> * factory,char const * name);
 
-	/** create a thing
-	 * uses an istream to get the data to make the data reading nice and easy */
+	/** create a thing from a set file
+	 * since it comes from a file it can close it again when it's done */
 	T * operator()(char const * filename);
+
+	/** create a thing from a stream
+	 * since this is used to create composite type objects, it does not close the stream
+	 * when it's done */
+	T * operator()(istream * input);
 
 private:
 	/** maps factories to the name that is given for them */

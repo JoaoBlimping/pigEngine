@@ -1,3 +1,12 @@
+# 3/1/2016
+ok now I need to make new kinds of scene that make sense for this new world, I probably
+can replace all menus with some kind of scene that runs a script and has a picture in
+the background. I will call it static scene or something.
+
+This means that I now need to make background factories so that you can create the
+background for this kind of scene. I'll need to make it that AbstractFactory can take a
+istream as well as a filename so that I can create those nice composite types of things.
+
 # 30/12/2015
 ok fiendicans first I am going to add a vm addon for changing the current scene, then I
 need to make the scene factory thingo that will allow you to load the correct scene from

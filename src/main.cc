@@ -5,7 +5,7 @@
 
 #include "GameState.hh"
 #include "scenes/Scene.hh"
-#include "scenes/SplashScene.hh"
+#include "scenes/sceneFactory.hh"
 #include "assets.hh"
 #include "input.hh"
 #include "vm.hh"
@@ -13,6 +13,8 @@
 
 #define SCREEN_WIDTH 640
 #define SCREEN_HEIGHT 480
+
+#define FIRST_SCENE "assets/scenes/start.pig"
 
 
 //the game state object thing
@@ -29,9 +31,10 @@ static bool running = true;
 
 bool init()
 {
+	sceneFactory_init();
+
 	//initialise the game state object thing
-	//TODO: this will come from a factory using a file
-	game = new GameState(SCREEN_WIDTH,SCREEN_HEIGHT,new SplashScene());
+	game = new GameState(SCREEN_WIDTH,SCREEN_HEIGHT,sceneFactory_factory(FIRST_SCENE));
 
 	//Initialize SDL
 	if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_JOYSTICK) < 0)
@@ -51,10 +54,10 @@ bool init()
 	}
 
 	//make it fullscreen
-	if (SDL_SetWindowFullscreen(window,SDL_WINDOW_FULLSCREEN))
-	{
-		printf( "couldn't go fullscreen! SDL_Error: %s\n", SDL_GetError());
-	}
+	//if (SDL_SetWindowFullscreen(window,SDL_WINDOW_FULLSCREEN))
+	//{
+	//	printf( "couldn't go fullscreen! SDL_Error: %s\n", SDL_GetError());
+	//}
 
 	//check the display mode
 	SDL_DisplayMode mode;

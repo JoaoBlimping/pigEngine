@@ -1,14 +1,15 @@
 #include "TileBackground.hh"
 
 #include <math.h>
+#include <iostream>
 
 #include <SDL2/SDL.h>
 
 #include "../assets.hh"
 
 
-TileBackground::TileBackground(Image * pTile):
-tile(pTile)
+TileBackground::TileBackground(Image * tile):
+tile(tile)
 {}
 
 void TileBackground::update(float deltaTime)
@@ -32,8 +33,14 @@ void TileBackground::render(SDL_Renderer * renderer,int screenWidth,
 }
 
 
-Background * TileBackgroundFactory::createBackground()
+Background * TileBackgroundFactory::operator()(istream * data)
 {
-  //TODO: make it return a new tile background
-  return NULL;
+	int imageIndex;
+
+
+	istream input = *data;
+
+	input >> imageIndex;
+
+	return new TileBackground(assets_images.getItem(imageIndex));
 }

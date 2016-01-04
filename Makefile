@@ -9,4 +9,4 @@ OUTPUT = bin/main
 
 all: $(SOURCES)
 	#the building part
-	$(CC) $(SOURCES) $(LINKER_FLAGS) -o $(OUTPUT)
+	$(CC) $(SOURCES) $(LINKER_FLAGS) -o $(OUTPUT) -g

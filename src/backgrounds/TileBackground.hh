@@ -7,6 +7,8 @@
 
 #include "Background.hh"
 
+#include <iostream>
+
 #include <SDL2/SDL.h>
 
 #include "../things/Image.hh"
@@ -31,10 +33,10 @@ private:
 };
 
 
-class TileBackgroundFactory:public BackgroundFactory
+class TileBackgroundFactory:public ConcreteFactory<Background>
 {
-  //creates a TileBackground
-  virtual Background * createBackground();
+public:
+	Background * operator()(istream * data);
 };
 
 

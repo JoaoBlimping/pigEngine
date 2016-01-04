@@ -11,7 +11,7 @@
 #define NAME_BUFFER_LENGTH 32
 
 
-template <typename T> void AbstractFactory<T>::registerFactory(ConcreteFactory<T> * factory,char * name)
+template <typename T> void AbstractFactory<T>::registerFactory(ConcreteFactory<T> * factory,char const * name)
 {
 	factories[name] = factory;
 }
@@ -19,9 +19,37 @@ template <typename T> void AbstractFactory<T>::registerFactory(ConcreteFactory<T
 
 template <typename T> T * AbstractFactory<T>::operator()(char const * filename)
 {
+	//get factory name
 	std::ifstream input(filename);
 	char type[NAME_BUFFER_LENGTH];
 	input.get(type,NAME_BUFFER_LENGTH);
+
+	//get factory
+	ConcreteFactory<T> * factory = factories.at(type);
+
+	//make thing
+	T * product = (*factory)(&input);
+
+	//close input
+	input.close();
+
+	return product;
+}
+
+
+template <typename T> T * AbstractFactory<T>::operator()(istream * input)
+{
+	//get factory name
+	char type[NAME_BUFFER_LENGTH];
+	input->get(type,NAME_BUFFER_LENGTH);
+
+	//get factory
+	ConcreteFactory<T> * factory = factories.at(type);
+
+	//make thing
+	T * product = (*factory)(input);
+
+	return product;
 }
 
 

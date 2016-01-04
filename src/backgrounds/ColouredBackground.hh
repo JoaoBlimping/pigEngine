@@ -1,41 +1,45 @@
-//a background that is a nice colour
-
-
 #ifndef COLOURED_BACKGROUND_H
 #define COLOURED_BACKGROUND_H
 
 
 #include "Background.hh"
 
+#include <stdint.h>
+#include <iostream>
+
 #include <SDL2/SDL.h>
 
 #include "../assets.hh"
 
 
+/** simple solid colour backround */
 class ColouredBackground:public Background
 {
 public:
-  //sets the colour that it fills the background with
-  ColouredBackground(char pRed,char pGreen,char pBlue,char pAlpha);
+	/** creates the background and sets it's colour */
+	ColouredBackground(char pRed,char pGreen,char pBlue,char pAlpha);
 
-  //might be useful for animated backgrounds
-  virtual void update(float deltaTime);
+	virtual void update(float deltaTime);
 
-  //display the background with dynamic width and height
-  virtual void render(SDL_Renderer * renderer,int screenWidth,int screenHeight);
+	virtual void render(SDL_Renderer * renderer,int screenWidth,int screenHeight);
 
 private:
-  //the components of the colour it displays
-  char red;
-  char green;
-  char blue;
+	/** red component of the background colour */
+	uint8_t red;
+
+	/** green component of the background colour */
+	uint8_t green;
+
+	/** blue component of the background colour */
+	uint8_t blue;
 };
 
 
-class ColouredBackgroundFactory:public BackgroundFactory
+/** concrete factory that creates coloured backgrounds */
+class ColouredBackgroundFactory:public ConcreteFactory<Background>
 {
-  //creates a TileBackground
-  virtual Background * createBackground();
+public:
+	Background * operator()(std::istream * data);
 };
 
 
