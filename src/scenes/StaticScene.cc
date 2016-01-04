@@ -6,6 +6,7 @@
 #include "../vm.hh"
 #include "../backgrounds/Background.hh"
 #include "../backgrounds/backgroundFactory.hh"
+#include "../things/StreamReader.hh"
 
 
 StaticScene::StaticScene(Background * background,int scriptIndex):
@@ -29,17 +30,15 @@ void StaticScene::logic(float deltaTime)
 }
 
 
-void StaticScene::renderContent(SDL_Renderer * renderer)
+void StaticScene::renderContent(SDL_Renderer * renderer,float deltaTime)
 {
-	background->render(renderer,100,100);//TODO: get proper numbers here
+	background->render(renderer,assets_getScreenWidth(),assets_getScreenHeight(),deltaTime);
 }
 
 
-Scene * StaticSceneFactory::operator()(std::istream * data)
+Scene * StaticSceneFactory::operator()(StreamReader * data)
 {
 	Background * background = backgroundFactory_factory(data);
-	int scriptIndex;
-	data->operator>>(scriptIndex);
-
+	int scriptIndex = data->readInt();
 	return new StaticScene(background,scriptIndex);
 }

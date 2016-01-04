@@ -6,7 +6,7 @@ void ConnectControllerScene::logic(float deltaTime)
 	//TODO: make it be able to end
 }
 
-void ConnectControllerScene::render(SDL_Renderer * renderer)
+void ConnectControllerScene::render(SDL_Renderer * renderer,float deltaTime)
 {
 	//do a nice background colour
 	SDL_SetRenderDrawColor(renderer,100,100,255,255);

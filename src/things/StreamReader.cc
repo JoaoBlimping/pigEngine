@@ -1,28 +1,34 @@
 #include "StreamReader.hh"
 
+#include <danylib/danylib.hh>
+
 #include <stdio.h>
+#include <cstdlib>
+#include <ctype.h>
 
 
-#define TOKEN_BUFFER_SIZE 64
+#define TOKEN_BUFFER_SIZE 128
 
 
-StreamReader(char const * filename)
+StreamReader::StreamReader(char const * filename)
 {
-	inputFile = fopen(filename);
+	inputFile = fopen(filename,"r");
 }
 
 
-~StreamReader()
+StreamReader::~StreamReader()
 {
 	fclose(inputFile);
 }
 
 
-char * readToken()
+char * StreamReader::readToken()
 {
 	bool started = false;
 	int charIndex = 0;
+	char c;
 	char token[TOKEN_BUFFER_SIZE];
+
 	while ((c = fgetc(inputFile)) != EOF)
 	{
 		//if it is in the actual string
@@ -44,13 +50,24 @@ char * readToken()
 			charIndex++;
 		}
 	}
-
-	
-
+	token[charIndex] = '\0';
+	return danylib_fit(token);
 }
 
 
-int readInt()
+int StreamReader::readInt()
 {
+	char * token = readToken();
+	int value = atoi(token);
+	delete token;
+	return value;
+}
 
+
+float StreamReader::readFloat()
+{
+	char * token = readToken();
+	float value = atof(token);
+	delete token;
+	return value;
 }

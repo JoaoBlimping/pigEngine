@@ -7,6 +7,7 @@
 #include <SDL2/SDL.h>
 
 #include "../backgrounds/Background.hh"
+#include "../things/StreamReader.hh"
 
 
 /** Scene that contains pretty much any scene that only contains gui type stuff or basic
@@ -24,7 +25,7 @@ public:
 
 	void logic(float deltaTime);
 
-	void renderContent(SDL_Renderer * renderer);
+	void renderContent(SDL_Renderer * renderer,float deltaTime);
 
 private:
 	/** true only on it's first run of logic */
@@ -43,7 +44,7 @@ private:
 class StaticSceneFactory:public ConcreteFactory<Scene>
 {
 public:
-	Scene * operator()(std::istream * data);
+	Scene * operator()(StreamReader * data);
 };
 
 

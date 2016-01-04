@@ -5,12 +5,12 @@
 #include "Background.hh"
 
 #include <stdint.h>
-#include <iostream>
 
 #include <SDL2/SDL.h>
 
 #include "../assets.hh"
 #include "../things/AbstractFactory.hh"
+#include "../things/StreamReader.hh"
 
 
 /** simple solid colour backround */
@@ -20,9 +20,7 @@ public:
 	/** creates the background and sets it's colour */
 	ColouredBackground(uint8_t red,uint8_t green,uint8_t blue,uint8_t alpha);
 
-	virtual void update(float deltaTime);
-
-	virtual void render(SDL_Renderer * renderer,int screenWidth,int screenHeight);
+	void render(SDL_Renderer * renderer,int screenWidth,int screenHeight,float deltaTime);
 
 private:
 	/** red component of the background colour */
@@ -43,7 +41,7 @@ private:
 class ColouredBackgroundFactory:public ConcreteFactory<Background>
 {
 public:
-	Background * operator()(std::istream * data);
+	Background * operator()(StreamReader * data);
 };
 
 

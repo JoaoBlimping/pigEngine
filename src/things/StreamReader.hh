@@ -21,6 +21,9 @@ public:
 	/** read an integer */
 	int readInt();
 
+	/** read a float */
+	float readFloat();
+
 private:
 	/** the file it reads from */
 	FILE * inputFile;

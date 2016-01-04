@@ -2,11 +2,11 @@
 #define ABSTRACT_FACTORY_H
 
 
-#include <iostream>
-#include <fstream>
 #include <map>
 
 #include <danylib/danylib.hh>
+
+#include "StreamReader.hh"
 
 
 /** template class that creates a specific type of thing by taking in a stream containing
@@ -15,7 +15,7 @@ template <typename T> class ConcreteFactory
 {
 public:
 	/** creates the thing */
-	virtual T * operator()(std::istream * data) = 0;
+	virtual T * operator()(StreamReader * data) = 0;
 };
 
 
@@ -34,7 +34,7 @@ public:
 	/** create a thing from a stream
 	 * since this is used to create composite type objects, it does not close the stream
 	 * when it's done */
-	T * operator()(std::istream * input);
+	T * operator()(StreamReader * input);
 
 private:
 	/** maps factories to the name that is given for them */

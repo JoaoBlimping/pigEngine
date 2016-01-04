@@ -108,8 +108,12 @@ Skin * assets_windowSkin = NULL;
 
 Skin * assets_selectSkin = NULL;
 
+static int screenWidth = 0;
 
-void assets_init(SDL_Renderer * renderer)
+static int screenHeight = 0;
+
+
+void assets_init(SDL_Renderer * renderer,SDL_Window * window)
 {
 	//initialise managers
 	assets_images.init(renderer);
@@ -119,4 +123,19 @@ void assets_init(SDL_Renderer * renderer)
 	assets_scripts.init(renderer);
 	assets_windowSkin = new Skin(assets_images.getItem(6));//TODO: remove magic
 	assets_selectSkin = new Skin(assets_images.getItem(8));//TODO: remove magic
+
+	//set screen width and height
+	SDL_GetWindowSize(window,&screenWidth,&screenHeight);
+}
+
+
+int assets_getScreenWidth()
+{
+	return screenWidth;
+}
+
+
+int assets_getScreenHeight()
+{
+	return screenHeight;
 }

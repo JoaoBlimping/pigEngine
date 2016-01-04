@@ -1,7 +1,12 @@
 static
-	coloured
-		255
-		0
-		0
-		255
+	compound
+		2
+		tile
+			0
+			-10
+			25
+		tile
+			1
+			200
+			200
 	0

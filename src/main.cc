@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdint.h>
 
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
@@ -14,6 +15,7 @@
 
 #define SCREEN_WIDTH 640
 #define SCREEN_HEIGHT 480
+#define MILLI 1000
 
 #define FIRST_SCENE "assets/scenes/start.pig"
 
@@ -29,15 +31,12 @@ static SDL_Joystick * gameController = NULL;
 //false iff the game needs to close
 static bool running = true;
 
+//keeps the currentTime
+static uint32_t currentTime;
+
 
 bool init()
 {
-	sceneFactory_init();
-	backgroundFactory_init();
-
-	//initialise the game state object thing
-	game = new GameState(SCREEN_WIDTH,SCREEN_HEIGHT,sceneFactory_factory(FIRST_SCENE));
-
 	//Initialize SDL
 	if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_JOYSTICK) < 0)
 	{
@@ -47,7 +46,7 @@ bool init()
 
 	//Create window
 	window = SDL_CreateWindow("load game name from a file ayyy",SDL_WINDOWPOS_UNDEFINED,
-							  SDL_WINDOWPOS_UNDEFINED,game->screenWidth,game->screenHeight,
+							  SDL_WINDOWPOS_UNDEFINED,SCREEN_WIDTH,SCREEN_HEIGHT,
 							  SDL_WINDOW_SHOWN);
 	if (window == NULL)
 	{
@@ -113,10 +112,20 @@ bool init()
 	}
 
 	//load in the persistent assets
-	assets_init(renderer);
+	assets_init(renderer,window);
+
+	//set up the factories
+	sceneFactory_init();
+	backgroundFactory_init();
+
+	//initialise the game state object thing
+	game = new GameState(SCREEN_WIDTH,SCREEN_HEIGHT,sceneFactory_factory(FIRST_SCENE));
 
 	//initialise the virtual machine
 	vm_init(game);
+
+	//get the first currentTime
+	currentTime = SDL_GetTicks();
 
 	return true;
 }
@@ -169,15 +178,20 @@ void iteration()
 		}
 	}
 
-	//update the scene
-	//TODO: actually calculate delta time
-	game->getCurrentScene()->update(0.01f);
+	//calculatee deltaTime
+	uint32_t newcurrentTime = SDL_GetTicks();
+	float deltaTime = (float)(newcurrentTime - currentTime) / MILLI;
+	currentTime = newcurrentTime;
+
+	//update scene
+	game->getCurrentScene()->update(deltaTime);
+
 
 	//clear the screen
 	SDL_RenderClear(renderer);
 
 	//render the scene
-	game->getCurrentScene()->render(renderer);
+	game->getCurrentScene()->render(renderer,deltaTime);
 
 	//update screen
 	SDL_RenderPresent(renderer);

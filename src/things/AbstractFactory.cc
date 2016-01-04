@@ -4,12 +4,6 @@
 
 #include "AbstractFactory.hh"
 
-#include <iostream>
-#include <fstream>
-
-
-#define NAME_BUFFER_LENGTH 32
-
 
 template <typename T> void AbstractFactory<T>::registerFactory(ConcreteFactory<T> * factory,char const * name)
 {
@@ -20,12 +14,8 @@ template <typename T> void AbstractFactory<T>::registerFactory(ConcreteFactory<T
 template <typename T> T * AbstractFactory<T>::operator()(char const * filename)
 {
 	//get factory name
-	std::ifstream input(filename);
-	std::skipws(input);
-	char type[NAME_BUFFER_LENGTH];
-	input.get(type,NAME_BUFFER_LENGTH);
-
-	std::cout << "ftype is " << type << std::endl;
+	StreamReader input(filename);
+	char * type = input.readToken();
 
 	//get factory
 	ConcreteFactory<T> * factory = factories.at(type);
@@ -33,20 +23,14 @@ template <typename T> T * AbstractFactory<T>::operator()(char const * filename)
 	//make thing
 	T * product = (*factory)(&input);
 
-	//close input
-	input.close();
-
 	return product;
 }
 
 
-template <typename T> T * AbstractFactory<T>::operator()(std::istream * input)
+template <typename T> T * AbstractFactory<T>::operator()(StreamReader * input)
 {
 	//get factory name
-	char type[NAME_BUFFER_LENGTH];
-	input->get(type,NAME_BUFFER_LENGTH);
-
-	std::cout << "type is " << type << std::endl;
+	char * type = input->readToken();
 
 	//get factory
 	ConcreteFactory<T> * factory = factories.at(type);

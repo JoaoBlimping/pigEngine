@@ -7,37 +7,45 @@
 
 #include "Background.hh"
 
-#include <iostream>
-
 #include <SDL2/SDL.h>
 
 #include "../things/Image.hh"
 #include "../assets.hh"
 #include "../things/AbstractFactory.hh"
+#include "../things/StreamReader.hh"
 
 
 class TileBackground:public Background
 {
 public:
-  //puts the image into it
-  TileBackground(Image * pTile);
+	/** creates the background and gives it all the things it needs */
+	TileBackground(Image * pTile,float xDrift,float yDrift);
 
-  //might be useful for animated backgrounds
-  virtual void update(float deltaTime);
-
-  //display the background with dynamic width and height
-  virtual void render(SDL_Renderer * renderer,int screenWidth,int screenHeight);
+	void render(SDL_Renderer * renderer,int screenWidth,int screenHeight,float deltaTime);
 
 private:
-  //the image that gets repeated in the background
-  Image * tile;
+	/** the Image to be tiled */
+	Image * tile;
+
+	/** pixels per second that it drifts on x axis */
+	float const xDrift;
+
+	/** pixels per second that it drifts on y axis */
+	float const yDrift;
+
+	/** the tile's current x offset */
+	float xOffset;
+
+	/** the tile's current y offset */
+	float yOffset;
 };
 
 
+/** factory that creates TileBackgrounds */
 class TileBackgroundFactory:public ConcreteFactory<Background>
 {
 public:
-	Background * operator()(std::istream * data);
+	Background * operator()(StreamReader * data);
 };
 
 

@@ -2,6 +2,10 @@
 keep working on this stream reader thing so that I can actually read in files properly
 to make the factories work.
 
+at some point I should make some class that takes care of rendering for the user, not
+only would it be nicer, but it could also contain the screen height and stuff which would
+be good rather than storing it in assets. one day...
+
 # 3/1/2016
 ok now I need to make new kinds of scene that make sense for this new world, I probably
 can replace all menus with some kind of scene that runs a script and has a picture in

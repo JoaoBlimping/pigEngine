@@ -13,7 +13,7 @@ class ConnectControllerScene:public Scene
 public:
 	void logic(float deltaTime);
 
-	void render(SDL_Renderer * renderer);
+	void render(SDL_Renderer * renderer,float deltaTime);
 
 private:
 	/**

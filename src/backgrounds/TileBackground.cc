@@ -1,41 +1,48 @@
 #include "TileBackground.hh"
 
 #include <math.h>
-#include <iostream>
+#include <stdio.h>
 
 #include <SDL2/SDL.h>
 
 #include "../assets.hh"
 
 
-TileBackground::TileBackground(Image * tile):
-tile(tile)
+TileBackground::TileBackground(Image * tile,float xDrift,float yDrift):
+tile(tile),
+xDrift(xDrift),
+yDrift(yDrift),
+xOffset(0),
+yOffset(0)
 {}
 
-void TileBackground::update(float deltaTime)
+void TileBackground::render(SDL_Renderer * renderer,int screenWidth,int screenHeight,float deltaTime)
 {
-  //does nothing
+	xOffset += xDrift * deltaTime;
+	yOffset += yDrift * deltaTime;
+	while (xOffset > tile->getWidth()) xOffset -= tile->getWidth();
+	while (yOffset > tile->getHeight()) yOffset -= tile->getHeight();
+	while (xOffset < 0) xOffset += tile->getWidth();
+	while (yOffset < 0) yOffset += tile->getHeight();
+
+
+	int xTiles = ceil(screenWidth / tile->getWidth()) + 1;
+	int yTiles = ceil(screenHeight / tile->getHeight()) + 1;
+
+	for (int x = -1;x < xTiles;x++)
+	{
+		for (int y = -1;y < yTiles;y++)
+		{
+			tile->render(renderer,x * tile->getWidth() + xOffset,y * tile->getHeight() + yOffset);
+		}
+	}
 }
 
-void TileBackground::render(SDL_Renderer * renderer,int screenWidth,
-                            int screenHeight)
+
+Background * TileBackgroundFactory::operator()(StreamReader * data)
 {
-  int xTiles = ceil(screenWidth / tile->getWidth());
-  int yTiles = ceil(screenHeight / tile->getHeight());
-
-  for (int x = 0;x < xTiles;x++)
-  {
-    for (int y = 0;y < yTiles;y++)
-    {
-      tile->render(renderer,x * tile->getWidth(),y * tile->getHeight());
-    }
-  }
-}
-
-
-Background * TileBackgroundFactory::operator()(std::istream * data)
-{
-	int imageIndex;
-	data->operator>>(imageIndex);
-	return new TileBackground(assets_images.getItem(imageIndex));
+	int imageIndex = data->readInt();
+	float xDrift = data->readFloat();
+	float yDrift = data->readFloat();
+	return new TileBackground(assets_images.getItem(imageIndex),xDrift,yDrift);
 }

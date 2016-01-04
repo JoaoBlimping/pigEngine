@@ -26,7 +26,7 @@ public:
 	void update(float deltaTime);
 
 	/** displays the scene along with any gui elements currently active */
-	void render(SDL_Renderer * renderer);
+	void render(SDL_Renderer * renderer,float deltaTime);
 
 
 	/** This is where the scene's logic is implemented */
@@ -34,7 +34,7 @@ public:
 
 
 	/** Displays the scene's content on the screen */
-	virtual void renderContent(SDL_Renderer * renderer) = 0;
+	virtual void renderContent(SDL_Renderer * renderer,float deltaTime) = 0;
 
 	/** adds a gui node to the scene so that it focuses on that until it is done */
 	void addGuiNode(Node * node,int x = 0,int y = 0);

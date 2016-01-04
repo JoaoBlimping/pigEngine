@@ -4,6 +4,7 @@
 
 #include "Scene.hh"
 #include "../TileMap.hh"
+#include "../things/StreamReader.hh"
 
 
 /** The scene in which the overworld of the game takes place
@@ -24,7 +25,7 @@ public:
 
 	void logic(float deltaTime);
 
-	void renderContent(SDL_Renderer * renderer);
+	void renderContent(SDL_Renderer * renderer,float deltaTime);
 
 private:
 	/** The current level's map */
@@ -36,7 +37,7 @@ private:
 class OverworldSceneFactory:public ConcreteFactory<Scene>
 {
 public:
-	Scene * operator()(std::istream * data);
+	Scene * operator()(StreamReader * data);
 };
 
 

@@ -34,9 +34,9 @@ void Scene::update(float deltaTime)
 	}
 }
 
-void Scene::render(SDL_Renderer * renderer)
+void Scene::render(SDL_Renderer * renderer,float deltaTime)
 {
-	renderContent(renderer);
+	renderContent(renderer,deltaTime);
 	if (gui) gui->render(renderer,guiX,guiY);
 
 	ControllerState const * state = input_getControllerState(0);

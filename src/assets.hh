@@ -69,7 +69,13 @@ extern Skin * assets_windowSkin;
 extern Skin * assets_selectSkin;
 
 /** Initialises assets, and must be called before the managers can be used. */
-void assets_init(SDL_Renderer * renderer);
+void assets_init(SDL_Renderer * renderer,SDL_Window * window);
+
+/** gives you the screen width */
+int assets_getScreenWidth();
+
+/** gives you the screen width */
+int assets_getScreenHeight();
 
 
 #endif
