@@ -1,5 +1,5 @@
 # pigEngine
-a game engine written in c++ and converted to html5 stuff with emscripten.
+a game engine written in c++.
 
 `You'd better strap your dick on, boy, because this is going to be one hell of
 a game engine.`
@@ -10,5 +10,3 @@ fighting game battles.
 Dependancies:
  - pigScript
  - danylib
-
-you'll have to set the path to these projects's src folders in the Makefile
