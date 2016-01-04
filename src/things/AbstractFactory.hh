@@ -34,7 +34,7 @@ public:
 	/** create a thing from a stream
 	 * since this is used to create composite type objects, it does not close the stream
 	 * when it's done */
-	T * operator()(istream * input);
+	T * operator()(std::istream * input);
 
 private:
 	/** maps factories to the name that is given for them */

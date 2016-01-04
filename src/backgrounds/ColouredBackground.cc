@@ -33,17 +33,15 @@ void ColouredBackground::render(SDL_Renderer * renderer,int screenWidth,int scre
 
 Background * ColouredBackgroundFactory::operator()(std::istream * data)
 {
-	uint8_t red;
-	uint8_t green;
-	uint8_t blue;
-	uint8_t alpha;
+	int red;
+	int green;
+	int blue;
+	int alpha;
 
-	istream input = *data;
-
-	input >> red;
-	input >> green;
-	input >> blue;
-	input >> alpha;
+	data->operator>>(red);
+	data->operator>>(green);
+	data->operator>>(blue);
+	data->operator>>(alpha);
 
 	return new ColouredBackground(red,green,blue,alpha);
 }

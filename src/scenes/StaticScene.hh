@@ -6,6 +6,8 @@
 
 #include <SDL2/SDL.h>
 
+#include "../backgrounds/Background.hh"
+
 
 /** Scene that contains pretty much any scene that only contains gui type stuff or basic
  * graphics */

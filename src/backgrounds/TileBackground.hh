@@ -13,6 +13,7 @@
 
 #include "../things/Image.hh"
 #include "../assets.hh"
+#include "../things/AbstractFactory.hh"
 
 
 class TileBackground:public Background
@@ -36,7 +37,7 @@ private:
 class TileBackgroundFactory:public ConcreteFactory<Background>
 {
 public:
-	Background * operator()(istream * data);
+	Background * operator()(std::istream * data);
 };
 
 

@@ -6,6 +6,7 @@
 #include "GameState.hh"
 #include "scenes/Scene.hh"
 #include "scenes/sceneFactory.hh"
+#include "backgrounds/backgroundFactory.hh"
 #include "assets.hh"
 #include "input.hh"
 #include "vm.hh"
@@ -32,6 +33,7 @@ static bool running = true;
 bool init()
 {
 	sceneFactory_init();
+	backgroundFactory_init();
 
 	//initialise the game state object thing
 	game = new GameState(SCREEN_WIDTH,SCREEN_HEIGHT,sceneFactory_factory(FIRST_SCENE));

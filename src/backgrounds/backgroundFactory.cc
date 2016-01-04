@@ -11,5 +11,5 @@ AbstractFactory<Background> backgroundFactory_factory;
 void backgroundFactory_init()
 {
 	backgroundFactory_factory.registerFactory(new ColouredBackgroundFactory(),"coloured");
-	backgroundFactory_factory.registerFactory(new TileBackgroundSceneFactory(),"tile");
+	backgroundFactory_factory.registerFactory(new TileBackgroundFactory(),"tile");
 }

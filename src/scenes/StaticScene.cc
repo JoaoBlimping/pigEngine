@@ -4,6 +4,8 @@
 
 #include "../assets.hh"
 #include "../vm.hh"
+#include "../backgrounds/Background.hh"
+#include "../backgrounds/backgroundFactory.hh"
 
 
 StaticScene::StaticScene(Background * background,int scriptIndex):
@@ -35,5 +37,9 @@ void StaticScene::renderContent(SDL_Renderer * renderer)
 
 Scene * StaticSceneFactory::operator()(std::istream * data)
 {
-	return new StaticScene();
+	Background * background = backgroundFactory_factory(data);
+	int scriptIndex;
+	data->operator>>(scriptIndex);
+
+	return new StaticScene(background,scriptIndex);
 }

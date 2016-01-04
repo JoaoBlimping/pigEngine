@@ -10,6 +10,7 @@
 #include <SDL2/SDL.h>
 
 #include "../assets.hh"
+#include "../things/AbstractFactory.hh"
 
 
 /** simple solid colour backround */
@@ -17,7 +18,7 @@ class ColouredBackground:public Background
 {
 public:
 	/** creates the background and sets it's colour */
-	ColouredBackground(char pRed,char pGreen,char pBlue,char pAlpha);
+	ColouredBackground(uint8_t red,uint8_t green,uint8_t blue,uint8_t alpha);
 
 	virtual void update(float deltaTime);
 
@@ -32,6 +33,9 @@ private:
 
 	/** blue component of the background colour */
 	uint8_t blue;
+
+	/** alpha component of the background colour */
+	uint8_t alpha;
 };
 
 

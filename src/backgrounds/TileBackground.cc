@@ -33,14 +33,9 @@ void TileBackground::render(SDL_Renderer * renderer,int screenWidth,
 }
 
 
-Background * TileBackgroundFactory::operator()(istream * data)
+Background * TileBackgroundFactory::operator()(std::istream * data)
 {
 	int imageIndex;
-
-
-	istream input = *data;
-
-	input >> imageIndex;
-
+	data->operator>>(imageIndex);
 	return new TileBackground(assets_images.getItem(imageIndex));
 }

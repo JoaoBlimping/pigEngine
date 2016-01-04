@@ -21,8 +21,11 @@ template <typename T> T * AbstractFactory<T>::operator()(char const * filename)
 {
 	//get factory name
 	std::ifstream input(filename);
+	std::skipws(input);
 	char type[NAME_BUFFER_LENGTH];
 	input.get(type,NAME_BUFFER_LENGTH);
+
+	std::cout << "ftype is " << type << std::endl;
 
 	//get factory
 	ConcreteFactory<T> * factory = factories.at(type);
@@ -37,11 +40,13 @@ template <typename T> T * AbstractFactory<T>::operator()(char const * filename)
 }
 
 
-template <typename T> T * AbstractFactory<T>::operator()(istream * input)
+template <typename T> T * AbstractFactory<T>::operator()(std::istream * input)
 {
 	//get factory name
 	char type[NAME_BUFFER_LENGTH];
 	input->get(type,NAME_BUFFER_LENGTH);
+
+	std::cout << "type is " << type << std::endl;
 
 	//get factory
 	ConcreteFactory<T> * factory = factories.at(type);
