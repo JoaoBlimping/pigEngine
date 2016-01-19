@@ -32,6 +32,11 @@ private:
 	/** The current level's map */
 	TileMap * map;
 
+	/** the player's character.
+	 * this should also be in the general list of characters so that they can get the
+	 * usual character stuff done to them */
+	PlayableCharacter * player;
+
 	/** the characters in the level */
 	Character * characters;
 
@@ -43,6 +48,12 @@ private:
 
 	/** the overlay of the scene */
 	Background * overlay;
+
+	/** horizontal camera position */
+	int cameraX;
+
+	/** vertical camera position */
+	int cameraY;
 };
 
 

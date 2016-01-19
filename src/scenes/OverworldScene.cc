@@ -22,7 +22,21 @@ OverworldScene::~OverworldScene()
 
 void OverworldScene::logic(float deltaTime)
 {
-	//TODO: stuff
+	//update characters
+	for (int i = 0;i < nCharacters;i++) characters[i].update(deltaTime);
+
+	//if the player has stepped into a region, see if it's important
+	for (std::map<Region,char *,danylib_cmpstr>::iterator it = map->regions.begin();
+		 it != map->regions.end();++it)
+	{
+		//the player is in the region
+		if (*it.x <= player->xPosition && *it.x + *it.width >= player->xPosition &&
+			*it.y <= player->yPosition && *it.y + *it.height >= player->yPosition)
+		{
+			//it's important
+			if (*it.script != NULL) vm_runScript(*it.script);
+		}
+	}
 }
 
 
@@ -32,15 +46,19 @@ void OverworldScene::renderContent(SDL_Renderer * renderer,float deltaTime)
 	background->render(renderer,assets_getScreenWidth(),assets_getScreenHeight(),deltaTime);
 
 	//display the lower tiles
-	map->render(renderer);
+	map->renderBack(renderer,cameraX,cameraY);
 
 	//display the characters
+	for (int i = 0;i < nCharacters;i++)
+	{
+		characters[i].render(renderer,cameraX,cameraY,deltaTime);
+	}
 
 	//display the upper tiles
+	map->renderFront(renderer,cameraX,cameraY);
 
 	//display the overlay
 	overlay->render(renderer,assets_getScreenWidth(),assets_getScreenHeight(),deltaTime);
-
 }
 
 

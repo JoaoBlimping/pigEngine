@@ -1,15 +1,25 @@
 #include "Character.hh"
 
 
-Character::Character(EventPage * pages,int nPages):
-pages(pages),
-nPages(nPages)
+Character::Character(int xPosition,int yPosition):
+xPosition(xPosition),
+yPosition(yPosition)
 {}
 
 
 Character::~Character()
 {
-	delete[] pages;
+	//does nothing
+}
+
+
+void Character::update(float deltaTime)
+{
+	//if the character is in the process of walking, just keep on doing that
+
+	//if the character is still make it move to it's next spot
+
+	//if the character is meant to autorun it's script and has not yet done so it should
 }
 
 
@@ -43,19 +53,4 @@ void Character::recheckEvents()
 		//TODO: on the first page
 		currentPage = 0;
 	}
-}
-
-
-void Character::update(float deltaTime)
-{
-	//if the character is in the process of walking, just keep on doing that
-
-	//if the character is still make it move to it's next spot
-
-	//if the character is meant to autorun it's script and has not yet done so it should
-}
-
-
-void Character::render(SDL_Renderer * renderer,float deltaTime)
-{
 }

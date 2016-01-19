@@ -6,8 +6,8 @@
 class Character
 {
 public:
-	/** creates the character and sets it's stuff */
-	Character(EventPage * pages,int nPages);
+	/** creates the character and sets it's position and that */
+	Character(int xPosition,int yPosition);
 
 	/** deallocates the event pages */
 	virtual ~Character();
@@ -16,7 +16,7 @@ public:
 	void update(float deltaTime);
 
 	/** renders the character on Tha screeeeeeeen */
-	virtual void render(int cameraX,int cameraY,SDL_Renderer * renderer,float deltaTime) = 0;
+	virtual void render(SDL_Renderer * renderer,int cameraX,int cameraY,float deltaTime) = 0;
 
 private:
 	/** the character's horizontal tile position */

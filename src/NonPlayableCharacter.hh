@@ -67,7 +67,9 @@ EventPage;
 class NonPlayableCharacter:public Character
 {
 public:
-
+	/** creates the character
+	 * gives it it's stuff which it takes responsibility for */
+	NonPlayableCharacter(EventPage * pages,int nPages);
 
 	/** sets the character's event page to the current one it should be */
 	void recheckEvents();
@@ -83,6 +85,9 @@ private:
 
 	/** the currently active event page */
 	int currentPage;
+
+	/** if this is false, don't do anything */
+	bool alive;
 };
 
 

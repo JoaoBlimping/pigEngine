@@ -17,6 +17,11 @@
 class TileMap
 {
 public:
+	/** the map of regions with their names.
+	 * the player can get teleported into one, or when they enter one it can cause them
+	 * to be teleported to another one in another scene */
+	map<Region,char *,danylib_cmpstr> regions;
+
 	/** creates a tilemap */
 	TileMap(int width,int height,int nBackLayers,int nFrontLayers,Tile * tiles,
 			bool * collisions,Image * tileset);
@@ -26,29 +31,19 @@ public:
 
 	/** displays the tilemap's back part
 	 * uses the camera position to display the tiles to the screen */
-	void renderBack(SDL_Renderer * renderer);
+	void renderBack(SDL_Renderer * renderer,int cameraX,int cameraY);
 
 	/** displays the tilemap's front part
 	 * uses the camera position to display the tiles to the screen
 	 */
-	void renderFront(SDL_Renderer * renderer);
+	void renderFront(SDL_Renderer * renderer,int cameraX,int cameraY);
 
 	/** displays a single tile at a given location */
 	void renderTile(SDL_Renderer * renderer,int x,int y,int tile);
 
-	/** centres the camera on a specified position
-	 * sets the target centre position of the camera */
-	void centre(int x,int y);
-
 private:
 	/** rectangle used to draw do the clipping and that */
 	static SDL_Rect clip(0,0,TILE_WIDTH,TILE_HEIGHT);
-
-	/** the horizontal position of the camera */
-	int cameraX;
-
-	/** the vertical position of the camera */
-	int cameraY;
 
 	/** the width of the map */
 	int width;
@@ -63,7 +58,7 @@ private:
 	int nFrontLayers;
 
 	/** The tiles that make up the level
-	 * taken responsibility for */
+	 * taken responsibility for. also they are like three dimensional or whatever */
 	Tile * * * tiles;
 
 	/** the collision information

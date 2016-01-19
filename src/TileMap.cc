@@ -21,7 +21,7 @@ TileMap::~TileMap()
 }
 
 
-void TileMap::renderBack(SDL_Renderer * renderer)
+void TileMap::renderBack(SDL_Renderer * renderer,int cameraX,int cameraY)
 {
 	int tileX = cameraX / TILE_WIDTH;
 	int tileY = cameraY / TILE_HEIGHT;
@@ -43,7 +43,7 @@ void TileMap::renderBack(SDL_Renderer * renderer)
 }
 
 
-void TileMap::renderFront(SDL_Renderer * renderer)
+void TileMap::renderFront(SDL_Renderer * renderer,int cameraX,int cameraY)
 {
 	int tileX = cameraX / TILE_WIDTH;
 	int tileY = cameraY / TILE_HEIGHT;
@@ -57,7 +57,7 @@ void TileMap::renderFront(SDL_Renderer * renderer)
 			for (int y = 0;y < tileScreenHeight;y++)
 			{
 				renderTile(renderer,(tileX + x) * TILE_WIDTH - cameraX,
-						   (tileY + y) * TILE_HEIGHT - cameraY,tiles[x][y][z]);
+						   (tileY + y) * TILE_HEIGHT - cameraY.tiles[x][y][z]);
 			}
 		}
 	}
@@ -73,11 +73,4 @@ void TileMap::renderTile(SDL_Renderer * renderer,int x,int y,int tile)
 		clip.x -= tileset->getWidth();
 		clip.y += TILE_HEIGHT;
 	}
-}
-
-
-void TileMap::centre(int x,int y)
-{
-	cameraX = x - assets_getScreenWidth() / 2;
-	cameraY = y - assets_getScreenHeight() / 2;
 }
