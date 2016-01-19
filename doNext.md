@@ -1,3 +1,41 @@
+# 11/1/2016
+before I can make the thing that converts tiled maps into my maps, I have to have created
+a fair bit of the map functionality. The next thing I should do is add named regions that
+can activate events when entered, and also can be teleported into with a vm addon.
+
+# 8/1/2016
+don't need to worry about abstract factories for tile maps or characters or anything, so
+therefore I can just add a function to create these based on a file name and then it can
+read them from a binary file just like in the good old days.
+yeah and get rid of tilesets.
+ - Kill a man
+
+# 6/1/2016
+More specific details on how characters will be stored and that type of thing:
+ - there are two kinds of data that characters contain, the static kind that belong on
+   pages, and the changeable kind like position, velocity and stuff.
+ - each page will also contain a set of conditions that must be met in order to reach this
+   page, each condition will be made up of two variables or constants, and a thing that
+   turns them into a boolean value like =,!=,> etc.
+ - each page also contains a script that will be triggered by a few different conditions,
+   such as player pressing a button while next to them, or as soon as the player bumps
+   into them and stuff like that.
+ - in order to make it more efficient, characters will only decide which page they are on
+   at the start of the level, and then whenever a special function is called to make them
+   all recheck, which can be called whenever an event occurs that should cause something
+   to happen.
+
+
+I really don't want to have to create a whole rpgmaker rip off since it would make me
+want to die, so I think I need to rethink the way tilesets and that work to make it less
+reliant on configuration. I'll just make it that the bottom layer of each level is the
+collision detection level, and some other thing can determine layers that appear above
+the player's head. That's how I normally do it anyway.
+
+Also I think I'll add teleportation regions. I know it kinda clashes with having rpgmaker
+style characters, but it should be fast and easy, so that's good
+
+
 # 4/1/2016
 keep working on this stream reader thing so that I can actually read in files properly
 to make the factories work.
@@ -5,6 +43,29 @@ to make the factories work.
 at some point I should make some class that takes care of rendering for the user, not
 only would it be nicer, but it could also contain the screen height and stuff which would
 be good rather than storing it in assets. one day...
+
+Ok stream reader and backgrounds work nicely, so now what...
+I beleive it is now about time I started work on overworld scene. I'll probably find a
+million other things to do in the process, but that's ok.
+
+So it is going to need to have characters which do walk around and can be talked to. also
+maybe some can be activated simply by being stepped up to, so that they can act as doors
+and stuff. as far as talking goes they will simply be running a script that does stuff,
+however, in order to make them walk around I will need yet another new system, but I think
+I will just make up an enum of directions/ways they can move, and then make their list of
+movements be stored in a vector or something. oh yeah another thing is that characters
+will need to be able to basically completely changed depending on their personal variables
+and also global variables. that could be quite hard to write in nicely so that it isn't
+unweildly but also isn't inefficient. probably it will need to be some kind of script.
+
+no wait it won't need to be a script, it will just be some kind of thing where before each
+character sheet you specify the variable and it's value in order for this sheet to be able
+to go, but if many sheets are ready to go, the latest one wins. I guess it should be that
+it's between two values so that way you can do <,>,<=,>=, and =, though sadly not != but
+whatever.
+
+yeah so that will work well, then I just need to add a few other features and that will
+basically be the overworld done!!!!!!!!!!!!!!!!!!
 
 # 3/1/2016
 ok now I need to make new kinds of scene that make sense for this new world, I probably

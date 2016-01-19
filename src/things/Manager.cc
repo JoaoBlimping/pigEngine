@@ -1,11 +1,14 @@
 #ifndef MANAGER_C
 #define MANAGER_C
 
+
 #include "Manager.hh"
 
 #include <vector>
 #include <iostream>
 #include <fstream>
+
+#include "utils.hh"
 
 
 #define LINE_BUFFER_SIZE 100
@@ -29,7 +32,7 @@ template <class T,class L> Manager<T,L>::~Manager()
 template <class T,class L> void Manager<T,L>::init(SDL_Renderer * renderer)
 {
   //create the listfile's name
-  char * listFile = Utils::concatenate(directory,LISTFILE);
+  char * listFile = utils_concatenate(directory,LISTFILE);
 
   //load the list of items
   ifstream list(listFile);
@@ -47,7 +50,7 @@ template <class T,class L> void Manager<T,L>::init(SDL_Renderer * renderer)
 
   while (list >> line)
   {
-    char * filename = Utils::concatenate(directory,line);
+    char * filename = utils_concatenate(directory,line);
 
     //run the function on the file
     T * item = loader(filename,renderer);

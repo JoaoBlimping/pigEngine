@@ -1,7 +1,7 @@
-#include "Utils.hh"
+#include "utils.hh"
 
 
-char * Utils::concatenate(char const * a,char const * b)
+char * utils_concatenate(char const * a,char const * b)
 {
   //get the length of the strings
   int aLength;
