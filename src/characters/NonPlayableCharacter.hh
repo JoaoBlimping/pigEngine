@@ -5,22 +5,6 @@
 #include "Character.hh"
 
 
-/** defines the directions in which a character can move
- * used to create arrays of directions to define movement patterns for non playable
- * characters */
-enum moveDirection
-{
-	Up = 0,
-	Down,
-	Left,
-	Right,
-	TowardPlayer,
-	AwayFromPlayer,
-	Random,
-	None
-};
-
-
 /** describes the structure of an event page that the character can be using */
 typedef struct
 {
@@ -88,6 +72,14 @@ private:
 
 	/** if this is false, don't do anything */
 	bool alive;
+};
+
+
+/** concrete factory for creating overworld scenes */
+class NonPlayableCharacterFactory:public ConcreteFactory<Character>
+{
+public:
+	Character * operator()(StreamReader * data);
 };
 
 

@@ -1,3 +1,14 @@
+# 21/1/2016
+Now I'm making the abstract factory for characters, and then I'll make them work and that.
+Isn't it lovely when you find something you didn't even know you had to do? <3
+
+# 19/1/2016
+Ok I think regions are kinda done although actually they need more stuff done. then it's
+time to finish off characters and their two types. once that's done I can make the
+converter. how exciting that it is actually in sight considering how this part has been
+a major pain in the dick. At least the fighting part won't have as many little fiddly
+features.
+
 # 11/1/2016
 before I can make the thing that converts tiled maps into my maps, I have to have created
 a fair bit of the map functionality. The next thing I should do is add named regions that

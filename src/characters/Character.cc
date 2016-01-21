@@ -16,10 +16,17 @@ Character::~Character()
 void Character::update(float deltaTime)
 {
 	//if the character is in the process of walking, just keep on doing that
+	if (nextMove != None) moveState += deltaTime;
+	if (moveState >= moveSpeed)
+	{
+		if (nextMove == Up) yPosition--;
+		if (nextMove == Down) yPosition++;
+		if (nextMove == Left) xPosition--;
+		if (nextMove == Right) xPosition++;
+	}
 
-	//if the character is still make it move to it's next spot
-
-	//if the character is meant to autorun it's script and has not yet done so it should
+	//do the character's logic
+	logic(deltaTime);
 }
 
 
